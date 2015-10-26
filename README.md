@@ -35,14 +35,14 @@ Reboot, check for additional updates, then reinstall, reboot if needed.
 To install with a one-liner, run this:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/setup.log
+curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
 
 Want to read through the script first?
 ```sh
 curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/master/bootstrap
 less bootstrap
-sh bootstrap 2>&1 | tee ~/setup.log
+sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
 
 WARNING: This script will ask for your admin password multiple times. You'll need to babysit it for a while. :)
@@ -103,9 +103,9 @@ These are my (current) primary OS X keyboard shortcuts:
 * iTerm hotkey window: &#8997;Space
 
 
-### How to personalize these dotfiles for your own use.
+### How to personalize Mac Bootstrap for your own use.
 
-No one else's dotfiles will ever be a perfect match for you. That said, if your needs are close enough to mine, you might benefit from using the same shell scripts and overall structure, and just swapping out the particulars with your own. Here's my recommended approach to doing that:
+No one else's development setup will ever be a perfect match for you. That said, if your needs are close enough to mine, you might benefit from using the same shell scripts and overall structure, and just swapping out the particulars with your own. Here's my recommended approach to doing that:
 
 1) Fork this repo and clone your new fork to your local machine.
 
@@ -113,29 +113,22 @@ No one else's dotfiles will ever be a perfect match for you. That said, if your 
 
 * Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing.
 * Section 2: Use `oh-my-zsh`? Prefer to use bash instead?
-* Section 3: The dotfiles. Update the `git clone...` URL to point to your fork.
-* Section 4: Install Ukrainian dictionaries?
-* Section 5: Install fixed-width fonts?
-* Section 6: Use Vundle? If you prefer a different plugin manager, you can add the code for that in a file called `install/<my-plugin-manager>.sh` and then update the `source` path in this section.
-* Section 7: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
-* Section 8: Check the list of [Cask](http://caskroom.io/) apps in `install/brew-cask`. Add or remove apps to suite your needs.
-* Section 9: Review general OS X settings in `osx/defaults` and adjust as needed. `osx/dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: `dock` depends on the `dockutil` package installed by Homebrew in `brew`.)
+* Section 3: The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](https://github.com/joshukraine/dotfiles) and then point to your fork.
+* Section 4: Install tmux-related utiltities?
+* Section 5: Install Ukrainian spell-check dictionaries?
+* Section 6: Install fixed-width fonts?
+* Section 7: Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
+* Section 8: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
+* Section 9: Check the list of [Cask](http://caskroom.io/) apps in `install/brew-cask`. Add or remove apps to suite your needs.
+* Section 10: Review general OS X settings in `install/osx-defaults` and adjust as needed. `install/osx-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `osx-dock` script depends on the `dockutil` package installed by Homebrew in `brew`.)
 
-3) Customize the dotfiles themselves with your own prefs. Add or remove dotfiles as desired. Since the files will later be symlinked into place, there is no need to add the leading dot to the filenames. (e.g. use `vimrc`, not `.vimrc`)
+3) Create `~/.gitconfig.local` and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig` and `~/.zshrc` respectively.
 
-4) Update the `files` list in the `bootstrap` script to match your dotfiles. Find the following line of code (around line 81)...
+4) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
 
-	files="gemrc gitconfig gitignore_global hushlogin tmux.conf vimrc zshrc"
+	curl --remote-name https://raw.githubusercontent.com/<your-github-username>/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/boostrap.log
 
-...and make sure all your files (and *only* those files) are listed.
-
-5) Create `~/.gitconfig.local` and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig` and `~/.zshrc` respectively.
-
-6) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
-
-	curl --remote-name https://raw.githubusercontent.com/<your-github-username>/dotfiles/master/bootstrap && sh bootstrap 2>&1 | tee ~/setup.log
-
-7) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
+5) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
 
 
 ### Some of my favorite dotfile repos
