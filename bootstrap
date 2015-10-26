@@ -257,6 +257,8 @@ fancy_echo "$divider Step 10: Setting OS X preferences..."
 
 source "$BOOTSTRAP_DIR/install/osx-defaults"
 source "$BOOTSTRAP_DIR/install/osx-dock"
+rm -rf $BOOTSTRAP_DIR
+
 fancy_echo "OS X prefs set successfully. Some changes may require a restart to take effect."
 
 echo
