@@ -176,6 +176,7 @@ source $DOTFILES_DIR/install.sh
 fancy_echo "$divider Step 4: Installing tmux-related utilities..."
 
 cp -R $BOOTSTRAP_DIR/bin/tat $HOME/bin/
+cp -R $BOOTSTRAP_DIR/bin/colortest $HOME/bin/
 
 git clone https://github.com/joshukraine/xkbswitch-macosx
 cp xkbswitch-macosx/bin/xkbswitch /usr/local/bin
