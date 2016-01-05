@@ -381,6 +381,8 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # Spotlight                                                                   #
 ###############################################################################
 
+fancy_echo "- Setting Spotlight defaults..."
+
 # Hide Spotlight tray-icon (and subsequent helper)
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
