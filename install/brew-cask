@@ -10,6 +10,7 @@ apps=(
     daisydisk
     fantastical
     firefox
+    flux
     google-chrome
     google-drive
     hazel
