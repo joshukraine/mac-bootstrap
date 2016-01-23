@@ -139,6 +139,9 @@ fancy_echo "Cloning mac-bootstrap repo..."
 
 git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
+fancy_echo "Done!"
+
+
 ################################################################################
 # 2. Install oh-my-zsh
 ################################################################################
@@ -150,6 +153,8 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+fancy_echo "Done!"
 
 
 ################################################################################
@@ -169,31 +174,37 @@ fancy_echo "Cloning your dotfiles repo to ${DOTFILES_DIR} ..."
 git clone $DOTFILES_REPO_URL -b $DOTFILES_BRANCH $DOTFILES_DIR
 source $DOTFILES_DIR/install.sh
 
-################################################################################
-# 4. Install tmux-related utilities
-################################################################################
+fancy_echo "Done!"
 
-fancy_echo "$divider Step 4: Installing tmux-related utilities..."
-
-cp -R $BOOTSTRAP_DIR/bin/tat $HOME/bin/
-cp -R $BOOTSTRAP_DIR/bin/colortest $HOME/bin/
-
-git clone https://github.com/joshukraine/xkbswitch-macosx
-cp xkbswitch-macosx/bin/xkbswitch /usr/local/bin
-rm -rf xkbswitch-macosx
 
 ################################################################################
-# 5. Install Ukrainian spell-check dictionaries
+# 4. Install ~/bin utilities
+################################################################################
+
+fancy_echo "$divider Step 4: Installing ~/bin utilities..."
+
+cp -R $BOOTSTRAP_DIR/bin/* $HOME/bin/
+
+fancy_echo "Done!"
+
+
+################################################################################
+# 5. Install Ukrainian language utilities
 #
 # Reference:
 # * http://apple.stackexchange.com/a/11842/75491
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-fancy_echo "$divider Step 5: Installing Ukrainian spell-check dictionaries..."
+fancy_echo "$divider Step 5: Installing Ukrainian language utilities..."
+
 cp $BOOTSTRAP_DIR/lib/{hyph_uk_UA.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
 
-fancy_echo "Dictionaries installed!"
+git clone https://github.com/joshukraine/xkbswitch-macosx
+cp xkbswitch-macosx/bin/xkbswitch /usr/local/bin
+rm -rf xkbswitch-macosx
+
+fancy_echo "Done!"
 
 
 ################################################################################
@@ -209,6 +220,7 @@ cd $HOME/src/fonts
 ./install.sh
 cd $HOME
 rm -rf $HOME/src/fonts
+
 fancy_echo "Done!"
 
 
@@ -235,6 +247,7 @@ fancy_echo "Done!"
 fancy_echo "$divider Step 8: Installing extra Homebrew formulae..."
 
 source "$BOOTSTRAP_DIR/install/brew"
+
 fancy_echo "Done!"
 
 
@@ -246,6 +259,7 @@ fancy_echo "$divider Step 9: Installing Cask and related software..."
 
 brew_tap 'caskroom/cask'
 source "$BOOTSTRAP_DIR/install/brew-cask"
+
 fancy_echo "Done!"
 
 
@@ -259,7 +273,8 @@ source "$BOOTSTRAP_DIR/install/osx-defaults"
 source "$BOOTSTRAP_DIR/install/osx-dock"
 rm -rf $BOOTSTRAP_DIR
 
-fancy_echo "OS X prefs set successfully. Some changes may require a restart to take effect."
+fancy_echo "Done!"
+
 
 echo
 echo "**********************************************************************"
