@@ -57,8 +57,9 @@ When you invoke `bootstrap`, this is what it does in a nutshell:
 * Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
 * Clone [My Dotfiles for OS X](https://github.com/joshukraine/dotfiles) and symlink them to `$HOME`.
 * ~~Set up some basic directories in `$HOME`.~~
-* Install [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in tmux status bar.
+* Install various executable scripts (for tmux and git) to `$HOME/bin`.
 * Install Ukrainian spell-check dictionaries.
+* Install [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in tmux status bar.
 * Install several fixed-width fonts.
 * Install Vundle and plugins for vim.
 * Install various packages via [Homebrew](http://brew.sh/).
@@ -114,8 +115,8 @@ No one else's development setup will ever be a perfect match for you. That said,
 * Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing.
 * Section 2: Use `oh-my-zsh`? Prefer to use bash instead?
 * Section 3: The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](https://github.com/joshukraine/dotfiles) and then point to your fork.
-* Section 4: Install tmux-related utiltities?
-* Section 5: Install Ukrainian spell-check dictionaries?
+* Section 4: Install scripts to `~/bin`?
+* Section 5: Install Ukrainian language utilities?
 * Section 6: Install fixed-width fonts?
 * Section 7: Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
 * Section 8: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
@@ -135,13 +136,13 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 * Pro Vim (https://github.com/Integralist/ProVim)
 * Trevor Brown (https://github.com/Stratus3D/dotfiles)
+* Chris Toomey (https://github.com/christoomey/dotfiles)
+* thoughtbot (https://github.com/thoughtbot/dotfiles)
 * Lars Kappert (https://github.com/webpro/dotfiles)
 * Ryan Bates (https://github.com/ryanb/dotfiles)
-* thoughtbot (https://github.com/thoughtbot/dotfiles)
 * Ben Orenstein (https://github.com/r00k/dotfiles)
 * Joshua Clayton (https://github.com/joshuaclayton/dotfiles)
 * Drew Neil (https://github.com/nelstrom/dotfiles)
-* Chris Toomey (https://github.com/christoomey/dotfiles)
 * Kevin Suttle (https://github.com/kevinSuttle/OSXDefaults)
 * Carlos Becker (https://github.com/caarlos0/dotfiles)
 * Zach Holman (https://github.com/holman/dotfiles/)
