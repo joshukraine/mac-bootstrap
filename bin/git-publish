@@ -12,11 +12,11 @@ end
 
 def main
   current_branch = get_current_branch
-  if current_branch == 'master'
+  if current_branch == "master"
     $stderr.puts "Currently on master, aborting."
     exit 1
   else
-    system("git push -u origin #{current_branch}:js-#{current_branch}")
+    system("git push -u origin #{current_branch}:js/#{current_branch}")
   end
 end
 
