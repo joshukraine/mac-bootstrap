@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# NOTE: Some of these formulae will have already been installed by Laptop.
-
 formulae=(
     ansible
     autoconf
@@ -10,11 +8,8 @@ formulae=(
     battery
     cloc
     cmatrix
-    ctags
     dockutil
     dos2unix
-    elixir
-    erlang
     figlet
     freetype
     gdbm
@@ -22,49 +17,29 @@ formulae=(
     git
     gitsh
     glib
-    heroku
-    heroku-toolbelt
     htop
-    hub
-    imagemagick
     jpeg
-    libevent
-    libffi
-    libpng
-    libssh2
-    libtiff
-    libtool
-    libyaml
     midnight-commander
     namebench
-    openssl
     pcre
     perl
     pkg-config
-    postgresql
     python
     rbenv
     readline
-    reattach-to-user-namespace
-    redis
     rsync
-    ruby-build
     s-lang
     selenium-server-standalone
     spark
     speedtest_cli
     sqlite
     ssh-copy-id
-    the_silver_searcher
-    tmux
     trash
     tree
     unixodbc
-    vim
     wget
     wxmac
     xz
-    zsh
 )
 
 brew update
