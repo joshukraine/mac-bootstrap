@@ -101,10 +101,24 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 3. Setup dotfiles
+# 3. Install NVM
+# https://github.com/creationix/nvm#manual-install
 ################################################################################
 
-fancy_echo "$divider Step 3: Installing dotfiles..."
+fancy_echo "$divider Step 3: Installing NVM..."
+
+export NVM_DIR="$HOME/.nvm" && (
+  git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+  cd "$NVM_DIR"
+  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
+) && . "$NVM_DIR/nvm.sh"
+
+
+################################################################################
+# 4. Setup dotfiles
+################################################################################
+
+fancy_echo "$divider Step 4: Installing dotfiles..."
 if [[ -d $DOTFILES_DIR ]]; then
   fancy_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
   rm -rf $OLD_DOTFILES_BACKUP
@@ -121,10 +135,10 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 4. Install ~/bin utilities
+# 5. Install ~/bin utilities
 ################################################################################
 
-fancy_echo "$divider Step 4: Installing ~/bin utilities..."
+fancy_echo "$divider Step 5: Installing ~/bin utilities..."
 
 cp -R $BOOTSTRAP_DIR/bin/* $HOME/bin/
 
@@ -132,14 +146,14 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 5. Install Ukrainian language utilities
+# 6. Install Ukrainian language utilities
 #
 # Reference:
 # * http://apple.stackexchange.com/a/11842/75491
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-fancy_echo "$divider Step 5: Installing Ukrainian language utilities..."
+fancy_echo "$divider Step 6: Installing Ukrainian language utilities..."
 
 cp $BOOTSTRAP_DIR/lib/{hyph_uk_UA.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
 
@@ -151,10 +165,10 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 6. Install Powerline-patched fonts
+# 7. Install Powerline-patched fonts
 ################################################################################
 
-fancy_echo "$divider Step 6: Installing fixed-width fonts patched for use with Powerline symbols..."
+fancy_echo "$divider Step 7: Installing fixed-width fonts patched for use with Powerline symbols..."
 if [ -d "$HOME/src/fonts" ]; then
   rm -rf $HOME/src/fonts
 fi
@@ -168,10 +182,10 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 7. Install Vundle and vim plugins
+# 8. Install Vundle and vim plugins
 ################################################################################
 
-fancy_echo "$divider Step 7: Installing Vundle and vim plugins..."
+fancy_echo "$divider Step 8: Installing Vundle and vim plugins..."
 if [ -d $HOME/.vim/bundle ]; then
   rm -rf $HOME/.vim/bundle
 fi
@@ -184,10 +198,10 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 8. Install extra Homebrew packages
+# 9. Install extra Homebrew packages
 ################################################################################
 
-fancy_echo "$divider Step 8: Installing extra Homebrew formulae..."
+fancy_echo "$divider Step 9: Installing extra Homebrew formulae..."
 
 source "$BOOTSTRAP_DIR/install/brew"
 
@@ -195,10 +209,10 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 9. Install Cask and related software
+# 10. Install Cask and related software
 ################################################################################
 
-fancy_echo "$divider Step 9: Installing Cask and related software..."
+fancy_echo "$divider Step 10: Installing Cask and related software..."
 
 brew tap caskroom/cask
 source "$BOOTSTRAP_DIR/install/brew-cask"
@@ -207,10 +221,10 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 10. Set macOS preferences
+# 11. Set macOS preferences
 ################################################################################
 
-fancy_echo "$divider Step 10: Setting macOS preferences..."
+fancy_echo "$divider Step 11: Setting macOS preferences..."
 
 source "$BOOTSTRAP_DIR/install/macos-defaults"
 source "$BOOTSTRAP_DIR/install/macos-dock"

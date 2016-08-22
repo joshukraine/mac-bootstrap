@@ -57,6 +57,7 @@ When you invoke `bootstrap`, this is what it does in a nutshell:
 * Check for command line tools to be installed. The script will exit if they aren't found.
 * Run my fork of thoughtbot's [Laptop script](https://github.com/joshukraine/laptop). This is a provisioning script which installs lots of goodies like Homebrew, rbenv, postgres, etc.
 * Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
+* Install [NVM](https://github.com/creationix/nvm) for managing Node.js versions.
 * Clone [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles) and symlink them to `$HOME`.
 * ~~Set up some basic directories in `$HOME`.~~
 * Install various executable scripts (for tmux and git) to `$HOME/bin`.
@@ -118,16 +119,17 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 2) Review [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) and determine which sections you want to use.
 
-* Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing.
-* Section 2: Use `oh-my-zsh`? Prefer to use bash instead?
-* Section 3: The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](https://github.com/joshukraine/dotfiles) and then point to your fork.
-* Section 4: Install scripts to `~/bin`?
-* Section 5: Install Ukrainian language utilities?
-* Section 6: Install fixed-width fonts?
-* Section 7: Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
-* Section 8: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
-* Section 9: Check the list of [Cask](http://caskroom.io/) apps in `install/brew-cask`. Add or remove apps to suite your needs.
-* Section 10: Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew in `brew`.)
+* Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing. The rest of `bootstrap` depends on software and configs handled by Laptop.
+* Section 2: Use `oh-my-zsh`? Prefer to use bash instead. (recommended)
+* Section 3: Install NVM? (optional)
+* Section 4: The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](https://github.com/joshukraine/dotfiles) and then point to your fork.
+* Section 5: Install scripts to `~/bin`? (recommended)
+* Section 6: Install Ukrainian language utilities? (optional)
+* Section 7: Install fixed-width fonts? (optional)
+* Section 8: Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section. (recommended)
+* Section 9: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
+* Section 10: Check the list of [Cask](http://caskroom.io/) apps in `install/brew-cask`. Add or remove apps to suite your needs.
+* Section 11: Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew in `brew`.)
 
 3) Create `~/.gitconfig.local` and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig` and `~/.zshrc` respectively.
 
