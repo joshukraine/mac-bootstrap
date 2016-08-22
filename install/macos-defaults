@@ -347,8 +347,31 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 
 fancy_echo "- Setting dock defaults..."
 
+# Enable highlight hover effect for the grid view of a stack (Dock)
+defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# Set the icon size of Dock items to 72 pixels
+defaults write com.apple.dock tilesize -int 72
+
+# Change minimize/maximize window effect
+# defaults write com.apple.dock mineffect -string "scale"
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Enable spring loading for all Dock items
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
+
+# Wipe all (default) app icons from the Dock
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
+# defaults write com.apple.dock persistent-apps -array
+
+# Show only open applications in the Dock
+# defaults write com.apple.dock static-only -bool true
 
 # Don't animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
@@ -362,9 +385,6 @@ defaults write com.apple.dock showhidden -bool true
 # No bouncing icons
 # defaults write com.apple.dock no-bouncing -bool true
 
-# Set the icon size of Dock items to 72 pixels
-defaults write com.apple.dock tilesize -int 72
-
 
 ###############################################################################
 # Dashboard & Spaces                                                          #
@@ -374,6 +394,10 @@ fancy_echo "- Setting Dashboard and Spaces defaults..."
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Don’t group windows by application in Mission Control
+# (i.e. use the old Exposé behavior instead)
+# defaults write com.apple.dock expose-group-by-app -bool false
 
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
@@ -407,9 +431,9 @@ fancy_echo "- Setting hot corners defaults (currently no changes)..."
 defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
 
-# Top right screen corner → Display sleep
-defaults write com.apple.dock wvous-tr-corner -int 10
-defaults write com.apple.dock wvous-tr-modifier -int 10
+# Bottom right screen corner → Display sleep
+defaults write com.apple.dock wvous-br-corner -int 10
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 # Bottom left screen corner → []
 defaults write com.apple.dock wvous-bl-corner -int 0
