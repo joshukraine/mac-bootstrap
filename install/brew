@@ -69,4 +69,5 @@ formulae=(
 
 brew update
 brew tap Goles/battery
+brew tap homebrew/dupes
 brew install ${formulae[@]}
