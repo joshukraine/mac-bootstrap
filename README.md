@@ -1,6 +1,7 @@
-# Mac Bootstrap
+Mac Bootstrap
+=============
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on zsh, vim and tmux running in iTerm 2.
+The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on zsh, vim and tmux running in iTerm.
 
 The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. It has been successfully tested on the following versions of macOS:
 
@@ -9,12 +10,11 @@ The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/boots
 
 &#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles)**
 
-&#9657; **Running desktop Linux? Check out [My Dotfiles for Linux Desktop](https://github.com/joshukraine/linux-desktop)**
-
-&#9657; **Need just the basics for a headless Linux server? Check out [My Dotfiles for Linux Server](https://github.com/joshukraine/linux-server)**
+&#9657; **Running desktop Linux? Check out [Linux Bootstrap](https://github.com/joshukraine/linux-bootstrap)**
 
 
-### Prerequisites
+Prerequisites
+-------------
 
 Make sure your software is up to date:
 
@@ -30,7 +30,8 @@ Reboot, check for additional updates, then reinstall, reboot if needed.
 	sudo softwareupdate -i -a
 
 
-### Installation
+Installation
+------------
 
 To install with a one-liner, run this:
 
@@ -48,7 +49,8 @@ sh bootstrap 2>&1 | tee ~/bootstrap.log
 WARNING: This script will ask for your admin password multiple times. You'll need to babysit it for a while. :)
 
 
-### What does it do?
+What does it do?
+----------------
 
 When you invoke `bootstrap`, this is what it does in a nutshell:
 
@@ -70,29 +72,32 @@ When you invoke `bootstrap`, this is what it does in a nutshell:
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Pro](https://db.tt/6kiw9mn9), all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
 
-### Post-install Tasks
+Post-install Tasks
+------------------
 
 After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
 * Install software from Mac App Store.
-* Set up iTerm 2 profile (see details below).
+* Set up iTerm profile (see details below).
 * Add personal data to `~/.gitconfig.local` and `~/.zshrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
 
 
-### Setting up iTerm 2
+Setting up iTerm
+----------------
 
-Thanks to a [great blog post](http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/) by Trevor Brown, I learned that you can quickly set up iTerm 2 by exporting your profile. Here are the steps.
+Thanks to a [great blog post](http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/) by Trevor Brown, I learned that you can quickly set up iTerm by exporting your profile. Here are the steps.
 
-1. Open iTerm 2.
-2. Select iTerm 2 > Preferences.
+1. Open iTerm.
+2. Select iTerm > Preferences.
 3. Under the General tab, check the box labeled "Load preferences from a custom folder or URL:"
 4. Press "Browse" and point it to `~/dotfiles/iterm2/com.googlecode.iterm2.plist`.
-5. Restart iTerm 2.
+5. Restart iTerm.
 
 
-### macOS Keyboard Shortcuts
+macOS Keyboard Shortcuts
+------------------------
 
 These are my (current) primary macOS keyboard shortcuts:
 
@@ -104,7 +109,8 @@ These are my (current) primary macOS keyboard shortcuts:
 * iTerm hotkey window: &#8997;Space
 
 
-### How to personalize Mac Bootstrap for your own use.
+How to personalize Mac Bootstrap for your own use.
+--------------------------------------------------
 
 No one else's development setup will ever be a perfect match for you. That said, if your needs are close enough to mine, you might benefit from using the same shell scripts and overall structure, and just swapping out the particulars with your own. Here's my recommended approach to doing that:
 
@@ -132,7 +138,8 @@ No one else's development setup will ever be a perfect match for you. That said,
 5) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
 
 
-### Some of my favorite dotfile repos
+Some of my favorite dotfile repos
+---------------------------------
 
 * Pro Vim (https://github.com/Integralist/ProVim)
 * Trevor Brown (https://github.com/Stratus3D/dotfiles)
@@ -150,7 +157,8 @@ No one else's development setup will ever be a perfect match for you. That said,
 * Paul Irish (https://github.com/paulirish/dotfiles)
 
 
-### Helpful web resources on dotfiles, et al.
+Helpful web resources on dotfiles, et al.
+-----------------------------------------
 
 * http://dotfiles.github.io/
 * https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789
