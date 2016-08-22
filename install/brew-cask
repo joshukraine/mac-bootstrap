@@ -10,7 +10,6 @@ apps=(
     daisydisk
     fantastical
     firefox
-    flux
     google-chrome
     google-drive
     hazel
@@ -18,8 +17,8 @@ apps=(
     istat-menus
     iterm2
     little-snitch
-    mactracker
     namebench
+    ngrok
     screenflick
     skype
     the-unarchiver
