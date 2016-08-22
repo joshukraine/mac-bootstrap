@@ -55,7 +55,7 @@ fi
 
 
 ################################################################################
-# Check for presence of command line tools if OS X
+# Check for presence of command line tools if macOS
 ################################################################################
 
 if [ ! -d "$COMMANDLINE_TOOLS" ]; then
@@ -207,13 +207,13 @@ fancy_echo "Done!"
 
 
 ################################################################################
-# 10. Set OS X preferences
+# 10. Set macOS preferences
 ################################################################################
 
-fancy_echo "$divider Step 10: Setting OS X preferences..."
+fancy_echo "$divider Step 10: Setting macOS preferences..."
 
-source "$BOOTSTRAP_DIR/install/osx-defaults"
-source "$BOOTSTRAP_DIR/install/osx-dock"
+source "$BOOTSTRAP_DIR/install/macos-defaults"
+source "$BOOTSTRAP_DIR/install/macos-dock"
 rm -rf $BOOTSTRAP_DIR
 
 fancy_echo "Done!"
