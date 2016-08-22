@@ -2,7 +2,6 @@
 
 formulae=(
     ansible
-    autoconf
     awscli
     bash-completion
     battery
@@ -11,35 +10,22 @@ formulae=(
     dockutil
     dos2unix
     figlet
-    freetype
-    gdbm
     gettext
-    git
     gitsh
     glib
     htop
-    jpeg
     midnight-commander
     namebench
-    pcre
-    perl
-    pkg-config
-    python
-    rbenv
-    readline
     rsync
     s-lang
     selenium-server-standalone
     spark
     speedtest_cli
-    sqlite
     ssh-copy-id
     trash
     tree
     unixodbc
     wget
-    wxmac
-    xz
 )
 
 brew update
