@@ -8,6 +8,7 @@ apps=(
     bartender
     carbon-copy-cloner
     daisydisk
+    dropbox
     fantastical
     firefox
     google-chrome
