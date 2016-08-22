@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 ################################################################################
-# Adapted from https://mths.be/osx.
-# Also referenced:
-# - https://github.com/webpro/dotfiles
-# - https://github.com/kevinSuttle/OSXDefaults
+# Adapted from https://mths.be/macos
 ################################################################################
 
 # Ask for the administrator password upfront
