@@ -9,6 +9,7 @@ apps=(
     carbon-copy-cloner
     daisydisk
     dropbox
+    evernote
     fantastical
     firefox
     google-chrome
@@ -21,6 +22,7 @@ apps=(
     namebench
     ngrok
     screenflick
+    sketch
     skype
     the-unarchiver
     things
