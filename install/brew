@@ -1,42 +1,72 @@
 #!/usr/bin/env bash
 
-# In addition to the formulae installed in this script, my fork of thoughtbot's
-# Laptop script first installs the following:
-#
-# zsh
-# git
-# postgres
-# redis
-# the_silver_searcher
-# vim
-# ctags
-# tmux
-# reattach-to-user-namespace
-# imagemagick
-# qt
-# hub
-# node
-# rbenv
-# ruby-build
-# openssl
-# libyaml
-# heroku-toolbelt
+# NOTE: Some of these formulae will have already been installed by Laptop.
+
+formulae=(
+    ansible
+    autoconf
+    awscli
+    bash-completion
+    battery
+    cloc
+    cmatrix
+    ctags
+    dockutil
+    dos2unix
+    elixir
+    erlang
+    figlet
+    freetype
+    gdbm
+    gettext
+    git
+    gitsh
+    glib
+    heroku
+    heroku-toolbelt
+    htop
+    hub
+    imagemagick
+    jpeg
+    libevent
+    libffi
+    libpng
+    libssh2
+    libtiff
+    libtool
+    libyaml
+    midnight-commander
+    namebench
+    openssl
+    pcre
+    perl
+    pkg-config
+    postgresql
+    python
+    rbenv
+    readline
+    reattach-to-user-namespace
+    redis
+    rsync
+    ruby-build
+    s-lang
+    selenium-server-standalone
+    spark
+    speedtest_cli
+    sqlite
+    ssh-copy-id
+    the_silver_searcher
+    tmux
+    trash
+    tree
+    unixodbc
+    vim
+    wget
+    wxmac
+    xz
+    zsh
+)
 
 brew update
-
-brew_tap 'Goles/battery'
-
-brew_install_or_upgrade 'ansible'
-brew_install_or_upgrade 'awscli'
-brew_install_or_upgrade 'bash-completion'
-brew_install_or_upgrade 'battery'
-brew_install_or_upgrade 'cloc'
-brew_install_or_upgrade 'dockutil'
-brew_install_or_upgrade 'figlet'
-brew_install_or_upgrade 'htop-osx'
-brew_install_or_upgrade 'namebench'
-brew_install_or_upgrade 'python'
-brew_install_or_upgrade 'ssh-copy-id'
-brew_install_or_upgrade 'trash'
-brew_install_or_upgrade 'tree'
-brew_install_or_upgrade 'wget'
+brew tap Goles/battery
+brew install ${formulae[@]}
