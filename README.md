@@ -52,7 +52,7 @@ WARNING: This script will ask for your admin password multiple times. You'll nee
 What does it do?
 ----------------
 
-When you invoke `bootstrap`, this is what it does in a nutshell:
+When you invoke `bootstrap`, here's what it does:
 
 * Check for command line tools to be installed. The script will exit if they aren't found.
 * Run my fork of thoughtbot's [Laptop script](https://github.com/joshukraine/laptop). This is a provisioning script which installs lots of goodies like Homebrew, rbenv, postgres, etc.
@@ -108,6 +108,7 @@ These are my (current) primary macOS keyboard shortcuts:
 * Fantastical: &#8997;&#8984;Space
 * Things: &#8963;Space
 * iTerm hotkey window: &#8997;Space
+* Remap Caps Lock to CTRL (anyone know a way to automate this?)
 
 
 How to personalize Mac Bootstrap for your own use.
