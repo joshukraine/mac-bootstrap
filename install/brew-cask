@@ -21,6 +21,8 @@ apps=(
     little-snitch
     namebench
     ngrok
+    opera
+    postico
     screenflick
     sketch
     skype
