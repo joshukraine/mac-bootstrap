@@ -32,7 +32,7 @@ DOTFILES_BRANCH="master"
 DOTFILES_DIR=$HOME/dotfiles
 
 BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
-BOOTSTRAP_BRANCH="master"
+BOOTSTRAP_BRANCH="v1-update-mac-mini"
 BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
 
