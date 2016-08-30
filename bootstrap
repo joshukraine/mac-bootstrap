@@ -106,10 +106,7 @@ fancy_echo "Done!"
 
 fancy_echo "$divider Step 3: Installing NVM..."
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-nvm install 5
+source "$BOOTSTRAP_DIR/install/nvm"
 
 
 ################################################################################
