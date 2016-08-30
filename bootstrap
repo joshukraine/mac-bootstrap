@@ -102,17 +102,11 @@ fancy_echo "Done!"
 
 ################################################################################
 # 3. Install NVM
-# https://github.com/creationix/nvm#manual-install
 ################################################################################
 
 fancy_echo "$divider Step 3: Installing NVM..."
 
-export NVM_DIR="$HOME/.nvm" && (
-  git clone https://github.com/creationix/nvm.git "$NVM_DIR"
-  cd "$NVM_DIR"
-  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
-) && . "$NVM_DIR/nvm.sh"
-
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
 nvm install 5
 
 
