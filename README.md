@@ -106,7 +106,7 @@ These are my (current) primary macOS keyboard shortcuts:
 * Spotlight search: &#8984;&#8679;Space
 * Switch input source: &#8963;&#8679;Space
 * Fantastical: &#8997;&#8984;Space
-* Things: &#8963;Space
+* OmniFocus: &#8963;&#8997;Space
 * iTerm2 hotkey window: &#8997;Space
 * Remap Caps Lock to CTRL (anyone know a way to automate this?)
 
