@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set +e
+set +u
 
 export NVM_DIR="$HOME/.nvm" && (
   git clone https://github.com/creationix/nvm.git "$NVM_DIR"
@@ -11,3 +12,4 @@ export NVM_DIR="$HOME/.nvm" && (
 nvm install 5
 
 set -e
+set -u
