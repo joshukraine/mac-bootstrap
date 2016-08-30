@@ -1,7 +1,7 @@
 Mac Bootstrap
 =============
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on zsh, vim and tmux running in iTerm.
+The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on zsh, vim and tmux running in iTerm2.
 
 The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. It has been successfully tested on the following versions of macOS:
 
@@ -80,21 +80,21 @@ After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
 * Install software from Mac App Store.
-* Set up iTerm profile (see details below).
+* Set up iTerm2 profile (see details below).
 * Add personal data to `~/.gitconfig.local` and `~/.zshrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
 
 
-Setting up iTerm
+Setting up iTerm2
 ----------------
 
-Thanks to a [great blog post](http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/) by Trevor Brown, I learned that you can quickly set up iTerm by exporting your profile. Here are the steps.
+Thanks to a [great blog post](http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/) by Trevor Brown, I learned that you can quickly set up iTerm2 by exporting your profile. Here are the steps.
 
-1. Open iTerm.
-2. Select iTerm > Preferences.
+1. Open iTerm2.
+2. Select iTerm2 > Preferences.
 3. Under the General tab, check the box labeled "Load preferences from a custom folder or URL:"
 4. Press "Browse" and point it to `~/dotfiles/iterm2/com.googlecode.iterm2.plist`.
-5. Restart iTerm.
+5. Restart iTerm2.
 
 
 macOS Keyboard Shortcuts
@@ -107,7 +107,7 @@ These are my (current) primary macOS keyboard shortcuts:
 * Switch input source: &#8963;&#8679;Space
 * Fantastical: &#8997;&#8984;Space
 * Things: &#8963;Space
-* iTerm hotkey window: &#8997;Space
+* iTerm2 hotkey window: &#8997;Space
 * Remap Caps Lock to CTRL (anyone know a way to automate this?)
 
 
