@@ -1,16 +1,13 @@
 Mac Bootstrap
 =============
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on zsh, vim and tmux running in iTerm2.
+The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in iTerm2.
 
 The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. It has been successfully tested on the following versions of macOS:
 
-* Yosemite (10.10)
 * El Capitan (10.11)
 
 &#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles)**
-
-&#9657; **Running desktop Linux? Check out [Linux Bootstrap](https://github.com/joshukraine/linux-bootstrap)**
 
 
 Prerequisites
@@ -60,14 +57,14 @@ When you invoke `bootstrap`, here's what it does:
 * Install [NVM](https://github.com/creationix/nvm) for managing Node.js versions.
 * Clone [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles) and symlink them to `$HOME`.
 * ~~Set up some basic directories in `$HOME`.~~
-* Install various executable scripts (for tmux and git) to `$HOME/bin`.
+* Install various executable scripts (for Tmux and Git) to `$HOME/bin`.
 * Install Ukrainian spell-check dictionaries.
-* Install [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in tmux status bar.
+* Install [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in Tmux status bar.
 * Install several fixed-width fonts.
-* Install Vundle and plugins for vim.
+* Install Vundle and plugins for Vim.
 * Install various packages via [Homebrew](http://brew.sh/).
 * Install macOS software via [Cask](http://caskroom.io/).
-* Set a variety of macOS defaults.
+* Set a variety of macOS defaults. (adapted from [https://mths.be/macos](https://mths.be/macos))
 * Customize the macOS dock.
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Pro](https://db.tt/6kiw9mn9), all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
