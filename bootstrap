@@ -65,7 +65,7 @@ fi
 
 
 ################################################################################
-# 1. Provision with my fork of Laptop
+# 1. Provision with my fork of Laptop (https://github.com/joshukraine/laptop)
 # * Also clone mac-bootstrap repo
 ################################################################################
 
@@ -74,19 +74,19 @@ fancy_echo "$divider Step 1: Invoking my fork of thoughtbot's Laptop script..."
 curl --remote-name https://raw.githubusercontent.com/joshukraine/laptop/master/mac
 sh mac 2>&1 | tee ~/laptop.log
 
-fancy_echo "Laptop installation complete!"
-fancy_echo "Cloning mac-bootstrap repo..."
+fancy_echo "== Laptop installation complete!"
+fancy_echo "== Cloning mac-bootstrap repo..."
 
 git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
-# 2. Install oh-my-zsh
+# 2. Install Oh-My-Zsh (http://ohmyz.sh/)
 ################################################################################
 
-fancy_echo "$divider Step 2: Installing oh-my-zsh..."
+fancy_echo "$divider Step 2: Installing Oh-My-Zsh..."
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   rm -rf $HOME/.oh-my-zsh
@@ -94,23 +94,25 @@ fi
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
-# 3. Install NVM
+# 3. Install NVM (https://github.com/creationix/nvm)
 ################################################################################
 
 fancy_echo "$divider Step 3: Installing NVM..."
 
 source "$BOOTSTRAP_DIR/install/nvm"
 
+fancy_echo "*** Done! ***"
 
 ################################################################################
-# 4. Setup dotfiles
+# 4. Setup dotfiles (https://github.com/joshukraine/dotfiles)
 ################################################################################
 
 fancy_echo "$divider Step 4: Installing dotfiles..."
+
 if [[ -d $DOTFILES_DIR ]]; then
   fancy_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
   rm -rf $OLD_DOTFILES_BACKUP
@@ -118,16 +120,17 @@ if [[ -d $DOTFILES_DIR ]]; then
   rm -rf $DOTFILES_DIR
 fi
 
-fancy_echo "Cloning your dotfiles repo to ${DOTFILES_DIR} ..."
+fancy_echo "== Cloning dotfiles repo to ${DOTFILES_DIR} ..."
 
 git clone $DOTFILES_REPO_URL -b $DOTFILES_BRANCH $DOTFILES_DIR
 source $DOTFILES_DIR/install.sh
 
 # Setup TPM for tmux plugins.
 # https://github.com/tmux-plugins/tpm#installation
+fancy_echo "== Installing Tmux Plugin Manager..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
@@ -138,7 +141,7 @@ fancy_echo "$divider Step 5: Installing ~/bin utilities..."
 
 cp -R $BOOTSTRAP_DIR/bin/* $HOME/bin/
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
@@ -157,7 +160,7 @@ git clone https://github.com/joshukraine/xkbswitch-macosx
 cp xkbswitch-macosx/bin/xkbswitch /usr/local/bin
 rm -rf xkbswitch-macosx
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
@@ -174,23 +177,23 @@ cd $HOME/src/fonts
 cd $HOME
 rm -rf $HOME/src/fonts
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
-# 8. Install Vundle and vim plugins
+# 8. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
 ################################################################################
 
 fancy_echo "$divider Step 8: Installing Vundle and vim plugins..."
 if [ -d $HOME/.vim/bundle ]; then
   rm -rf $HOME/.vim/bundle
 fi
-git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-cp -R $DOTFILES_DIR/vim/colors $HOME/.vim # So vim won't complain about solarized not being found.
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+cp -R $DOTFILES_DIR/vim/colors $HOME/.vim # So Vim won't complain about solarized not being found.
 vim +PluginInstall +qall
 rm -rf $HOME/.vim/colors
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
@@ -201,7 +204,7 @@ fancy_echo "$divider Step 9: Installing extra Homebrew formulae..."
 
 source "$BOOTSTRAP_DIR/install/brew"
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
@@ -213,7 +216,7 @@ fancy_echo "$divider Step 10: Installing Cask and related software..."
 brew tap caskroom/cask
 source "$BOOTSTRAP_DIR/install/brew-cask"
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 ################################################################################
@@ -226,7 +229,7 @@ source "$BOOTSTRAP_DIR/install/macos-defaults"
 source "$BOOTSTRAP_DIR/install/macos-dock"
 rm -rf $BOOTSTRAP_DIR
 
-fancy_echo "Done!"
+fancy_echo "*** Done! ***"
 
 
 echo
