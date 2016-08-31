@@ -33,7 +33,7 @@ Installation
 To install with a one-liner, run this:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/v1-update-mac-mini/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
+curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/mac-mini/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
 
 Want to read through the script first?
