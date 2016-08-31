@@ -1,7 +1,7 @@
 Mac Bootstrap
 =============
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in iTerm2.
+The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in [iTerm2](https://www.iterm2.com/).
 
 The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. It has been successfully tested on the following versions of macOS:
 
@@ -53,7 +53,7 @@ When you invoke `bootstrap`, here's what it does:
 
 * Check for command line tools to be installed. The script will exit if they aren't found.
 * Run my fork of thoughtbot's [Laptop script](https://github.com/joshukraine/laptop). This is a provisioning script which installs lots of goodies like Homebrew, rbenv, postgres, etc.
-* Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
+* Install [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh).
 * Install [NVM](https://github.com/creationix/nvm) for managing Node.js versions.
 * Clone [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles) and symlink them to `$HOME`.
 * ~~Set up some basic directories in `$HOME`.~~
@@ -61,7 +61,7 @@ When you invoke `bootstrap`, here's what it does:
 * Install Ukrainian spell-check dictionaries.
 * Install [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in Tmux status bar.
 * Install several fixed-width fonts.
-* Install Vundle and plugins for Vim.
+* Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
 * Install various packages via [Homebrew](http://brew.sh/).
 * Install macOS software via [Cask](http://caskroom.io/).
 * Set a variety of macOS defaults. (adapted from [https://mths.be/macos](https://mths.be/macos))
