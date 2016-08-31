@@ -8,9 +8,10 @@ apps=(
     bartender
     carbon-copy-cloner
     daisydisk
+    dropbox
+    evernote
     fantastical
     firefox
-    flux
     google-chrome
     google-drive
     hazel
@@ -18,12 +19,14 @@ apps=(
     istat-menus
     iterm2
     little-snitch
-    mactracker
     namebench
+    ngrok
+    opera
+    postico
     screenflick
+    sketch
     skype
     the-unarchiver
-    things
     vagrant
     virtualbox
     vlc

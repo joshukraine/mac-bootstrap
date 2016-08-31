@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 ################################################################################
-# Adapted from https://mths.be/osx.
-# Also referenced:
-# - https://github.com/webpro/dotfiles
-# - https://github.com/kevinSuttle/OSXDefaults
+# Adapted from https://mths.be/macos
 ################################################################################
 
 # Ask for the administrator password upfront
@@ -36,7 +33,7 @@ TIME_ZONE="Europe/Kiev"
 # General UI/UX                                                               #
 ###############################################################################
 
-fancy_echo "- Setting General UI/UX defaults..."
+fancy_echo "== Setting General UI/UX defaults..."
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName $COMPUTER_NAME
@@ -44,9 +41,21 @@ sudo scutil --set HostName $HOST_NAME
 sudo scutil --set LocalHostName $LOCAL_HOST_NAME
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $NET_BIOS_NAME
 
+# Set standby delay to 24 hours (default is 1 hour)
+# sudo pmset -a standbydelay 86400
+
+# Disable transparency in the menu bar and elsewhere on Yosemite
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Set sidebar icon size to medium
+# defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
 # Show scrollbars only when scrolling
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
+
+# Disable the over-the-top focus ring animation
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -56,44 +65,67 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
+# Save to disk (not to iCloud) by default
+# defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Disable the "Are you sure you want to open this application?" dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
+# Remove duplicates in the "Open With" menu (also see `lscleanup` alias)
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+# Display ASCII control characters using caret notation in standard text views
+# Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
+
 # Disable Resume system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+# Disable the crash reporter
+#defaults write com.apple.CrashReporter DialogType -string "none"
 
 # Set Help Viewer windows to non-floating mode
 defaults write com.apple.helpviewer DevMode -bool true
 
-# Check for software updates daily, not just once per week
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# Reveal IP address, hostname, OS version, etc. when clicking the clock
+# in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
-# Disable guest login -- NOTE: This doesn't actually work due to Parental Controls bug.
-# sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO
+# Restart automatically if the computer freezes
+sudo systemsetup -setrestartfreeze on
+
+# Never go into computer sleep mode
+# sudo systemsetup -setcomputersleep Off > /dev/null
+
+# Disable Notification Center and remove the menu bar icon
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Activate audible chime when power cable is plugged in.
 defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app
-
-# Disable transparency in the menu bar and elsewhere
-defaults write com.apple.universalaccess reduceTransparency -bool true
-
-# Disable smart quotes as they're annoying when typing code
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-# Disable smart dashes as they're annoying when typing code
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
 ###############################################################################
 
-fancy_echo "- Setting SSD-specific tweaks..."
+fancy_echo "== Setting SSD-specific tweaks..."
 
-# Disable the sudden motion sensor as it's not useful for SSDs
+# Disable hibernation (speeds up entering sleep mode)
+sudo pmset -a hibernatemode 0
+
+# Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
 
 
@@ -101,19 +133,14 @@ sudo pmset -a sms 0
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-fancy_echo "- Setting Trackpad, mouse, keyboard, Bluetooth accessories, and input defaults..."
+fancy_echo "== Setting Trackpad, mouse, keyboard, Bluetooth accessories, and input defaults..."
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Trackpad: swipe between pages with three fingers
-defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
-
-# Enable "natural" (Lionistyle) scrolling
+# Enable "natural" (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
 # Increase sound quality for Bluetooth headphones/headsets
@@ -137,24 +164,47 @@ defaults write NSGlobalDomain AppleMetricUnits -bool false
 # Set the timezone; see `systemsetup -listtimezones` for other values
 systemsetup -settimezone $TIME_ZONE > /dev/null
 
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+# Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# Enable subpixel font rendering on non-Apple LCDs
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+# Enable HiDPI display modes (requires restart)
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
 
-fancy_echo "- Setting Finder defaults..."
+fancy_echo "== Setting Finder defaults..."
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
+# Finder: disable window animations and Get Info animations
+# defaults write com.apple.finder DisableAllAnimations -bool true
+
 # Set the user directory as the default location for new Finder windows
-# For other paths, use `PfLo` and `file:///full/path/here/`
+# More options here: https://github.com/mathiasbynens/dotfiles/blob/96edd4b57047f34ffbcbb708e1e4de3a2e469925/.macos#L233
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Dropbox/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -180,36 +230,92 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Enable spring loading for directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+# Remove the spring loading delay for directories
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
 # Automatically open a new Finder window when a volume is mounted
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
-# Avoid creating .DS_Store files on network volumes
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+# Increase the size of icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist
 
-# Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# Arrange icons by name
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
 
-# Use AirDrop over every interface.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+# Sort icons by name
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettings:sortColumn name" ~/Library/Preferences/com.apple.finder.plist
 
 # Always open everything in Finder's column view.
 # Four-letter codes for all view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+# Enable AirDrop over Ethernet and on unsupported Macs running Lion
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+# Enable the MacBook Air SuperDrive on any Mac
+sudo nvram boot-args="mbasd=1"
+
 # Show the ~/Library folder
 chflags nohidden ~/Library
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+
+# Expand the following File Info panes:
+# “General”, “Open with”, and “Sharing & Permissions”
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+	General -bool true \
+	OpenWith -bool true \
+	Privileges -bool true
 
 
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
 
-fancy_echo "- Setting dock defaults..."
+fancy_echo "== Setting dock defaults..."
+
+# Enable highlight hover effect for the grid view of a stack (Dock)
+defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# Set the icon size of Dock items to 72 pixels
+defaults write com.apple.dock tilesize -int 72
+
+# Change minimize/maximize window effect
+# defaults write com.apple.dock mineffect -string "scale"
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Enable spring loading for all Dock items
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
+
+# Wipe all (default) app icons from the Dock
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
+# defaults write com.apple.dock persistent-apps -array
+
+# Show only open applications in the Dock
+# defaults write com.apple.dock static-only -bool true
 
 # Don't animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
@@ -223,18 +329,19 @@ defaults write com.apple.dock showhidden -bool true
 # No bouncing icons
 # defaults write com.apple.dock no-bouncing -bool true
 
-# Set the icon size of Dock items to 72 pixels
-defaults write com.apple.dock tilesize -int 72
-
 
 ###############################################################################
 # Dashboard & Spaces                                                          #
 ###############################################################################
 
-fancy_echo "- Setting Dashboard and Spaces defaults..."
+fancy_echo "== Setting Dashboard and Spaces defaults..."
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Don’t group windows by application in Mission Control
+# (i.e. use the old Exposé behavior instead)
+# defaults write com.apple.dock expose-group-by-app -bool false
 
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
@@ -250,7 +357,7 @@ defaults write com.apple.dock mru-spaces -bool false
 # Hot corners                                                                 #
 ###############################################################################
 
-fancy_echo "- Setting hot corners defaults (currently no changes)..."
+fancy_echo "== Setting hot corners defaults (currently no changes)..."
 
 # Possible values:
 #  0: no-op
@@ -268,9 +375,9 @@ fancy_echo "- Setting hot corners defaults (currently no changes)..."
 defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
 
-# Top right screen corner → Display sleep
-defaults write com.apple.dock wvous-tr-corner -int 10
-defaults write com.apple.dock wvous-tr-modifier -int 10
+# Bottom right screen corner → Display sleep
+defaults write com.apple.dock wvous-br-corner -int 10
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 # Bottom left screen corner → []
 defaults write com.apple.dock wvous-bl-corner -int 0
@@ -281,7 +388,7 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Safari & WebKit                                                             #
 ###############################################################################
 
-fancy_echo "- Setting Safari and WebKit defaults..."
+fancy_echo "== Setting Safari and WebKit defaults..."
 
 # Privacy: don't send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
@@ -334,7 +441,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # Mail                                                                        #
 ###############################################################################
 
-fancy_echo "- Setting Mail defaults..."
+fancy_echo "== Setting Mail defaults..."
 
 # Disable send and reply animations in Mail.app
 defaults write com.apple.mail DisableReplyAnimations -bool true
@@ -368,7 +475,7 @@ defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\
 # Time Machine                                                                #
 ###############################################################################
 
-fancy_echo "- Setting Time Machine defaults..."
+fancy_echo "== Setting Time Machine defaults..."
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -381,7 +488,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # Spotlight                                                                   #
 ###############################################################################
 
-fancy_echo "- Setting Spotlight defaults..."
+fancy_echo "== Setting Spotlight defaults..."
 
 # Hide Spotlight tray-icon (and subsequent helper)
 # sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
@@ -393,27 +500,24 @@ sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Vol
 
 
 ###############################################################################
-# Terminal.app & iTerm 2                                                      #
+# Terminal.app                                                                #
 ###############################################################################
 
-fancy_echo "- Setting Terminal defaults..."
+fancy_echo "== Setting Terminal.app defaults..."
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
-# Use "Pro" theme (black background color)
-defaults write com.apple.terminal "Default Window Settings" -string "Pro"
-defaults write com.apple.terminal "Startup Window Settings" -string "Pro"
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+# Enable Secure Keyboard Entry in Terminal.app
+# See: https://security.stackexchange.com/a/47786/8918
+defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 
-fancy_echo "- Setting Google Chrome defaults..."
+fancy_echo "== Setting Google Chrome defaults..."
 
 # Allow installing user scripts via GitHub Gist or Userscripts.org
 defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
@@ -430,3 +534,11 @@ defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls
 # Use the system-native print preview dialog
 defaults write com.google.Chrome DisablePrintPreview -bool true
 defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+
+
+###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
