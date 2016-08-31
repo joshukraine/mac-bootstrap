@@ -126,6 +126,10 @@ fancy_echo "Cloning your dotfiles repo to ${DOTFILES_DIR} ..."
 git clone $DOTFILES_REPO_URL -b $DOTFILES_BRANCH $DOTFILES_DIR
 source $DOTFILES_DIR/install.sh
 
+# Setup TPM for tmux plugins.
+# https://github.com/tmux-plugins/tpm#installation
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 fancy_echo "Done!"
 
 
