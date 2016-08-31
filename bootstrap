@@ -16,9 +16,6 @@ fancy_echo() {
   printf "\n$fmt\n" "$@"
 }
 
-set -e # Terminate script if anything exits with a non-zero value
-set -u # Prevent unset variables
-
 
 ################################################################################
 # Variable declarations
