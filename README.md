@@ -117,14 +117,14 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 2) Review [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) and determine which sections you want to use.
 
-* Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing. The rest of `bootstrap` depends on software and configs handled by Laptop.
-* Section 2: Use `oh-my-zsh`? Prefer to use bash instead. (recommended)
+* Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing. The rest of `bootstrap` depends on software and configs handled by Laptop. (required)
+* Section 2: Use `oh-my-zsh`? (recommended)
 * Section 3: Install NVM? (optional)
 * Section 4: The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](https://github.com/joshukraine/dotfiles) and then point to your fork.
 * Section 5: Install scripts to `~/bin`? (recommended)
 * Section 6: Install Ukrainian language utilities? (optional)
 * Section 7: Install fixed-width fonts? (optional)
-* Section 8: Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section. (recommended)
+* Section 8: Use Vundle? (recommended) If you prefer a different plugin manager, you can add the code for that to this section.
 * Section 9: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
 * Section 10: Check the list of [Cask](http://caskroom.io/) apps in `install/brew-cask`. Add or remove apps to suite your needs.
 * Section 11: Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew in `brew`.)
