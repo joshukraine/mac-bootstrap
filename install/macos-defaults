@@ -10,11 +10,11 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-fancy_echo() { # Thank you, thoughtbot. :)
+macos_echo() {
   local fmt="$1"; shift
 
   # shellcheck disable=SC2059
-  printf "\n$fmt\n" "$@"
+  printf "\n[MACOS-DEFAULTS] $fmt\n" "$@"
 }
 
 
@@ -33,7 +33,7 @@ TIME_ZONE="Europe/Kiev"
 # General UI/UX                                                               #
 ###############################################################################
 
-fancy_echo "== Setting General UI/UX defaults..."
+macos_echo "Setting General UI/UX defaults..."
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName $COMPUTER_NAME
@@ -120,7 +120,7 @@ defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/
 # SSD-specific tweaks                                                         #
 ###############################################################################
 
-fancy_echo "== Setting SSD-specific tweaks..."
+macos_echo "Setting SSD-specific tweaks..."
 
 # Disable hibernation (speeds up entering sleep mode)
 sudo pmset -a hibernatemode 0
@@ -133,7 +133,7 @@ sudo pmset -a sms 0
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-fancy_echo "== Setting Trackpad, mouse, keyboard, Bluetooth accessories, and input defaults..."
+macos_echo "Setting Trackpad, mouse, keyboard, Bluetooth accessories, and input defaults..."
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -193,7 +193,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 # Finder                                                                      #
 ###############################################################################
 
-fancy_echo "== Setting Finder defaults..."
+macos_echo "Setting Finder defaults..."
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
@@ -247,17 +247,6 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
-# Increase the size of icons on the desktop and in other icon views
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 72" ~/Library/Preferences/com.apple.finder.plist
-
-# Arrange icons by name
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
-
-# Sort icons by name
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettings:sortColumn name" ~/Library/Preferences/com.apple.finder.plist
-
 # Always open everything in Finder's column view.
 # Four-letter codes for all view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
@@ -267,9 +256,6 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
-# Enable the MacBook Air SuperDrive on any Mac
-sudo nvram boot-args="mbasd=1"
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
@@ -289,7 +275,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Dock                                                                        #
 ###############################################################################
 
-fancy_echo "== Setting dock defaults..."
+macos_echo "Setting dock defaults..."
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
@@ -334,7 +320,7 @@ defaults write com.apple.dock showhidden -bool true
 # Dashboard & Spaces                                                          #
 ###############################################################################
 
-fancy_echo "== Setting Dashboard and Spaces defaults..."
+macos_echo "Setting Dashboard and Spaces defaults..."
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
@@ -357,7 +343,7 @@ defaults write com.apple.dock mru-spaces -bool false
 # Hot corners                                                                 #
 ###############################################################################
 
-fancy_echo "== Setting hot corners defaults (currently no changes)..."
+macos_echo "Setting hot corners defaults (currently no changes)..."
 
 # Possible values:
 #  0: no-op
@@ -388,7 +374,7 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Safari & WebKit                                                             #
 ###############################################################################
 
-fancy_echo "== Setting Safari and WebKit defaults..."
+macos_echo "Setting Safari and WebKit defaults..."
 
 # Privacy: don't send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
@@ -441,7 +427,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # Mail                                                                        #
 ###############################################################################
 
-fancy_echo "== Setting Mail defaults..."
+macos_echo "Setting Mail defaults..."
 
 # Disable send and reply animations in Mail.app
 defaults write com.apple.mail DisableReplyAnimations -bool true
@@ -475,7 +461,7 @@ defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\
 # Time Machine                                                                #
 ###############################################################################
 
-fancy_echo "== Setting Time Machine defaults..."
+macos_echo "Setting Time Machine defaults..."
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -488,7 +474,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # Spotlight                                                                   #
 ###############################################################################
 
-fancy_echo "== Setting Spotlight defaults..."
+macos_echo "Setting Spotlight defaults..."
 
 # Hide Spotlight tray-icon (and subsequent helper)
 # sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
@@ -503,7 +489,7 @@ sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Vol
 # Terminal.app                                                                #
 ###############################################################################
 
-fancy_echo "== Setting Terminal.app defaults..."
+macos_echo "Setting Terminal.app defaults..."
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
@@ -517,7 +503,7 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 
-fancy_echo "== Setting Google Chrome defaults..."
+macos_echo "Setting Google Chrome defaults..."
 
 # Allow installing user scripts via GitHub Gist or Userscripts.org
 defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
