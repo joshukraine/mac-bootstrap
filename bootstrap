@@ -72,7 +72,7 @@ git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
 
 ################################################################################
-# 1. Provision with my fork of Laptop (https://github.com/joshukraine/laptop)
+# 1. Provision with my adaptation of Laptop (install/laptop)
 ################################################################################
 
 bootstrap_echo "STEP 1: Installing Laptop script..."
