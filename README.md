@@ -1,11 +1,12 @@
 Mac Bootstrap
 =============
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby on Rails development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in [iTerm2](https://www.iterm2.com/).
+The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in [iTerm2](https://www.iterm2.com/).
 
 The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. It has been successfully tested on the following versions of macOS:
 
 * El Capitan (10.11)
+* Sierra (10.12)
 
 &#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles)**
 
@@ -33,7 +34,7 @@ Installation
 To install with a one-liner, run this:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/mac-mini/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
+curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
 
 Want to read through the script first?
@@ -52,18 +53,17 @@ What does it do?
 When you invoke `bootstrap`, here's what it does:
 
 * Check for command line tools to be installed. The script will exit if they aren't found.
-* Run my fork of thoughtbot's [Laptop script](https://github.com/joshukraine/laptop). This is a provisioning script which installs lots of goodies like Homebrew, rbenv, postgres, etc.
+* Run my adaptation of thoughtbot's [Laptop script](https://github.com/thoughtbot/laptop). This is a provisioning script which installs lots of goodies like Homebrew, rbenv, postgres, etc. My version is now stored locally in this repo under `install/laptop`.
+* Set up a [Brewfile](https://github.com/Homebrew/homebrew-bundle#usage), installing a variety of Homebrew packages, casks, and now [Mac App Store apps](https://github.com/argon/mas)!
 * Install [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh).
 * Install [NVM](https://github.com/creationix/nvm) for managing Node.js versions.
-* Clone [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles) and symlink them to `$HOME`.
+* Clone [My Dotfiles for macOS](http://jsua.co/dotfiles) and symlink them to `$HOME`.
 * ~~Set up some basic directories in `$HOME`.~~
 * Install various executable scripts (for Tmux and Git) to `$HOME/bin`.
 * Install Ukrainian spell-check dictionaries.
 * Install [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in Tmux status bar.
 * Install several fixed-width fonts.
 * Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
-* Install various packages via [Homebrew](http://brew.sh/).
-* Install macOS software via [Cask](http://caskroom.io/).
 * Set a variety of macOS defaults. (adapted from [https://mths.be/macos](https://mths.be/macos))
 * Customize the macOS dock.
 
@@ -76,7 +76,7 @@ Post-install Tasks
 After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
-* Install software from Mac App Store.
+* ~~Install software from Mac App Store.~~ (Thank you [mas-cli](https://github.com/argon/mas)!)
 * Set up iTerm2 profile (see details below).
 * Add personal data to `~/.gitconfig.local` and `~/.zshrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
@@ -117,17 +117,15 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 2) Review [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) and determine which sections you want to use.
 
-* Section 1: Laptop is awesome, but [check what it does](https://github.com/joshukraine/laptop) before installing. The rest of `bootstrap` depends on software and configs handled by Laptop. (required)
-* Section 2: Use `oh-my-zsh`? (recommended)
-* Section 3: Install NVM? (optional)
-* Section 4: The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](https://github.com/joshukraine/dotfiles) and then point to your fork.
-* Section 5: Install scripts to `~/bin`? (recommended)
-* Section 6: Install Ukrainian language utilities? (optional)
-* Section 7: Install fixed-width fonts? (optional)
-* Section 8: Use Vundle? (recommended) If you prefer a different plugin manager, you can add the code for that to this section.
-* Section 9: Check the list of [Homebrew](http://brew.sh/) formulae in `install/brew`. Add or remove packages to suite your needs.
-* Section 10: Check the list of [Cask](http://caskroom.io/) apps in `install/brew-cask`. Add or remove apps to suite your needs.
-* Section 11: Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew in `brew`.)
+* Section 1 (required): Take a look at [Laptop](https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop) and see what you might want to tweak. One of the biggest things is the Brewfile, which you can find in this repo under `install/Brewfile`. Here you can customize all the packages, casks, and MAS apps that will be installed. Laptop also sets up some basics that are required by the bootstrap script later on.
+* Section 2 (recommended): Use `oh-my-zsh`?
+* Section 3 (optional): Install NVM?
+* Section 4 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](http://jsua.co/dotfiles) and then point to your fork.
+* Section 5 (recommended): Install scripts to `~/bin`?
+* Section 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions](http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157)?
+* Section 7 (optional): Install fixed-width fonts?
+* Section 8 (recommended): Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
+* Section 9 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
 
 3) Create `~/.gitconfig.local` and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig` and `~/.zshrc` respectively.
 
