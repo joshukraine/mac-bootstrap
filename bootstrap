@@ -31,7 +31,7 @@ DOTFILES_BRANCH="master"
 DOTFILES_DIR=$HOME/dotfiles
 
 BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
-BOOTSTRAP_BRANCH="master"
+BOOTSTRAP_BRANCH="mac-mini-sierra"
 BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
 
