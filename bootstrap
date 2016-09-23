@@ -80,8 +80,6 @@ fancy_echo "STEP 1: Installing Laptop script..."
 cp $BOOTSTRAP_DIR/install/Brewfile $HOME/.Brewfile
 sh $BOOTSTRAP_DIR/install/laptop 2>&1 | tee ~/laptop.log
 
-fancy_echo "Laptop installation complete!"
-
 fancy_echo "Done!"
 
 

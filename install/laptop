@@ -3,6 +3,13 @@
 # Adpated from thoughtbot's laptop script.
 # https://github.com/joshukraine/laptop
 
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\n[LAPTOP] $fmt\n" "$@"
+}
+
 append_to_zshrc() {
   local text="$1" zshrc
   local skip_new_line="${2:-0}"
