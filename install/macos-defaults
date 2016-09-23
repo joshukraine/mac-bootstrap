@@ -22,10 +22,10 @@ fancy_echo() { # Thank you, thoughtbot. :)
 # Set custom variables                                                        #
 ###############################################################################
 
-COMPUTER_NAME="Joshua's Mac Mini"
-HOST_NAME="joshuas-mac-mini"
-LOCAL_HOST_NAME="joshuas-mac-mini"
-NET_BIOS_NAME="joshuas-mac-mini"
+COMPUTER_NAME="Joshua's MacBook Pro"
+HOST_NAME="joshuas-mbp"
+LOCAL_HOST_NAME="joshuas-mbp"
+NET_BIOS_NAME="joshuas-mbp"
 TIME_ZONE="Europe/Kiev"
 
 
@@ -120,13 +120,13 @@ defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/
 # SSD-specific tweaks                                                         #
 ###############################################################################
 
-# fancy_echo "== Setting SSD-specific tweaks..."
+fancy_echo "== Setting SSD-specific tweaks..."
 
 # Disable hibernation (speeds up entering sleep mode)
-# sudo pmset -a hibernatemode 0
+sudo pmset -a hibernatemode 0
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
-# sudo pmset -a sms 0
+sudo pmset -a sms 0
 
 
 ###############################################################################
