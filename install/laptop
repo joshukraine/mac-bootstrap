@@ -3,7 +3,7 @@
 # Adpated from thoughtbot's laptop script.
 # https://github.com/joshukraine/laptop
 
-fancy_echo() {
+laptop_echo() {
   local fmt="$1"; shift
 
   # shellcheck disable=SC2059
@@ -60,7 +60,7 @@ fi
 case "$SHELL" in
   */zsh) : ;;
   *)
-    fancy_echo "Changing your shell to zsh ..."
+    laptop_echo "Changing your shell to zsh ..."
       chsh -s "$(which zsh)"
     ;;
 esac
@@ -75,7 +75,7 @@ gem_install_or_update() {
 }
 
 if ! command -v brew >/dev/null; then
-  fancy_echo "Installing Homebrew ..."
+  laptop_echo "Installing Homebrew ..."
     curl -fsS \
       'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
@@ -88,15 +88,15 @@ if ! command -v brew >/dev/null; then
 fi
 
 if brew list | grep -Fq brew-cask; then
-  fancy_echo "Uninstalling old Homebrew-Cask ..."
+  laptop_echo "Uninstalling old Homebrew-Cask ..."
   brew uninstall --force brew-cask
 fi
 
-fancy_echo "Updating Homebrew formulae ..."
+laptop_echo "Updating Homebrew formulae ..."
 brew update
 brew bundle -v --global
 
-fancy_echo "Configuring Ruby ..."
+laptop_echo "Configuring Ruby ..."
 find_latest_ruby() {
   rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
 }
