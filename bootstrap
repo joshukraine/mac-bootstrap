@@ -68,6 +68,7 @@ fi
 # Clone mac-bootstrap repo
 ################################################################################
 
+fancy_echo "== Cloning mac-bootstrap repo..."
 git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
 ################################################################################
@@ -80,7 +81,6 @@ cp $BOOTSTRAP_DIR/install/Brewfile $HOME/.Brewfile
 sh $BOOTSTRAP_DIR/install/laptop 2>&1 | tee ~/laptop.log
 
 fancy_echo "== Laptop installation complete!"
-fancy_echo "== Cloning mac-bootstrap repo..."
 
 fancy_echo "*** Done! ***"
 
@@ -153,7 +153,7 @@ fancy_echo "*** Done! ***"
 
 fancy_echo "$divider Step 6: Installing Ukrainian language utilities..."
 
-cp $BOOTSTRAP_DIR/lib/{hyph_uk_UA.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
+cp $BOOTSTRAP_DIR/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
 
 git clone https://github.com/joshukraine/xkbswitch-macosx
 cp xkbswitch-macosx/bin/xkbswitch /usr/local/bin
