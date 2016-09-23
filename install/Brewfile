@@ -1,3 +1,5 @@
+# https://github.com/Homebrew/homebrew-bundle
+
 tap "caskroom/cask"
 tap "goles/battery"
 tap "homebrew/bundle"
@@ -7,6 +9,8 @@ tap "homebrew/services"
 tap "homebrew/versions"
 tap "thoughtbot/formulae"
 
+# Homebrew
+# https://github.com/Homebrew/brew/
 brew "pkg-config"
 brew "openssl"
 brew "libyaml"
@@ -70,6 +74,8 @@ brew "homebrew/dupes/rsync"
 # brew "homebrew/versions/qt55"
 brew "thoughtbot/formulae/gitsh"
 
+# homebrew-cask
+# https://github.com/caskroom/homebrew-cask
 # cask "alfred"
 # cask "applepi-baker"
 # cask "atom"
@@ -98,6 +104,8 @@ cask "skype"
 # cask "virtualbox"
 # cask "vlc"
 
+# mas-cli
+# https://github.com/argon/mas
 # mas "Pimp Your Screen", id: 755444885
 # mas "WiFi Explorer", id: 494803304
 # mas "Magnet", id: 441258766
