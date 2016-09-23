@@ -65,19 +65,22 @@ fi
 
 
 ################################################################################
-# 1. Provision with my fork of Laptop (https://github.com/joshukraine/laptop)
-# * Also clone mac-bootstrap repo
+# Clone mac-bootstrap repo
 ################################################################################
 
-fancy_echo "$divider Step 1: Invoking my fork of thoughtbot's Laptop script..."
+git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
-curl --remote-name https://raw.githubusercontent.com/joshukraine/laptop/master/mac
-sh mac 2>&1 | tee ~/laptop.log
+################################################################################
+# 1. Provision with my fork of Laptop (https://github.com/joshukraine/laptop)
+################################################################################
+
+fancy_echo "$divider Step 1: Installing Laptop script..."
+
+cp $BOOTSTRAP_DIR/install/Brewfile $HOME/.Brewfile
+sh $BOOTSTRAP_DIR/install/laptop 2>&1 | tee ~/laptop.log
 
 fancy_echo "== Laptop installation complete!"
 fancy_echo "== Cloning mac-bootstrap repo..."
-
-git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
 fancy_echo "*** Done! ***"
 
@@ -106,6 +109,7 @@ fancy_echo "$divider Step 3: Installing NVM..."
 source "$BOOTSTRAP_DIR/install/nvm"
 
 fancy_echo "*** Done! ***"
+
 
 ################################################################################
 # 4. Setup dotfiles (https://github.com/joshukraine/dotfiles)
