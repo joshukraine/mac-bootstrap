@@ -29,6 +29,8 @@ Reboot, check for additional updates, then reinstall, reboot if needed.
 	sudo softwareupdate -l
 	sudo softwareupdate -i -a
 
+Sign in to your iCloud account: System Preferences > iCloud. (If you don't sign in before running the `bootstrap` script, [`mas-cli`](https://github.com/argon/mas) will not be able to install apps from the Mac App Store.)
+
 
 Installation
 ------------
