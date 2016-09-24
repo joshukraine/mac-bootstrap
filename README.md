@@ -8,7 +8,7 @@ The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/boots
 * El Capitan (10.11)
 * Sierra (10.12)
 
-&#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](https://github.com/joshukraine/dotfiles)**
+&#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](http://jsua.co/dotfiles)**
 
 
 Prerequisites
