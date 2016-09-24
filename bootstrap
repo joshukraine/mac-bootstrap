@@ -110,7 +110,7 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 4. Setup dotfiles (https://github.com/joshukraine/dotfiles)
+# 4. Setup dotfiles (http://jsua.co/dotfiles)
 ################################################################################
 
 bootstrap_echo "STEP 4: Installing dotfiles..."
@@ -142,14 +142,31 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 6. Install Ukrainian language utilities
+# 6. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
+################################################################################
+
+bootstrap_echo "STEP 6: Setting up Tmuxinator..."
+
+gem install tmuxinator
+
+if [ ! -d "$HOME/.tmuxinator/" ]; then
+  mkdir "$HOME/.tmuxinator"
+fi
+
+cp $BOOTSTRAP_DIR/lib/default.yml $HOME/.tmuxinator/
+
+bootstrap_echo "Done!"
+
+
+################################################################################
+# 7. Install Ukrainian language utilities
 #
 # Reference:
 # * http://apple.stackexchange.com/a/11842/75491
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-bootstrap_echo "STEP 6: Installing Ukrainian language utilities..."
+bootstrap_echo "STEP 7: Installing Ukrainian language utilities..."
 
 cp $BOOTSTRAP_DIR/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
 
@@ -161,10 +178,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 7. Install Powerline-patched fonts
+# 8. Install Powerline-patched fonts
 ################################################################################
 
-bootstrap_echo "STEP 7: Installing fixed-width fonts patched for use with Powerline symbols..."
+bootstrap_echo "STEP 8: Installing fixed-width fonts patched for use with Powerline symbols..."
 if [ -d "$HOME/src/fonts" ]; then
   rm -rf $HOME/src/fonts
 fi
@@ -178,10 +195,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 8. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
+# 9. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
 ################################################################################
 
-bootstrap_echo "STEP 8: Installing Vundle and vim plugins..."
+bootstrap_echo "STEP 9: Installing Vundle and vim plugins..."
 if [ -d $HOME/.vim/bundle ]; then
   rm -rf $HOME/.vim/bundle
 fi
@@ -194,10 +211,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 9. Set macOS preferences
+# 10. Set macOS preferences
 ################################################################################
 
-bootstrap_echo "STEP 9: Setting macOS preferences..."
+bootstrap_echo "STEP 10: Setting macOS preferences..."
 
 source "$BOOTSTRAP_DIR/install/macos-defaults"
 source "$BOOTSTRAP_DIR/install/macos-dock"
