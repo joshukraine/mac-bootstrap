@@ -75,7 +75,7 @@ git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 # 1. Provision with my adaptation of Laptop (install/laptop)
 ################################################################################
 
-bootstrap_echo "STEP 1: Installing Laptop script..."
+bootstrap_echo "Step 1: Installing Laptop script..."
 
 cp $BOOTSTRAP_DIR/install/Brewfile $HOME/.Brewfile
 sh $BOOTSTRAP_DIR/install/laptop 2>&1 | tee ~/laptop.log
@@ -87,7 +87,7 @@ bootstrap_echo "Done!"
 # 2. Install Oh-My-Zsh (http://ohmyz.sh/)
 ################################################################################
 
-bootstrap_echo "STEP 2: Installing Oh-My-Zsh..."
+bootstrap_echo "Step 2: Installing Oh-My-Zsh..."
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   rm -rf $HOME/.oh-my-zsh
@@ -102,7 +102,7 @@ bootstrap_echo "Done!"
 # 3. Install NVM (https://github.com/creationix/nvm)
 ################################################################################
 
-bootstrap_echo "STEP 3: Installing NVM..."
+bootstrap_echo "Step 3: Installing NVM..."
 
 source "$BOOTSTRAP_DIR/install/nvm"
 
@@ -113,7 +113,7 @@ bootstrap_echo "Done!"
 # 4. Setup dotfiles (http://jsua.co/dotfiles)
 ################################################################################
 
-bootstrap_echo "STEP 4: Installing dotfiles..."
+bootstrap_echo "Step 4: Installing dotfiles..."
 
 if [[ -d $DOTFILES_DIR ]]; then
   bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
@@ -134,7 +134,7 @@ bootstrap_echo "Done!"
 # 5. Install ~/bin utilities
 ################################################################################
 
-bootstrap_echo "STEP 5: Installing ~/bin utilities..."
+bootstrap_echo "Step 5: Installing ~/bin utilities..."
 
 cp -R $BOOTSTRAP_DIR/bin/* $HOME/bin/
 
@@ -145,7 +145,7 @@ bootstrap_echo "Done!"
 # 6. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
 ################################################################################
 
-bootstrap_echo "STEP 6: Setting up Tmuxinator..."
+bootstrap_echo "Step 6: Setting up Tmuxinator..."
 
 gem install tmuxinator
 
@@ -166,7 +166,7 @@ bootstrap_echo "Done!"
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-bootstrap_echo "STEP 7: Installing Ukrainian language utilities..."
+bootstrap_echo "Step 7: Installing Ukrainian language utilities..."
 
 cp $BOOTSTRAP_DIR/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
 
@@ -181,7 +181,7 @@ bootstrap_echo "Done!"
 # 8. Install Powerline-patched fonts
 ################################################################################
 
-bootstrap_echo "STEP 8: Installing fixed-width fonts patched for use with Powerline symbols..."
+bootstrap_echo "Step 8: Installing fixed-width fonts patched for use with Powerline symbols..."
 if [ -d "$HOME/src/fonts" ]; then
   rm -rf $HOME/src/fonts
 fi
@@ -198,7 +198,7 @@ bootstrap_echo "Done!"
 # 9. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
 ################################################################################
 
-bootstrap_echo "STEP 9: Installing Vundle and vim plugins..."
+bootstrap_echo "Step 9: Installing Vundle and vim plugins..."
 if [ -d $HOME/.vim/bundle ]; then
   rm -rf $HOME/.vim/bundle
 fi
@@ -214,7 +214,7 @@ bootstrap_echo "Done!"
 # 10. Set macOS preferences
 ################################################################################
 
-bootstrap_echo "STEP 10: Setting macOS preferences..."
+bootstrap_echo "Step 10: Setting macOS preferences..."
 
 source "$BOOTSTRAP_DIR/install/macos-defaults"
 source "$BOOTSTRAP_DIR/install/macos-dock"
