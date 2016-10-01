@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 dockutil --no-restart --remove all
+dockutil --no-restart --add "/Applications/Siri.app"
 dockutil --no-restart --add "/Applications/Launchpad.app"
 dockutil --no-restart --add "/Applications/Google Chrome.app"
 dockutil --no-restart --add "/Applications/Mail.app"
