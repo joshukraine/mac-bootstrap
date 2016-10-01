@@ -1,7 +1,7 @@
 Mac Bootstrap
 =============
 
-![mac-bootstrap screenshot](https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-screenshot.jpg)
+![mac-bootstrap screenshot](https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-installing.jpg)
 
 The purpose of this script is to provision a new machine running a fresh install of macOS. It includes the software, dotfiles, and general preference I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in [iTerm2](https://www.iterm2.com/).
 
