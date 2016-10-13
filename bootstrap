@@ -170,10 +170,6 @@ bootstrap_echo "Step 7: Installing Ukrainian language utilities..."
 
 cp $BOOTSTRAP_DIR/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} $DICTIONARY_DIR
 
-git clone https://github.com/joshukraine/xkbswitch-macosx
-cp xkbswitch-macosx/bin/xkbswitch /usr/local/bin
-rm -rf xkbswitch-macosx
-
 bootstrap_echo "Done!"
 
 
@@ -221,7 +217,6 @@ source "$BOOTSTRAP_DIR/install/macos-dock"
 rm -rf $BOOTSTRAP_DIR
 
 bootstrap_echo "Done!"
-
 
 echo
 echo "**********************************************************************"
