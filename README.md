@@ -62,7 +62,7 @@ When you invoke `bootstrap`, here's what it does:
 * Step 4: Clone [My Dotfiles for macOS](http://jsua.co/dotfiles) and symlink them to `$HOME`.
 * Step 5: Install various [executable scripts](https://github.com/joshukraine/mac-bootstrap/tree/master/bin) (for Tmux and Git) to `$HOME/bin`.
 * Step 6: Install [Tmuxinator](https://github.com/tmuxinator/tmuxinator) for managing tmux sessions.
-* Step 7: Install [Ukrainian spell-check dictionaries](http://extensions.services.openoffice.org/en/project/ukrainian-dictionary). Step 7 also installs [xkbswitch](https://github.com/joshukraine/xkbswitch-macosx) for displaying current language input source in Tmux status bar.
+* Step 7: Install [Ukrainian spell-check dictionaries](http://extensions.services.openoffice.org/en/project/ukrainian-dictionary).
 * Step 8: Install several [fixed-width fonts](https://github.com/powerline/fonts).
 * Step 9: Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
 * Step 10: Set a variety of [macOS defaults](https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults). (adapted from [https://mths.be/macos](https://mths.be/macos)) Step 10 also customizes the [macOS dock](https://github.com/kcrawford/dockutil).
