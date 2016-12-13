@@ -5,7 +5,6 @@
 # `brew bundle install --global`
 
 tap "caskroom/cask"
-tap "goles/battery"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/dupes"
@@ -38,7 +37,6 @@ brew "tree"
 brew "vim"
 brew "wget"
 brew "zsh"
-brew "goles/battery/battery"
 brew "homebrew/dupes/rsync"
 brew "thoughtbot/formulae/gitsh"
 
