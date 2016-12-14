@@ -45,7 +45,6 @@ brew "thoughtbot/formulae/gitsh"
 cask "dropbox"
 cask "fantastical"
 cask "google-chrome"
-cask "hipchat"
 cask "iterm2"
 cask "skype"
 
@@ -53,5 +52,6 @@ cask "skype"
 # https://github.com/argon/mas
 mas "Evernote", id: 406056744
 mas "1Password", id: 443987910
+mas "Slack", id: 803453959
 mas "Tweetbot", id: 557168941
 mas "OmniFocus", id: 867299399
