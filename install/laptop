@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Adpated from thoughtbot's laptop script.
 # https://github.com/joshukraine/laptop
