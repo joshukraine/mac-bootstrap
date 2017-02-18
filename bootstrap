@@ -22,17 +22,17 @@ bootstrap_echo() {
 ################################################################################
 
 osname=$(uname)
-COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
-OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
-DICTIONARY_DIR=$HOME/Library/Spelling
+export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
+export OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
+export DICTIONARY_DIR=$HOME/Library/Spelling
 
-DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
-DOTFILES_BRANCH="master"
-DOTFILES_DIR=$HOME/dotfiles
+export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
+export DOTFILES_BRANCH="master"
+export DOTFILES_DIR=$HOME/dotfiles
 
-BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
-BOOTSTRAP_BRANCH="master"
-BOOTSTRAP_DIR=$HOME/mac-bootstrap
+export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
+export BOOTSTRAP_BRANCH="master"
+export BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
 
 ################################################################################
@@ -69,6 +69,33 @@ fi
 
 bootstrap_echo "Cloning mac-bootstrap repo..."
 git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
+
+
+################################################################################
+# Authenticate
+################################################################################
+
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until bootstrap has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+################################################################################
+# Set machine name
+################################################################################
+
+printf "\nPlease enter a name for your Mac and press [ENTER] (e.g. Joshua's iMac)\n"
+read -r -p "> " COMPUTER_NAME
+export COMPUTER_NAME
+
+printf "\nPlease enter a host name for your Mac and press [ENTER] (e.g. joshuas-imac)\n"
+read -r -p "> " HOST_NAME
+export HOST_NAME
+
+printf "\nPlease enter your desired time zone and press [ENTER]\n(To view available options run \`sudo systemsetup -listtimezones\`)\n"
+read -r -p "> " TIME_ZONE
+export TIME_ZONE
 
 
 ################################################################################
