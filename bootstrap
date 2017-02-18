@@ -22,17 +22,17 @@ bootstrap_echo() {
 ################################################################################
 
 osname=$(uname)
-COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
-OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
-DICTIONARY_DIR=$HOME/Library/Spelling
+export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
+export OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
+export DICTIONARY_DIR=$HOME/Library/Spelling
 
-DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
-DOTFILES_BRANCH="master"
-DOTFILES_DIR=$HOME/dotfiles
+export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
+export DOTFILES_BRANCH="master"
+export DOTFILES_DIR=$HOME/dotfiles
 
-BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
-BOOTSTRAP_BRANCH="master"
-BOOTSTRAP_DIR=$HOME/mac-bootstrap
+export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
+export BOOTSTRAP_BRANCH="master"
+export BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
 
 ################################################################################
@@ -72,13 +72,40 @@ git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
 
 
 ################################################################################
+# Authenticate
+################################################################################
+
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until bootstrap has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+################################################################################
+# Set machine name
+################################################################################
+
+printf "\nPlease enter a name for your Mac and press [ENTER] (e.g. Joshua's iMac)\n"
+read -r -p "> " COMPUTER_NAME
+export COMPUTER_NAME
+
+printf "\nPlease enter a host name for your Mac and press [ENTER] (e.g. joshuas-imac)\n"
+read -r -p "> " HOST_NAME
+export HOST_NAME
+
+printf "\nPlease enter your desired time zone and press [ENTER] (e.g. Europe/Kiev)\n(To view available options run \`sudo systemsetup -listtimezones\`)\n"
+read -r -p "> " TIME_ZONE
+export TIME_ZONE
+
+
+################################################################################
 # 1. Provision with my adaptation of Laptop (install/laptop)
 ################################################################################
 
 bootstrap_echo "Step 1: Installing Laptop script..."
 
-cp "$BOOTSTRAP_DIR"/install/Brewfile "$HOME"/.Brewfile
-sh "$BOOTSTRAP_DIR"/install/laptop 2>&1 | tee ~/laptop.log
+cp "$BOOTSTRAP_DIR/install/Brewfile" "$HOME/.Brewfile"
+sh "$BOOTSTRAP_DIR/install/laptop" 2>&1 | tee ~/laptop.log
 
 bootstrap_echo "Done!"
 
@@ -89,8 +116,8 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 2: Installing Oh-My-Zsh..."
 
-if [ -d "$HOME"/.oh-my-zsh ]; then
-  rm -rf "$HOME"/.oh-my-zsh
+if [ -d "$HOME/.oh-my-zsh" ]; then
+  rm -rf "$HOME/.oh-my-zsh"
 fi
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
@@ -105,7 +132,7 @@ bootstrap_echo "Done!"
 bootstrap_echo "Step 3: Installing NVM..."
 
 # shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/nvm
+source "$BOOTSTRAP_DIR/install/nvm"
 
 bootstrap_echo "Done!"
 
@@ -128,7 +155,7 @@ bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
 git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 # shellcheck source=/dev/null
-source "$DOTFILES_DIR"/install.sh
+source "$DOTFILES_DIR/install.sh"
 
 bootstrap_echo "Done!"
 
@@ -139,7 +166,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 5: Installing ~/bin utilities..."
 
-cp -R "$BOOTSTRAP_DIR"/bin/* "$HOME"/bin/
+cp -R "$BOOTSTRAP_DIR/bin/*" "$HOME/bin/"
 
 bootstrap_echo "Done!"
 
@@ -152,11 +179,11 @@ bootstrap_echo "Step 6: Setting up Tmuxinator..."
 
 gem install tmuxinator
 
-if [ ! -d "$HOME"/.tmuxinator/ ]; then
-  mkdir "$HOME"/.tmuxinator
+if [ ! -d "$HOME/.tmuxinator/" ]; then
+  mkdir "$HOME/.tmuxinator"
 fi
 
-cp "$BOOTSTRAP_DIR"/lib/default.yml "$HOME"/.tmuxinator/
+cp "$BOOTSTRAP_DIR/lib/default.yml" "$HOME/.tmuxinator/"
 
 bootstrap_echo "Done!"
 
@@ -171,7 +198,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 7: Installing Ukrainian language utilities..."
 
-cp "$BOOTSTRAP_DIR"/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} "$DICTIONARY_DIR"
+cp "$BOOTSTRAP_DIR/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic}" "$DICTIONARY_DIR"
 
 bootstrap_echo "Done!"
 
@@ -181,14 +208,14 @@ bootstrap_echo "Done!"
 ################################################################################
 
 bootstrap_echo "Step 8: Installing fixed-width fonts patched for use with Powerline symbols..."
-if [ -d "$HOME"/src/fonts ]; then
-  rm -rf "$HOME"/src/fonts
+if [ -d "$HOME/src/fonts" ]; then
+  rm -rf "$HOME/src/fonts"
 fi
 git clone https://github.com/powerline/fonts.git "$HOME"/src/fonts
-cd "$HOME"/src/fonts || exit
+cd "$HOME/src/fonts" || exit
 ./install.sh
 cd "$HOME" || exit
-rm -rf "$HOME"/src/fonts
+rm -rf "$HOME/src/fonts"
 
 bootstrap_echo "Done!"
 
@@ -198,13 +225,13 @@ bootstrap_echo "Done!"
 ################################################################################
 
 bootstrap_echo "Step 9: Installing Vundle and vim plugins..."
-if [ -d "$HOME"/.vim/bundle ]; then
-  rm -rf "$HOME"/.vim/bundle
+if [ -d "$HOME/.vim/bundle" ]; then
+  rm -rf "$HOME/.vim/bundle"
 fi
-git clone https://github.com/VundleVim/Vundle.vim.git "$HOME"/.vim/bundle/Vundle.vim
-cp -R "$DOTFILES_DIR"/vim/colors "$HOME"/.vim # So Vim won't complain about solarized not being found.
+git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+cp -R "$DOTFILES_DIR/vim/colors" "$HOME/.vim" # So Vim won't complain about solarized not being found.
 vim +PluginInstall +qall
-rm -rf "$HOME"/.vim/colors
+rm -rf "$HOME/.vim/colors"
 
 bootstrap_echo "Done!"
 
@@ -216,10 +243,10 @@ bootstrap_echo "Done!"
 bootstrap_echo "Step 10: Setting macOS preferences..."
 
 # shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/macos-defaults
+source "$BOOTSTRAP_DIR/install/macos-defaults"
 
 # shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/macos-dock
+source "$BOOTSTRAP_DIR/install/macos-dock"
 
 rm -rf "$BOOTSTRAP_DIR"
 
