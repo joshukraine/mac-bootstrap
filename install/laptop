@@ -116,7 +116,12 @@ find_latest_ruby() {
   rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
 }
 
-ruby_version="$(find_latest_ruby)"
+if [ -f "$BOOTSTRAP_DIR"/.ruby-version ]; then
+  ruby_version="$(<.ruby-version)"
+else
+  ruby_version="$(find_latest_ruby)"
+fi
+
 # shellcheck disable=SC2016
 append_to_zshrc 'eval "$(rbenv init - --no-rehash)"' 1
 eval "$(rbenv init -)"
