@@ -166,7 +166,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 5: Installing ~/bin utilities..."
 
-cp -R "$BOOTSTRAP_DIR/bin/*" "$HOME/bin/"
+cp -R "$BOOTSTRAP_DIR"/bin/* "$HOME/bin/"
 
 bootstrap_echo "Done!"
 
