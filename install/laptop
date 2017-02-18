@@ -116,8 +116,8 @@ find_latest_ruby() {
   rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
 }
 
-if [ -f "$BOOTSTRAP_DIR"/.ruby-version ]; then
-  ruby_version="$(<.ruby-version)"
+if [ -f "$BOOTSTRAP_DIR/.ruby-version" ]; then
+  ruby_version="$(<"$BOOTSTRAP_DIR/.ruby-version")"
 else
   ruby_version="$(find_latest_ruby)"
 fi
