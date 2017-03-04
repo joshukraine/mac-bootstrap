@@ -5,6 +5,7 @@
 # `brew bundle install --global`
 
 tap "caskroom/cask"
+tap "caskroom/versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/dupes"
