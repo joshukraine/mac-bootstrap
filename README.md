@@ -67,7 +67,7 @@ When you invoke `bootstrap`, here's what it does:
 * Step 9: Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
 * Step 10: Set a variety of [macOS defaults](https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults). (adapted from [https://mths.be/macos](https://mths.be/macos)) Step 10 also customizes the [macOS dock](https://github.com/kcrawford/dockutil).
 
-NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Pro](https://db.tt/6kiw9mn9), all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
+NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus](https://db.tt/Kmoif6SG), all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
 
 Post-install Tasks
