@@ -29,6 +29,7 @@ brew "python"
 brew "postgresql", service_restart: true
 brew "ruby-build"
 brew "rbenv"
+brew "rbenv-default-gems"
 brew "reattach-to-user-namespace"
 brew "spark"
 brew "ssh-copy-id"
