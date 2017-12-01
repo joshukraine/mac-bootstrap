@@ -1,11 +1,11 @@
 Mac Bootstrap
 =============
 
-![mac-bootstrap screenshot](https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-installing.jpg)
+![mac-bootstrap screenshot][screenshot]
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preference I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in [iTerm2](https://www.iterm2.com/).
+The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preference I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh][omz], Vim and Tmux running in [iTerm2][iterm2].
 
-The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
+The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
 
 * High Sierra (10.13)
 
@@ -33,7 +33,7 @@ Reboot, check for additional updates, then reinstall, reboot if needed.
 	sudo softwareupdate -l
 	sudo softwareupdate -i -a
 
-Sign in to your iCloud account: System Preferences > iCloud. (If you don't sign in before running the `bootstrap` script, [`mas-cli`](https://github.com/argon/mas) will not be able to install apps from the Mac App Store.)
+Sign in to your iCloud account: System Preferences > iCloud. (If you don't sign in before running the `bootstrap` script, [`mas-cli`][mas-cli] will not be able to install apps from the Mac App Store.)
 
 
 Installation
@@ -60,17 +60,17 @@ What does it do?
 
 When you invoke `bootstrap`, here's what it does:
 
-* Step 1: Run my adaptation of thoughtbot's [Laptop script](https://github.com/thoughtbot/laptop). This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`](https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop). Step 1 also sets up a [Brewfile](https://github.com/Homebrew/homebrew-bundle#usage), installing a variety of Homebrew packages, casks, and now [Mac App Store apps](https://github.com/argon/mas)!
-* Step 2: Install [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh).
-* Step 3: Clone [My Dotfiles for macOS](http://jsua.co/dotfiles) and symlink them to `$HOME`.
-* Step 4: Install various [executable scripts](https://github.com/joshukraine/mac-bootstrap/tree/master/bin) (for Tmux and Git) to `$HOME/bin`.
-* Step 5: Install [Tmuxinator](https://github.com/tmuxinator/tmuxinator) for managing tmux sessions.
-* Step 6: Install [Ukrainian spell-check dictionaries](http://extensions.services.openoffice.org/en/project/ukrainian-dictionary).
-* Step 7: Install [Fira Code](https://github.com/tonsky/FiraCode) fixed-width font.
-* Step 8: Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
-* Step 9: Set a variety of [macOS defaults](https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults). (adapted from [https://mths.be/macos](https://mths.be/macos)) Step 10 also customizes the [macOS dock](https://github.com/kcrawford/dockutil).
+* Step 1: Run my adaptation of thoughtbot's [Laptop script][laptop]. This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`][my-laptop]. Step 1 also sets up a [Brewfile][brew-bundle], installing a variety of Homebrew packages, casks, and now [Mac App Store apps][mas-cli]!
+* Step 2: Install [Oh-My-Zsh][omz].
+* Step 3: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME`.
+* Step 4: Install various [executable scripts][exe-scripts] (for Tmux and Git) to `$HOME/bin`.
+* Step 5: Install [Tmuxinator][tmuxinator] for managing tmux sessions.
+* Step 6: Install [Ukrainian spell-check dictionaries][dictionaries].
+* Step 7: Install [Fira Code][fira-code] fixed-width font.
+* Step 8: Install [Vundle][vundle] and plugins for Vim.
+* Step 9: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths] Step 10 also customizes the [macOS dock][macos-dock].
 
-NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus](https://db.tt/Kmoif6SG), all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
+NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
 
 Post-install Tasks
@@ -79,8 +79,8 @@ Post-install Tasks
 After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
-* ~~Install software from Mac App Store.~~ (Thank you [mas-cli](https://github.com/argon/mas)!)
-* Complete [Brew Bundle](https://github.com/Homebrew/homebrew-bundle) with `brew bundle install --global`
+* ~~Install software from Mac App Store.~~ (Thank you [mas-cli][mas-cli]!)
+* Complete [Brew Bundle][brew-bundle] with `brew bundle install --global`
 * Set up iTerm2 profile (see details below).
 * Add personal data to `~/.gitconfig.local` and `~/.zshrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
@@ -89,7 +89,7 @@ After running `bootstrap` there are still a few things that need to be done.
 Setting up iTerm2
 ----------------
 
-Thanks to a [great blog post](http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/) by Trevor Brown, I learned that you can quickly set up iTerm2 by exporting your profile. Here are the steps.
+Thanks to a [great blog post][stratus3d] by Trevor Brown, I learned that you can quickly set up iTerm2 by exporting your profile. Here are the steps.
 
 1. Open iTerm2.
 2. Select iTerm2 > Preferences.
@@ -120,14 +120,14 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 1) Fork this repo and clone your new fork to your local machine.
 
-2) Review the 10 steps in [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) and make your own customizations. Here's an overview of what's going on:
+2) Review the 10 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
 
-* Step 1 (required): Take a look at [Laptop](https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop) and see what you might want to tweak. One of the biggest things is the Brewfile, which you can find in this repo under `install/Brewfile`. Here you can customize all the packages, casks, and MAS apps that will be installed. Laptop also sets up some basics that are required by the bootstrap script later on.
+* Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things is the Brewfile, which you can find in this repo under `install/Brewfile`. Here you can customize all the packages, casks, and MAS apps that will be installed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use `oh-my-zsh`?
-* Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](http://jsua.co/dotfiles) and then point to your fork.
+* Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
 * Step 4 (recommended): Install scripts to `~/bin`?
 * Step 5 (recommended): Install and configure Tmuxinator?
-* Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions](http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157)?
+* Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions][lang-extensions]?
 * Step 7 (optional): Install Fira Code fixed-width font?
 * Step 8 (recommended): Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
 * Step 9 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
@@ -175,3 +175,24 @@ License
 -------
 
 Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
+
+[screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-high-sierra-installing.jpg
+[omz]: http://ohmyz.sh/
+[iterm2]: https://www.iterm2.com/
+[bootstrap]: https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap
+[mas-cli]: https://github.com/argon/mas
+[laptop]: https://github.com/thoughtbot/laptop
+[my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
+[brew-bundle]: https://github.com/Homebrew/homebrew-bundle#usage
+[dotfiles]: http://jsua.co/dotfiles
+[exe-scripts]: https://github.com/joshukraine/mac-bootstrap/tree/master/bin
+[tmuxinator]: https://github.com/tmuxinator/tmuxinator
+[dictionaries]: http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
+[fira-code]: https://github.com/tonsky/FiraCode
+[vundle]: https://github.com/VundleVim/Vundle.vim.git
+[macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
+[mths]: https://mths.be/macos
+[macos-dock]: https://github.com/kcrawford/dockutil
+[lang-extensions]: http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157
+[db-plus]: https://db.tt/Kmoif6SG
+[stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
