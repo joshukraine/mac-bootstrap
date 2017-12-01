@@ -126,22 +126,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 3. Install NVM (https://github.com/creationix/nvm)
+# 3. Setup dotfiles (http://jsua.co/dotfiles)
 ################################################################################
 
-bootstrap_echo "Step 3: Installing NVM..."
-
-# shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/nvm
-
-bootstrap_echo "Done!"
-
-
-################################################################################
-# 4. Setup dotfiles (http://jsua.co/dotfiles)
-################################################################################
-
-bootstrap_echo "Step 4: Installing dotfiles..."
+bootstrap_echo "Step 3: Installing dotfiles..."
 
 if [[ -d $DOTFILES_DIR ]]; then
   bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
@@ -161,10 +149,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 5. Install ~/bin utilities
+# 4. Install ~/bin utilities
 ################################################################################
 
-bootstrap_echo "Step 5: Installing ~/bin utilities..."
+bootstrap_echo "Step 4: Installing ~/bin utilities..."
 
 cp -R "$BOOTSTRAP_DIR"/bin/* "$HOME"/bin/
 
@@ -172,10 +160,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 6. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
+# 5. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
 ################################################################################
 
-bootstrap_echo "Step 6: Setting up Tmuxinator..."
+bootstrap_echo "Step 5: Setting up Tmuxinator..."
 
 gem install tmuxinator
 
@@ -189,14 +177,14 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 7. Install Ukrainian language utilities
+# 6. Install Ukrainian language utilities
 #
 # Reference:
 # * http://apple.stackexchange.com/a/11842/75491
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-bootstrap_echo "Step 7: Installing Ukrainian language utilities..."
+bootstrap_echo "Step 6: Installing Ukrainian language utilities..."
 
 cp "$BOOTSTRAP_DIR"/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} "$DICTIONARY_DIR"
 
@@ -204,29 +192,25 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 8. Install Powerline-patched fonts
+# 7. Install Fira Code font
 ################################################################################
 
-bootstrap_echo "Step 8: Installing fixed-width fonts patched for use with Powerline symbols..."
+bootstrap_echo "Step 7: Installing Fira Code fixed-width font..."
 if [ -d "$HOME"/src/fonts ]; then
   rm -rf "$HOME"/src/fonts
 fi
-git clone https://github.com/powerline/fonts.git "$HOME"/src/fonts
-cd "$HOME"/src/fonts || exit
-./install.sh
-cd "$HOME" || exit
-rm -rf "$HOME"/src/fonts
-
-# TODO: Install Fira Code font. https://github.com/tonsky/FiraCode
+git clone https://github.com/tonsky/FiraCode "$HOME"/src/fira-code
+cp "$HOME"/src/fira-code/distr/ttf/* "$HOME"/Library/Fonts/
+rm -rf "$HOME"/src/fira-code
 
 bootstrap_echo "Done!"
 
 
 ################################################################################
-# 9. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
+# 8. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
 ################################################################################
 
-bootstrap_echo "Step 9: Installing Vundle and vim plugins..."
+bootstrap_echo "Step 8: Installing Vundle and vim plugins..."
 if [ -d "$HOME"/.vim/bundle ]; then
   rm -rf "$HOME"/.vim/bundle
 fi
@@ -239,10 +223,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 10. Set macOS preferences
+# 9. Set macOS preferences
 ################################################################################
 
-bootstrap_echo "Step 10: Setting macOS preferences..."
+bootstrap_echo "Step 9: Setting macOS preferences..."
 
 # shellcheck source=/dev/null
 source "$BOOTSTRAP_DIR"/install/macos-defaults
