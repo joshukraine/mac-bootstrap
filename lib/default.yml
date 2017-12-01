@@ -2,11 +2,11 @@
 
 name: default
 root: ~/
+startup_window: 1
 
 windows:
   - editor:
-      layout: 1a60,212x51,0,0[212x39,0,0,33,212x11,0,40{106x11,0,40,63,105x11,107,40,64}]
       panes:
-        - vim -S
+        - tmux select-layout "6fe0,231x63,0,0[231x50,0,0,0,231x12,0,51{115x12,0,51,2,115x12,116,51,3}]" && sleep 2 && vim -S
         - #
         - #
