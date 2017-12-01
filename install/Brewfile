@@ -12,48 +12,53 @@ tap "homebrew/dupes"
 tap "homebrew/services"
 tap "homebrew/versions"
 tap "thoughtbot/formulae"
+tap "universal-ctags/universal-ctags"
 
 # Homebrew
 # https://github.com/Homebrew/brew/
-brew "openssl"
-brew "libyaml"
 brew "bash-completion"
+brew "coreutils"
 brew "ctags"
 brew "dockutil"
 brew "git"
+brew "homebrew/dupes/rsync"
 brew "htop"
 brew "hub"
+brew "libyaml"
 brew "mas"
-brew "readline"
-brew "python"
+brew "openssl"
 brew "postgresql", service_restart: true
-brew "ruby-build"
+brew "python"
+brew "qt@5.5" if MacOS::Xcode.installed?
 brew "rbenv"
-brew "rbenv-default-gems"
+brew "readline"
 brew "reattach-to-user-namespace"
+brew "ruby-build"
 brew "spark"
 brew "ssh-copy-id"
 brew "the_silver_searcher"
+brew "thoughtbot/formulae/gitsh"
 brew "tmux"
 brew "tree"
+brew "universal-ctags", args: ["HEAD"]
 brew "vim"
 brew "wget"
+brew "yarn"
 brew "zsh"
-brew "homebrew/dupes/rsync"
-brew "thoughtbot/formulae/gitsh"
 
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
 cask "dropbox"
 cask "fantastical"
 cask "google-chrome"
+cask "gpg-suite"
 cask "iterm2"
 cask "skype"
 
 # mas-cli
 # https://github.com/argon/mas
-mas "Evernote", id: 406056744
 mas "1Password", id: 443987910
+mas "Evernote", id: 406056744
 mas "Slack", id: 803453959
+mas "Things3", id: 904280696
 mas "Tweetbot", id: 557168941
-mas "OmniFocus", id: 867299399
