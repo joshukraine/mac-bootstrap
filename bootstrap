@@ -217,6 +217,8 @@ cd "$HOME"/src/fonts || exit
 cd "$HOME" || exit
 rm -rf "$HOME"/src/fonts
 
+# TODO: Install Fira Code font. https://github.com/tonsky/FiraCode
+
 bootstrap_echo "Done!"
 
 
