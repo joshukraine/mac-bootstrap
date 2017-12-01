@@ -327,7 +327,8 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # sudo nvram boot-args="mbasd=1"
 
 # Show the ~/Library folder
-chflags nohidden ~/Library
+# FIXME: This command no longer works in High Sierra.
+# chflags nohidden ~/Library
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
