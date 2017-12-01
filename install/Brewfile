@@ -58,5 +58,6 @@ cask "skype"
 mas "1Password", id: 443987910
 mas "Evernote", id: 406056744
 mas "Slack", id: 803453959
+mas "Spark", id: 1176895641
 mas "Things3", id: 904280696
 mas "Tweetbot", id: 557168941
