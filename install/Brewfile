@@ -46,6 +46,8 @@ brew "zsh"
 
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
+cask "dash3"
+cask "firefox"
 cask "dropbox"
 cask "fantastical"
 cask "google-chrome"
