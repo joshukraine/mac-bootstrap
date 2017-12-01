@@ -66,12 +66,12 @@ update_shell() {
     laptop_echo "Adding '$shell_path' to /etc/shells"
     sudo sh -c "echo $shell_path >> /etc/shells"
   fi
-  chsh -s "$shell_path"
+  sudo chsh -s "$shell_path" "$USER"
 }
 
 case "$SHELL" in
   */zsh)
-    if [ "$(which zsh)" != '/bin/zsh' ] ; then
+    if [ "$(which zsh)" != '/usr/local/bin/zsh' ] ; then
       update_shell
     fi
     ;;
@@ -85,7 +85,6 @@ gem_install_or_update() {
     gem update "$@"
   else
     gem install "$@"
-    rbenv rehash
   fi
 }
 
@@ -108,31 +107,53 @@ if brew list | grep -Fq brew-cask; then
 fi
 
 laptop_echo "Updating Homebrew formulae ..."
-brew update
+brew update --force # https://github.com/Homebrew/brew/issues/1151
 brew bundle -v --global
 
-laptop_echo "Configuring Ruby ..."
-find_latest_ruby() {
-  rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
+if brew list | grep --silent "qt@5.5"; then
+  laptop_echo "Symlink qmake binary to /usr/local/bin for Capybara Webkit..."
+  brew unlink qt@5.5
+  brew link --force qt@5.5
+fi
+
+laptop_echo "Configuring asdf version manager..."
+if [ ! -d "$HOME/.asdf" ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0
+  append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
+fi
+
+install_asdf_plugin() {
+  local name="$1"
+  local url="$2"
+
+  if ! asdf plugin-list | grep -Fq "$name"; then
+    asdf plugin-add "$name" "$url"
+  fi
 }
 
-if [ -f "$BOOTSTRAP_DIR/.ruby-version" ]; then
-  ruby_version="$(<"$BOOTSTRAP_DIR/.ruby-version")"
-else
-  ruby_version="$(find_latest_ruby)"
-fi
+# shellcheck disable=SC1090
+source "$HOME/.asdf/asdf.sh"
+install_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
+install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
-# shellcheck disable=SC2016
-append_to_zshrc 'eval "$(rbenv init - --no-rehash)"' 1
-eval "$(rbenv init -)"
+install_asdf_language() {
+  local language="$1"
+  local version
+  version="$(asdf list-all "$language" | tail -1)"
 
-if ! rbenv versions | grep -Fq "$ruby_version"; then
-  RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/opt/openssl rbenv install -s "$ruby_version"
-fi
+  if ! asdf list "$language" | grep -Fq "$version"; then
+    asdf install "$language" "$version"
+    asdf global "$language" "$version"
+  fi
+}
 
-rbenv global "$ruby_version"
-rbenv shell "$ruby_version"
+laptop_echo "Installing latest Ruby..."
+install_asdf_language "ruby"
 gem update --system
-gem_install_or_update 'bundler'
+gem_install_or_update "bundler"
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
+
+laptop_echo "Installing latest Node..."
+bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+install_asdf_language "nodejs"
