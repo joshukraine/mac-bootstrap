@@ -19,4 +19,4 @@ dockutil --no-restart --add "/Applications/iTerm.app"
 dockutil --no-restart --add "/Applications/Dash.app"
 dockutil --no-restart --add "/Applications/System Preferences.app"
 
-killall Dock
+defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
