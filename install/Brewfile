@@ -51,6 +51,7 @@ cask "fantastical"
 cask "google-chrome"
 cask "gpg-suite"
 cask "iterm2"
+cask "postico"
 cask "skype"
 
 # mas-cli
