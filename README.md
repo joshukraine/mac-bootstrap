@@ -5,10 +5,14 @@ Mac Bootstrap
 
 The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preference I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh](http://ohmyz.sh/)), Vim and Tmux running in [iTerm2](https://www.iterm2.com/).
 
-The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. It has been successfully tested on the following versions of macOS:
+The [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
 
-* El Capitan (10.11)
+* High Sierra (10.13)
+
+Previous versions of Mac Bootstrap have been successfully tested on the following versions of macOS:
+
 * Sierra (10.12)
+* El Capitan (10.11)
 
 &#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](http://jsua.co/dotfiles)**
 
@@ -56,16 +60,15 @@ What does it do?
 
 When you invoke `bootstrap`, here's what it does:
 
-* Step 1: Run my adaptation of thoughtbot's [Laptop script](https://github.com/thoughtbot/laptop). This is a provisioning script which installs lots of goodies like Homebrew, rbenv, postgres, etc. My version is now stored locally in this repo under [`install/laptop`](https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop). Step 1 also sets up a [Brewfile](https://github.com/Homebrew/homebrew-bundle#usage), installing a variety of Homebrew packages, casks, and now [Mac App Store apps](https://github.com/argon/mas)!
+* Step 1: Run my adaptation of thoughtbot's [Laptop script](https://github.com/thoughtbot/laptop). This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`](https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop). Step 1 also sets up a [Brewfile](https://github.com/Homebrew/homebrew-bundle#usage), installing a variety of Homebrew packages, casks, and now [Mac App Store apps](https://github.com/argon/mas)!
 * Step 2: Install [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh).
-* Step 3: Install [NVM](https://github.com/creationix/nvm) for managing Node.js versions.
-* Step 4: Clone [My Dotfiles for macOS](http://jsua.co/dotfiles) and symlink them to `$HOME`.
-* Step 5: Install various [executable scripts](https://github.com/joshukraine/mac-bootstrap/tree/master/bin) (for Tmux and Git) to `$HOME/bin`.
-* Step 6: Install [Tmuxinator](https://github.com/tmuxinator/tmuxinator) for managing tmux sessions.
-* Step 7: Install [Ukrainian spell-check dictionaries](http://extensions.services.openoffice.org/en/project/ukrainian-dictionary).
-* Step 8: Install several [fixed-width fonts](https://github.com/powerline/fonts).
-* Step 9: Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
-* Step 10: Set a variety of [macOS defaults](https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults). (adapted from [https://mths.be/macos](https://mths.be/macos)) Step 10 also customizes the [macOS dock](https://github.com/kcrawford/dockutil).
+* Step 3: Clone [My Dotfiles for macOS](http://jsua.co/dotfiles) and symlink them to `$HOME`.
+* Step 4: Install various [executable scripts](https://github.com/joshukraine/mac-bootstrap/tree/master/bin) (for Tmux and Git) to `$HOME/bin`.
+* Step 5: Install [Tmuxinator](https://github.com/tmuxinator/tmuxinator) for managing tmux sessions.
+* Step 6: Install [Ukrainian spell-check dictionaries](http://extensions.services.openoffice.org/en/project/ukrainian-dictionary).
+* Step 7: Install [Fira Code](https://github.com/tonsky/FiraCode) fixed-width font.
+* Step 8: Install [Vundle](https://github.com/VundleVim/Vundle.vim.git) and plugins for Vim.
+* Step 9: Set a variety of [macOS defaults](https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults). (adapted from [https://mths.be/macos](https://mths.be/macos)) Step 10 also customizes the [macOS dock](https://github.com/kcrawford/dockutil).
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus](https://db.tt/Kmoif6SG), all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
@@ -101,13 +104,13 @@ macOS Keyboard Shortcuts
 These are my (current) primary macOS keyboard shortcuts:
 
 * Alfred: &#8984;Space
+* Clipboard (Alfred) &#8997;&#8679;C
 * Spotlight search: &#8984;&#8679;Space
 * Switch input source: &#8963;&#8679;Space
 * Fantastical: &#8997;&#8984;Space
-* OmniFocus: &#8963;&#8997;Space
+* Things: &#8963;Space
 * iTerm2 hotkey window: &#8997;Space
 * Remap Caps Lock to CTRL (anyone know a way to automate this?)
-* Dash: &#8963;&#8679;K (in hub mode)
 
 
 How to personalize Mac Bootstrap for your own use.
@@ -121,14 +124,13 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 * Step 1 (required): Take a look at [Laptop](https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop) and see what you might want to tweak. One of the biggest things is the Brewfile, which you can find in this repo under `install/Brewfile`. Here you can customize all the packages, casks, and MAS apps that will be installed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use `oh-my-zsh`?
-* Step 3 (optional): Install NVM?
-* Step 4 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](http://jsua.co/dotfiles) and then point to your fork.
-* Step 5 (recommended): Install scripts to `~/bin`?
-* Step 6 (recommended): Install and configure Tmuxinator?
-* Step 7 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions](http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157)?
-* Step 8 (optional): Install fixed-width fonts?
-* Step 9 (recommended): Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
-* Step 10 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
+* Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`](https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap) under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine](http://jsua.co/dotfiles) and then point to your fork.
+* Step 4 (recommended): Install scripts to `~/bin`?
+* Step 5 (recommended): Install and configure Tmuxinator?
+* Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions](http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157)?
+* Step 7 (optional): Install Fira Code fixed-width font?
+* Step 8 (recommended): Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
+* Step 9 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
 
 3) Create `~/.gitconfig.local` and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig` and `~/.zshrc` respectively.
 
@@ -172,4 +174,4 @@ Helpful web resources on dotfiles, et al.
 License
 -------
 
-Copyright (c) 2016 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
+Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
