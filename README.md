@@ -180,14 +180,14 @@ Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/m
 [omz]: http://ohmyz.sh/
 [iterm2]: https://www.iterm2.com/
 [bootstrap]: https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap
-[mas-cli]: https://github.com/argon/mas
+[mas-cli]: https://github.com/mas-cli/mas
 [laptop]: https://github.com/thoughtbot/laptop
 [my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
 [brew-bundle]: https://github.com/Homebrew/homebrew-bundle#usage
 [dotfiles]: http://jsua.co/dotfiles
 [exe-scripts]: https://github.com/joshukraine/mac-bootstrap/tree/master/bin
 [tmuxinator]: https://github.com/tmuxinator/tmuxinator
-[dictionaries]: http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
+[dictionaries]: https://extensions.openoffice.org/en/project/ukrainian-dictionary
 [fira-code]: https://github.com/tonsky/FiraCode
 [vundle]: https://github.com/VundleVim/Vundle.vim.git
 [macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
