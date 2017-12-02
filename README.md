@@ -80,7 +80,7 @@ After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
 * ~~Install software from Mac App Store.~~ (Thank you [mas-cli][mas-cli]!)
-* Complete [Brew Bundle][brew-bundle] with `brew bundle install --global`
+* Complete [Brew Bundle][brew-bundle] with `brew bundle install`
 * Set up iTerm2 profile (see details below).
 * Add personal data to `~/.gitconfig.local` and `~/.zshrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
