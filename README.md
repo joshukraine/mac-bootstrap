@@ -68,7 +68,7 @@ When you invoke `bootstrap`, here's what it does:
 * Step 6: Install [Ukrainian spell-check dictionaries][dictionaries].
 * Step 7: Install [Fira Code][fira-code] fixed-width font.
 * Step 8: Install [Vundle][vundle] and plugins for Vim.
-* Step 9: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths] Step 10 also customizes the [macOS dock][macos-dock].
+* Step 9: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths] Step 9 also customizes the [macOS dock][macos-dock].
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
@@ -120,7 +120,7 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 1) Fork this repo and clone your new fork to your local machine.
 
-2) Review the 10 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
+2) Review the 9 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
 
 * Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things is the Brewfile, which you can find in this repo under `install/Brewfile`. Here you can customize all the packages, casks, and MAS apps that will be installed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use `oh-my-zsh`?
