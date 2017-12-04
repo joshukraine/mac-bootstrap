@@ -3,7 +3,7 @@ Mac Bootstrap
 
 ![mac-bootstrap screenshot][screenshot]
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preference I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh][omz], Vim and Tmux running in [iTerm2][iterm2].
+The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preferences I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh][omz]), Vim and Tmux running in [iTerm2][iterm2].
 
 The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
 
@@ -136,7 +136,7 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 4) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
 
-	curl --remote-name https://raw.githubusercontent.com/<your-github-username>/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/boostrap.log
+	curl --remote-name https://raw.githubusercontent.com/your-github-username/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/boostrap.log
 
 5) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
 
