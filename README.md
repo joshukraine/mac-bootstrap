@@ -1,5 +1,4 @@
-Mac Bootstrap
-=============
+# Mac Bootstrap
 
 ![mac-bootstrap screenshot][screenshot]
 
@@ -17,8 +16,7 @@ Previous versions of Mac Bootstrap have been successfully tested on the followin
 &#9657; **Looking for dotfiles only? Check out [My Dotfiles for macOS](http://jsua.co/dotfiles)**
 
 
-Prerequisites
--------------
+## Prerequisites
 
 Make sure your software is up to date:
 
@@ -33,11 +31,10 @@ Reboot, check for additional updates, then reinstall, reboot if needed.
 	sudo softwareupdate -l
 	sudo softwareupdate -i -a
 
-Sign in to your iCloud account: System Preferences > iCloud. (If you don't sign in before running the `bootstrap` script, [`mas-cli`][mas-cli] will not be able to install apps from the Mac App Store.)
+Sign in to iCloud and the Mac App Store. If you don't do this before running the `bootstrap` script, [`mas-cli`][mas-cli] may have trouble installing apps.
 
 
-Installation
-------------
+## Installation
 
 To install with a one-liner, run this:
 
@@ -55,8 +52,7 @@ sh bootstrap 2>&1 | tee ~/bootstrap.log
 WARNING: This script will ask for your admin password multiple times. You'll need to babysit it for a while. :)
 
 
-What does it do?
-----------------
+## What does it do?
 
 When you invoke `bootstrap`, here's what it does:
 
@@ -73,8 +69,7 @@ When you invoke `bootstrap`, here's what it does:
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
 
-Post-install Tasks
-------------------
+## Post-install Tasks
 
 After running `bootstrap` there are still a few things that need to be done.
 
@@ -86,8 +81,7 @@ After running `bootstrap` there are still a few things that need to be done.
 * Set up desired macOS keyboard shortcuts (see list below)
 
 
-Setting up iTerm2
-----------------
+## Setting up iTerm2
 
 Thanks to a [great blog post][stratus3d] by Trevor Brown, I learned that you can quickly set up iTerm2 by exporting your profile. Here are the steps.
 
@@ -98,8 +92,7 @@ Thanks to a [great blog post][stratus3d] by Trevor Brown, I learned that you can
 5. Restart iTerm2.
 
 
-macOS Keyboard Shortcuts
-------------------------
+## macOS Keyboard Shortcuts
 
 These are my (current) primary macOS keyboard shortcuts:
 
@@ -113,8 +106,7 @@ These are my (current) primary macOS keyboard shortcuts:
 * Remap Caps Lock to CTRL (anyone know a way to automate this?)
 
 
-How to personalize Mac Bootstrap for your own use.
---------------------------------------------------
+## How to personalize Mac Bootstrap for your own use.
 
 No one else's development setup will ever be a perfect match for you. That said, if your needs are close enough to mine, you might benefit from using the same shell scripts and overall structure, and just swapping out the particulars with your own. Here's my recommended approach to doing that:
 
@@ -136,13 +128,14 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 4) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
 
-	curl --remote-name https://raw.githubusercontent.com/your-github-username/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/boostrap.log
+```sh
+curl --remote-name https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/boostrap.log
+```
 
 5) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
 
 
-Some of my favorite dotfile repos
----------------------------------
+## Some of my favorite dotfile repos
 
 * Pro Vim (https://github.com/Integralist/ProVim)
 * Trevor Brown (https://github.com/Stratus3D/dotfiles)
@@ -160,8 +153,7 @@ Some of my favorite dotfile repos
 * Paul Irish (https://github.com/paulirish/dotfiles)
 
 
-Helpful web resources on dotfiles, et al.
------------------------------------------
+## Helpful web resources on dotfiles, et al.
 
 * http://dotfiles.github.io/
 * https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789
@@ -171,8 +163,7 @@ Helpful web resources on dotfiles, et al.
 * http://carlosbecker.com/posts/first-steps-with-mac-os-x-as-a-developer/
 * https://mattstauffer.co/blog/setting-up-a-new-os-x-development-machine-part-1-core-files-and-custom-shell
 
-License
--------
+## License
 
 Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
 
