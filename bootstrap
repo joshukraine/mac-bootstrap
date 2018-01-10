@@ -145,6 +145,8 @@ git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 # shellcheck source=/dev/null
 source "$DOTFILES_DIR"/install.sh
 
+rm "$HOME"/.Brewfile
+
 bootstrap_echo "Done!"
 
 
@@ -164,8 +166,6 @@ bootstrap_echo "Done!"
 ################################################################################
 
 bootstrap_echo "Step 5: Setting up Tmuxinator..."
-
-gem install tmuxinator
 
 if [ ! -d "$HOME"/.tmuxinator/ ]; then
   mkdir "$HOME"/.tmuxinator
