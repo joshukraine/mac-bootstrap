@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # Adpated from thoughtbot's laptop script.
-# https://github.com/joshukraine/laptop
+# https://github.com/thoughtbot/laptop
 
 laptop_echo() {
   local fmt="$1"; shift
 
   # shellcheck disable=SC2059
-  printf "\n[LAPTOP] $fmt\n" "$@"
+  printf "\\n[LAPTOP] $fmt\\n" "$@"
 }
 
 append_to_zshrc() {
@@ -22,9 +22,9 @@ append_to_zshrc() {
 
   if ! grep -Fqs "$text" "$zshrc"; then
     if [ "$skip_new_line" -eq 1 ]; then
-      printf "%s\n" "$text" >> "$zshrc"
+      printf "%s\\n" "$text" >> "$zshrc"
     else
-      printf "\n%s\n" "$text" >> "$zshrc"
+      printf "\\n%s\\n" "$text" >> "$zshrc"
     fi
   fi
 }
@@ -196,7 +196,7 @@ fi
 
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.1
   append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
 fi
 
@@ -226,7 +226,6 @@ install_asdf_language() {
 }
 
 laptop_echo "Installing latest Ruby..."
-
 cat << EOF > "$HOME"/.default-gems
 bundler
 haml_lint
@@ -235,13 +234,13 @@ rubocop
 scss_lint
 tmuxinator
 EOF
-
 install_asdf_language "ruby"
-laptop_echo "Checking which Ruby and Gem install we are using at this point..."
-which ruby
-which gem
+laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
+echo "Ruby --> $(which ruby)"
+ruby -v
+echo "Gem --> $(which gem)"
+gem -v
 gem update --system
-# gem_install_or_update "bundler"
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
