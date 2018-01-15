@@ -85,15 +85,16 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Set machine name
 ################################################################################
 
-printf "\nPlease enter a name for your Mac and press [ENTER] (e.g. Joshua's iMac)\n"
+printf "\\nPlease enter a name for your Mac and press [ENTER] (e.g. Joshua's iMac)\\n"
 read -r -p "> " COMPUTER_NAME
 export COMPUTER_NAME
 
-printf "\nPlease enter a host name for your Mac and press [ENTER] (e.g. joshuas-imac)\n"
+printf "\\nPlease enter a host name for your Mac and press [ENTER] (e.g.  joshuas-imac)\\n"
 read -r -p "> " HOST_NAME
 export HOST_NAME
 
-printf "\nPlease enter your desired time zone and press [ENTER] (e.g. Europe/Kiev)\n(To view available options run \`sudo systemsetup -listtimezones\`)\n"
+printf "\\nPlease enter your desired time zone and press [ENTER] (e.g.
+Europe/Kiev)\\n(To view available options run \`sudo systemsetup -listtimezones\`)\\n"
 read -r -p "> " TIME_ZONE
 export TIME_ZONE
 
