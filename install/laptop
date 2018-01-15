@@ -148,9 +148,22 @@ install_asdf_language() {
 }
 
 laptop_echo "Installing latest Ruby..."
+
+cat << EOF > "$HOME"/.default-gems
+bundler
+haml_lint
+pry
+rubocop
+scss_lint
+tmuxinator
+EOF
+
 install_asdf_language "ruby"
+laptop_echo "Checking which Ruby and Gem install we are using at this point..."
+which ruby
+which gem
 gem update --system
-gem_install_or_update "bundler"
+# gem_install_or_update "bundler"
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 

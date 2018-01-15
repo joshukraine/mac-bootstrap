@@ -105,6 +105,7 @@ export TIME_ZONE
 bootstrap_echo "Step 1: Installing Laptop script..."
 
 cp "$BOOTSTRAP_DIR"/install/Brewfile "$HOME"/.Brewfile
+cp "$BOOTSTRAP_DIR"/install/default-gems "$HOME"/.default-gems
 sh "$BOOTSTRAP_DIR"/install/laptop 2>&1 | tee ~/laptop.log
 
 bootstrap_echo "Done!"
