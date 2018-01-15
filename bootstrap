@@ -104,8 +104,6 @@ export TIME_ZONE
 
 bootstrap_echo "Step 1: Installing Laptop script..."
 
-cp "$BOOTSTRAP_DIR"/install/Brewfile "$HOME"/.Brewfile
-cp "$BOOTSTRAP_DIR"/install/default-gems "$HOME"/.default-gems
 sh "$BOOTSTRAP_DIR"/install/laptop 2>&1 | tee ~/laptop.log
 
 bootstrap_echo "Done!"
@@ -145,8 +143,6 @@ git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 # shellcheck source=/dev/null
 source "$DOTFILES_DIR"/install.sh
-
-rm "$HOME"/.Brewfile
 
 bootstrap_echo "Done!"
 
