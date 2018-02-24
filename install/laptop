@@ -251,3 +251,8 @@ echo "Node --> $(which node)"
 node -v
 echo "NPM --> $(which npm)"
 npm -v
+
+laptop_echo "Installing global Node packages..."
+npm install -g eslint
+npm install -g gulp-cli
+npm install -g svgo
