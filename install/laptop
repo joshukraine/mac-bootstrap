@@ -142,6 +142,7 @@ brew "libtool" # asdf dependency
 brew "libxslt" # asdf dependency
 brew "libyaml" # asdf dependency
 brew "mas"
+brew "neovim"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
@@ -229,6 +230,7 @@ laptop_echo "Installing latest Ruby..."
 cat << EOF > "$HOME"/.default-gems
 bundler
 haml_lint
+neovim
 pry
 rubocop
 scss_lint
@@ -255,4 +257,5 @@ npm -v
 laptop_echo "Installing global Node packages..."
 npm install -g eslint
 npm install -g gulp-cli
+npm install -g neovim
 npm install -g svgo
