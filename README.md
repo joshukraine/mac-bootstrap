@@ -2,7 +2,7 @@
 
 ![mac-bootstrap screenshot][screenshot]
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preferences I use for Ruby-based web development. The command line environment is based on Zsh (via [Oh-My-Zsh][omz]), Vim and Tmux running in [iTerm2][iterm2] or [Terminal.app][terminal].
+The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preferences I use for Ruby-centric web development. The command line environment is based on Zsh (via [Oh-My-Zsh][omz]), [Vim][vim]/[Neovim][neovim] and [Tmux][tmux] running in [iTerm2][iterm2] or [Terminal.app][terminal].
 
 The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
 
@@ -60,8 +60,7 @@ When you invoke `bootstrap`, here's what it does:
 * Step 5: Set up a default [Tmuxinator][tmuxinator] profile for managing tmux sessions.
 * Step 6: Install [Ukrainian spell-check dictionaries][dictionaries].
 * Step 7: Install [Fira Code][fira-code] fixed-width font.
-* Step 8: Install [Vundle][vundle] and plugins for Vim.
-* Step 9: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths]) Step 9 also customizes the [macOS dock][macos-dock].
+* Step 8: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths]) Step 8 also customizes the [macOS dock][macos-dock].
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
@@ -73,6 +72,7 @@ After running `bootstrap` there are still a few things that need to be done.
 * Install remaining software from Mac App Store.
 * Install remaining Homebrew packages via [Brew Bundle][brew-bundle] with `brew bundle install`.
 * Set up iTerm2 and/or Terminal.app profile (see details below).
+* Launch Neovim and `:checkhealth`.
 * Add personal data to `~/.gitconfig.local`, `~/.vimrc.local`, and `~/.zshrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
 
@@ -116,7 +116,7 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 1) Fork this repo and clone your new fork to your local machine.
 
-2) Review the 9 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
+2) Review the 8 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
 
 * Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things to review is the `brew bundle` list of packages, casks, and MAS apps that will be installed. Customize as needed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use `oh-my-zsh`?
@@ -125,8 +125,7 @@ No one else's development setup will ever be a perfect match for you. That said,
 * Step 5 (recommended): Set up Tmuxinator profile?
 * Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions][lang-extensions]?
 * Step 7 (optional): Install Fira Code fixed-width font?
-* Step 8 (recommended): Use Vundle? If you prefer a different plugin manager, you can add the code for that to this section.
-* Step 9 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
+* Step 8 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
 
 3) Create `~/.gitconfig.local`, `~/.vimrc.local`, and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig`, `~/.vimrc`, and `~/.zshrc` respectively.
 
@@ -182,7 +181,6 @@ Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/m
 [tmuxinator]: https://github.com/tmuxinator/tmuxinator
 [dictionaries]: https://extensions.openoffice.org/en/project/ukrainian-dictionary
 [fira-code]: https://github.com/tonsky/FiraCode
-[vundle]: https://github.com/VundleVim/Vundle.vim.git
 [macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
 [mths]: https://mths.be/macos
 [macos-dock]: https://github.com/kcrawford/dockutil
@@ -190,3 +188,4 @@ Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/m
 [db-plus]: https://db.tt/Kmoif6SG
 [stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
 [terminal]: https://en.wikipedia.org/wiki/Terminal_(macOS)
+[neovim]: https://neovim.io/
