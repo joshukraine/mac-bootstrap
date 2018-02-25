@@ -13,7 +13,7 @@ bootstrap_echo() {
   local fmt="$1"; shift
 
   # shellcheck disable=SC2059
-  printf "\n[BOOTSTRAP] $fmt\n" "$@"
+  printf "\\n[BOOTSTRAP] $fmt\\n" "$@"
 }
 
 
@@ -205,26 +205,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 8. Install Vundle & Vim plugins (https://github.com/VundleVim/Vundle.vim.git)
+# 8. Set macOS preferences
 ################################################################################
 
-bootstrap_echo "Step 8: Installing Vundle and vim plugins..."
-if [ -d "$HOME"/.vim/bundle ]; then
-  rm -rf "$HOME"/.vim/bundle
-fi
-git clone https://github.com/VundleVim/Vundle.vim.git "$HOME"/.vim/bundle/Vundle.vim
-cp -R "$DOTFILES_DIR"/vim/colors "$HOME"/.vim # So Vim won't complain about solarized not being found.
-vim +PluginInstall +qall
-rm -rf "$HOME"/.vim/colors
-
-bootstrap_echo "Done!"
-
-
-################################################################################
-# 9. Set macOS preferences
-################################################################################
-
-bootstrap_echo "Step 9: Setting macOS preferences..."
+bootstrap_echo "Step 8: Setting macOS preferences..."
 
 # shellcheck source=/dev/null
 source "$BOOTSTRAP_DIR"/install/macos-defaults
