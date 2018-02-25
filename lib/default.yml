@@ -7,6 +7,6 @@ startup_window: 1
 windows:
   - editor:
       panes:
-        - tmux select-layout "6fe0,231x63,0,0[231x50,0,0,0,231x12,0,51{115x12,0,51,2,115x12,116,51,3}]" && sleep 2 && vim -S
+        - tmux select-layout "6fe0,231x63,0,0[231x50,0,0,0,231x12,0,51{115x12,0,51,2,115x12,116,51,3}]" && sleep 2 && nvim -S
         - #
         - #
