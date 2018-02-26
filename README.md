@@ -168,24 +168,26 @@ curl --remote-name https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/mac-bo
 
 Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
 
-[screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-high-sierra-installing.jpg
-[omz]: http://ohmyz.sh/
-[iterm2]: https://www.iterm2.com/
 [bootstrap]: https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap
-[mas-cli]: https://github.com/mas-cli/mas
-[laptop]: https://github.com/thoughtbot/laptop
-[my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
 [brew-bundle]: https://github.com/Homebrew/homebrew-bundle#usage
+[db-plus]: https://db.tt/Kmoif6SG
+[dictionaries]: https://extensions.openoffice.org/en/project/ukrainian-dictionary
 [dotfiles]: http://jsua.co/dotfiles
 [exe-scripts]: https://github.com/joshukraine/mac-bootstrap/tree/master/bin
-[tmuxinator]: https://github.com/tmuxinator/tmuxinator
-[dictionaries]: https://extensions.openoffice.org/en/project/ukrainian-dictionary
 [fira-code]: https://github.com/tonsky/FiraCode
-[macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
-[mths]: https://mths.be/macos
-[macos-dock]: https://github.com/kcrawford/dockutil
+[iterm2]: https://www.iterm2.com/
 [lang-extensions]: http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157
-[db-plus]: https://db.tt/Kmoif6SG
+[laptop]: https://github.com/thoughtbot/laptop
+[macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
+[macos-dock]: https://github.com/kcrawford/dockutil
+[mas-cli]: https://github.com/mas-cli/mas
+[mths]: https://mths.be/macos
+[my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
+[neovim]: https://neovim.io/
+[omz]: http://ohmyz.sh/
+[screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-high-sierra-installing.jpg
 [stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
 [terminal]: https://en.wikipedia.org/wiki/Terminal_(macOS)
-[neovim]: https://neovim.io/
+[tmux]: https://github.com/tmux/tmux/wiki
+[tmuxinator]: https://github.com/tmuxinator/tmuxinator
+[vim]: http://www.vim.org/
