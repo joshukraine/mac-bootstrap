@@ -136,6 +136,8 @@ brew "git"
 brew "git-quick-stats"
 brew "gmp" # Vim dependency
 brew "gpg" # asdf-nodejs dependency
+brew "hivemind"
+brew "htop"
 brew "hub"
 brew "imagemagick"
 brew "libtool" # asdf dependency
@@ -146,9 +148,9 @@ brew "neovim", args: ["HEAD"]
 brew "pandoc"
 brew "perl"
 brew "pgcli"
-brew "postgresql", service_restart: :changed
+brew "phantomjs"
+brew "postgresql", restart_service: true
 brew "python"
-brew "qt@5.5" if MacOS::Xcode.installed?
 brew "readline"
 brew "reattach-to-user-namespace"
 brew "rsync"
@@ -159,11 +161,11 @@ brew "the_silver_searcher"
 brew "thoughtbot/formulae/gitsh"
 brew "tmux"
 brew "tree"
-brew "universal-ctags", args: ["HEAD"]
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "unixodbc" # asdf dependency
-# brew "vim" # Compiling myself these days.
 brew "wget"
 brew "xz"
+brew "yarn", args: ["without-node"]
 brew "zsh"
 
 # homebrew-cask
@@ -189,15 +191,9 @@ mas "Things3", id: 904280696
 mas "Tweetbot", id: 557168941
 EOF
 
-if brew list | grep --silent "qt@5.5"; then
-  laptop_echo "Symlink qmake binary to /usr/local/bin for Capybara Webkit..."
-  brew unlink qt@5.5
-  brew link --force qt@5.5
-fi
-
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.1
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
   append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
 fi
 
