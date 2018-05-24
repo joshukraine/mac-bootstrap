@@ -2,7 +2,7 @@
 
 ![mac-bootstrap screenshot][screenshot]
 
-The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preferences I use for Ruby-centric web development. The command line environment is based on Zsh (via [Oh-My-Zsh][omz]), [Vim][vim]/[Neovim][neovim] and [Tmux][tmux] running in [iTerm2][iterm2] or [Terminal.app][terminal].
+The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preferences I use for web development — primarily [Ruby][ruby]/[Rails][rails] and [Node.js][nodejs]. The command line environment is based on Zsh (via [Oh-My-Zsh][omz]), [Vim][vim]/[Neovim][neovim] and [Tmux][tmux] running in [iTerm2][iterm2] or [Terminal.app][terminal].
 
 The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
 
@@ -19,16 +19,13 @@ Previous versions of Mac Bootstrap have been successfully tested on the followin
 
 Make sure your software is up to date:
 
-	sudo softwareupdate -i -a
+	sudo softwareupdate -i -a --restart
 
 Install Apple's command line tools:
 
 	xcode-select --install
 
 Reboot, check for additional updates, then reinstall, reboot if needed.
-
-	sudo softwareupdate -l
-	sudo softwareupdate -i -a
 
 Sign in to the Mac App Store. If you don't do this before running the `bootstrap` script, [`mas-cli`][mas-cli] may have trouble installing apps.
 
@@ -166,7 +163,7 @@ curl --remote-name https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/mac-bo
 
 ## License
 
-Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
+Copyright &copy; 2018 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
 
 [bootstrap]: https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap
 [brew-bundle]: https://github.com/Homebrew/homebrew-bundle#usage
@@ -184,7 +181,10 @@ Copyright (c) 2017 Joshua Steele. [MIT License](https://github.com/joshukraine/m
 [mths]: https://mths.be/macos
 [my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
 [neovim]: https://neovim.io/
+[nodejs]: https://nodejs.org/
 [omz]: http://ohmyz.sh/
+[rails]: https://rubyonrails.org/
+[ruby]: https://www.ruby-lang.org/en
 [screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-high-sierra-installing.jpg
 [stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
 [terminal]: https://en.wikipedia.org/wiki/Terminal_(macOS)
