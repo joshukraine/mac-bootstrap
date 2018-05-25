@@ -248,7 +248,7 @@ svgo
 vue-cli
 EOF
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
-install_asdf_language "nodejs"
+install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(which node)"
 node -v
 echo "NPM --> $(which npm)"
