@@ -34,6 +34,9 @@ export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
 export BOOTSTRAP_BRANCH="master"
 export BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
+export ASDF_NODEJS_VERSION="8.11.2"
+export ASDF_RUBY_VERSION="2.5.1"
+
 
 ################################################################################
 # Make sure we're on a Mac before continuing
