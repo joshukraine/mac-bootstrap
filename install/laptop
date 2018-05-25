@@ -172,10 +172,11 @@ brew "zsh"
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
 cask_args appdir: "/Applications"
+cask "1password"
 cask "dash"
-cask "firefox"
 cask "dropbox"
 cask "fantastical"
+cask "firefox"
 cask "google-chrome"
 cask "iterm2"
 cask "postico"
@@ -183,7 +184,6 @@ cask "skype"
 
 # mas-cli
 # https://github.com/mas-cli/mas
-mas "1Password 7", id: 1333542190
 mas "Evernote", id: 406056744
 mas "Slack", id: 803453959
 mas "Spark", id: 1176895641
