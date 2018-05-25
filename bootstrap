@@ -18,24 +18,26 @@ bootstrap_echo() {
 
 
 ################################################################################
-# Variable declarations
+# Initial variable declarations
 ################################################################################
 
 osname=$(uname)
+
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
 export DICTIONARY_DIR=$HOME/Library/Spelling
-
 export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
-export DOTFILES_BRANCH="master"
 export DOTFILES_DIR=$HOME/dotfiles
-
 export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
-export BOOTSTRAP_BRANCH="master"
 export BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
-export ASDF_NODEJS_VERSION="8.11.2"
-export ASDF_RUBY_VERSION="2.5.1"
+DEFAULT_BOOTSTRAP_BRANCH="master"
+DEFAULT_DOTFILES_BRANCH="master"
+DEFAULT_COMPUTER_NAME="Joshua's iMac"
+DEFAULT_HOST_NAME="joshuas-imac"
+DEFAULT_TIME_ZONE="Europe/Kiev"
+DEFAULT_NODEJS_VERSION="8.11.2"
+DEFAULT_RUBY_VERSION="2.5.1"
 
 
 ################################################################################
@@ -67,14 +69,6 @@ fi
 
 
 ################################################################################
-# Clone mac-bootstrap repo
-################################################################################
-
-bootstrap_echo "Cloning mac-bootstrap repo..."
-git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
-
-
-################################################################################
 # Authenticate
 ################################################################################
 
@@ -85,21 +79,89 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
 ################################################################################
-# Set machine name
+# Welcome and setup
 ################################################################################
 
-printf "\\nPlease enter a name for your Mac and press [ENTER] (e.g. Joshua's iMac)\\n"
+echo
+echo "*************************************************************************"
+echo "*******                                                           *******"
+echo "*******                 Welcome to Mac Bootstrap!                 *******"
+echo "*******                                                           *******"
+echo "*************************************************************************"
+echo
+
+printf "Before we get started, let's get some info about your setup.\\n"
+
+printf "\\nBootstrap script will be cloned from:
+==> %s.\\n\\n" "$BOOTSTRAP_REPO_URL"
+printf "Which branch should we use? (Leave blank for default: %s)\\n" "$DEFAULT_BOOTSTRAP_BRANCH"
+read -r -p "> " BOOTSTRAP_BRANCH
+if [ -n "$BOOTSTRAP_BRANCH" ]; then
+  export BOOTSTRAP_BRANCH
+else
+  export BOOTSTRAP_BRANCH="$DEFAULT_BOOTSTRAP_BRANCH"
+fi
+
+printf "\\nDotfiles will be cloned from:
+==> %s.\\n\\n" "$DOTFILES_REPO_URL"
+printf "Which branch should we use? (Leave blank for default: %s)\\n" "$DEFAULT_DOTFILES_BRANCH"
+read -r -p "> " DOTFILES_BRANCH
+if [ -n "$DOTFILES_BRANCH" ]; then
+  export DOTFILES_BRANCH
+else
+  export DOTFILES_BRANCH="$DEFAULT_DOTFILES_BRANCH"
+fi
+
+printf "\\nEnter a name for your Mac. (Leave blank for default: %s)\\n" "$DEFAULT_COMPUTER_NAME"
 read -r -p "> " COMPUTER_NAME
-export COMPUTER_NAME
+export COMPUTER_NAME=${COMPUTER_NAME:-$DEFAULT_COMPUTER_NAME}
 
-printf "\\nPlease enter a host name for your Mac and press [ENTER] (e.g.  joshuas-imac)\\n"
+printf "\\nEnter a host name for your Mac. (Leave blank for default: %s)\\n" "$DEFAULT_HOST_NAME"
 read -r -p "> " HOST_NAME
-export HOST_NAME
+export HOST_NAME=${HOST_NAME:-$DEFAULT_HOST_NAME}
 
-printf "\\nPlease enter your desired time zone and press [ENTER] (e.g.
-Europe/Kiev)\\n(To view available options run \`sudo systemsetup -listtimezones\`)\\n"
+printf "\\nEnter your desired time zone.
+To view available options run \`sudo systemsetup -listtimezones\`
+(Leave blank for default: %s)\\n" "$DEFAULT_TIME_ZONE"
 read -r -p "> " TIME_ZONE
-export TIME_ZONE
+export TIME_ZONE=${TIME_ZONE:-$DEFAULT_TIME_ZONE}
+
+printf "\\nWhich version of Node.js would you like to install?
+Available versions: https://semver.io/node/versions
+(Leave blank for default: %s)\\n" "$DEFAULT_NODEJS_VERSION"
+read -r -p "> " ASDF_NODEJS_VERSION
+export ASDF_NODEJS_VERSION=${ASDF_NODEJS_VERSION:-$DEFAULT_NODEJS_VERSION}
+
+printf "\\nWhich version of Ruby would you like to install?
+Available versions: https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/versions.txt
+(Leave blank for default: %s)\\n" "$DEFAULT_RUBY_VERSION"
+read -r -p "> " ASDF_RUBY_VERSION
+export ASDF_RUBY_VERSION=${ASDF_RUBY_VERSION:-$DEFAULT_RUBY_VERSION}
+
+printf "\\nLooks good. Here's what we've got so far.\\n"
+printf "Bootstrap branch: ==> [%s]\\n" "$BOOTSTRAP_BRANCH"
+printf "Dotfiles branch:  ==> [%s]\\n" "$DOTFILES_BRANCH"
+printf "Computer name:    ==> [%s]\\n" "$COMPUTER_NAME"
+printf "Host name:        ==> [%s]\\n" "$HOST_NAME"
+printf "Time zone:        ==> [%s]\\n" "$TIME_ZONE"
+printf "Node.js version:  ==> [%s]\\n" "$ASDF_NODEJS_VERSION"
+printf "Ruby version:     ==> [%s]\\n" "$ASDF_RUBY_VERSION"
+
+echo
+read -p "Continue? (y/n) " -n 1 -r
+echo
+if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then
+  echo "Exiting..."
+  exit 1
+fi
+
+
+################################################################################
+# Clone mac-bootstrap repo
+################################################################################
+
+bootstrap_echo "Cloning mac-bootstrap repo..."
+git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
 
 
 ################################################################################
