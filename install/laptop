@@ -213,13 +213,9 @@ install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
 install_asdf_language() {
   local language="$1"
-  local version
-  version="$(asdf list-all "$language" | tail -1)"
-
-  if ! asdf list "$language" | grep -Fq "$version"; then
-    asdf install "$language" "$version"
-    asdf global "$language" "$version"
-  fi
+  local version="$2"
+  asdf install "$language" "$version"
+  asdf global "$language" "$version"
 }
 
 laptop_echo "Installing latest Ruby..."
@@ -231,7 +227,7 @@ pry
 rubocop
 tmuxinator
 EOF
-install_asdf_language "ruby"
+install_asdf_language "ruby" "$ASDF_RUBY_VERSION"
 laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
 echo "Ruby --> $(which ruby)"
 ruby -v
