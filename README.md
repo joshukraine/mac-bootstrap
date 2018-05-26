@@ -113,26 +113,28 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 1) Fork this repo and clone your new fork to your local machine.
 
-2) Review the 8 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
+2) Review the `VARIABLE DECLARATIONS` section and customize as desired.
+
+3) Review the 8 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
 
 * Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things to review is the `brew bundle` list of packages, casks, and MAS apps that will be installed. Customize as needed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use `oh-my-zsh`?
-* Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "Variable declarations") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
+* Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "VARIABLE DECLARATIONS") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
 * Step 4 (recommended): Install scripts to `~/bin`?
 * Step 5 (recommended): Set up Tmuxinator profile?
 * Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions][lang-extensions]?
 * Step 7 (optional): Install Fira Code fixed-width font?
 * Step 8 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
 
-3) Create `~/.gitconfig.local`, `~/.vimrc.local`, and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig`, `~/.vimrc`, and `~/.zshrc` respectively.
+4) Create `~/.gitconfig.local`, `~/.vimrc.local`, and `~/.zshrc.local` and add in your personal information. These files are sourced in `~/.gitconfig`, `~/.vimrc`, and `~/.zshrc` respectively.
 
-4) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
+5) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
 
 ```sh
 curl --remote-name https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/boostrap.log
 ```
 
-5) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
+6) Run the script on your machine and wait for the first error. :) Then fix, commit, push, and repeat.
 
 ## Some of my favorite dotfile repos
 
@@ -185,7 +187,7 @@ Copyright &copy; 2018 Joshua Steele. [MIT License](https://github.com/joshukrain
 [omz]: http://ohmyz.sh/
 [rails]: https://rubyonrails.org/
 [ruby]: https://www.ruby-lang.org/en
-[screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-high-sierra-installing.jpg
+[screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-welcome-05-26-2018.png
 [stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
 [terminal]: https://en.wikipedia.org/wiki/Terminal_(macOS)
 [tmux]: https://github.com/tmux/tmux/wiki
