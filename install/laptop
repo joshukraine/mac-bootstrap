@@ -238,22 +238,20 @@ number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
 laptop_echo "Installing latest Node..."
-PATH="$PATH:$ASDF_DIR/installs/nodejs/$ASDF_NODEJS_VERSION/bin"
-cat << EOF > "$HOME"/.default-npm-packages
-gulp-cli
-neovim
-pug
-standard
-stylelint
-svgo
-vue-cli
-EOF
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(which node)"
 node -v
 echo "NPM --> $(which npm)"
 npm -v
+
+npm install -g gulp-cli
+npm install -g neovim
+npm install -g pug
+npm install -g standard
+npm install -g stylelint
+npm install -g svgo
+npm install -g vue-cli
 
 laptop_echo "Installing Python support for Neovim..."
 echo "Python 2 --> $(which python)"
