@@ -141,7 +141,6 @@ brew "imagemagick"
 brew "libtool" # asdf dependency
 brew "libxslt" # asdf dependency
 brew "libyaml" # asdf dependency
-brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "overmind"
 brew "pandoc"
@@ -180,13 +179,6 @@ cask "google-chrome"
 cask "iterm2"
 cask "postico"
 cask "skype"
-
-# mas-cli
-# https://github.com/mas-cli/mas
-mas "Evernote", id: 406056744
-mas "Slack", id: 803453959
-mas "Spark", id: 1176895641
-mas "Tweetbot", id: 557168941
 EOF
 
 laptop_echo "Configuring asdf version manager..."
