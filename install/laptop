@@ -141,7 +141,7 @@ brew "imagemagick"
 brew "libtool" # asdf dependency
 brew "libxslt" # asdf dependency
 brew "libyaml" # asdf dependency
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "overmind"
 brew "pandoc"
 brew "perl"
