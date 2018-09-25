@@ -146,7 +146,6 @@ brew "overmind"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
-brew "phantomjs"
 brew "postgresql", restart_service: true
 brew "python"
 brew "python3"
