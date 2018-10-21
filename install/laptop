@@ -168,7 +168,6 @@ brew "zsh"
 
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
-cask_args appdir: "/Applications"
 cask "dropbox"
 cask "fantastical"
 cask "google-chrome"
