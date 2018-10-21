@@ -169,14 +169,10 @@ brew "zsh"
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
 cask_args appdir: "/Applications"
-cask "dash"
 cask "dropbox"
 cask "fantastical"
-cask "firefox"
 cask "google-chrome"
 cask "iterm2"
-cask "postico"
-cask "skype"
 EOF
 
 laptop_echo "Configuring asdf version manager..."
