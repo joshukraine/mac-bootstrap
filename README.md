@@ -4,12 +4,13 @@
 
 The purpose of this script is to provision a new machine running a fresh install of macOS. It installs and configures the software, dotfiles, and general preferences I use for web development — primarily [Ruby][ruby]/[Rails][rails] and [Node.js][nodejs]. The command line environment is based on Zsh (via [Oh-My-Zsh][omz]), [Vim][vim]/[Neovim][neovim] and [Tmux][tmux] running in [iTerm2][iterm2] or [Terminal.app][terminal].
 
-The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 3.x has been successfully tested on the following versions of macOS:
+The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 4.x has been successfully tested on the following versions of macOS:
 
-* High Sierra (10.13)
+* Mojave (10.14)
 
 Previous versions of Mac Bootstrap have been successfully tested on the following versions of macOS:
 
+* High Sierra (10.13)
 * Sierra (10.12)
 * El Capitan (10.11)
 
@@ -17,17 +18,19 @@ Previous versions of Mac Bootstrap have been successfully tested on the followin
 
 ## Prerequisites
 
-Make sure your software is up to date:
+1. Make sure your software is up to date:
 
-	sudo softwareupdate -i -a --restart
+        sudo softwareupdate -i -a --restart
 
-Install Apple's command line tools:
+1. Install Apple's command line tools:
 
-	xcode-select --install
+        xcode-select --install
 
-Reboot, check for additional updates, then reinstall, reboot if needed.
+1. Reboot, check for additional updates, then reinstall and reboot as needed.
 
-Sign in to the Mac App Store. If you don't do this before running the `bootstrap` script, [`mas-cli`][mas-cli] may have trouble installing apps.
+1. Install preliminary Mac apps. These would be any MAS or other apps referenced by the macos-dock script and not handled by `brew cask`. (See `install/macos-dock`)
+
+**NOTE: MAS app installation was previously handled by the [`mas-cli`][mas-cli] utility. However, as of macOS Mojave, the signin functionality for `mas-cli` is broken. [View details here.](https://github.com/mas-cli/mas#-sign-in)**
 
 ## Installation
 
@@ -50,7 +53,7 @@ WARNING: This script will ask for your admin password multiple times. You'll nee
 
 When you invoke `bootstrap`, here's what it does:
 
-* Step 1: Run my adaptation of thoughtbot's [Laptop script][laptop]. This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`][my-laptop]. Step 1 also installs a variety of packages via [Homebrew Bundle][brew-bundle], including several apps from the Mac App Store via [mas-cli][mas-cli].
+* Step 1: Run my adaptation of thoughtbot's [Laptop script][laptop]. This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`][my-laptop]. Step 1 also installs a variety of packages via [Homebrew Bundle][brew-bundle].
 * Step 2: Install [Oh-My-Zsh][omz].
 * Step 3: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME`.
 * Step 4: Install various [executable scripts][exe-scripts] (mostly for Tmux and Git) to `$HOME/bin`.
@@ -66,7 +69,7 @@ NOTE: Previously, I used the `bootstrap` script to set up many of the standard d
 After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
-* Install remaining software from Mac App Store.
+* Install remaining software from Mac App Store or other sources.
 * Install remaining Homebrew packages via [Brew Bundle][brew-bundle] with `brew bundle install`.
 * Set up iTerm2 and/or Terminal.app profile (see details below).
 * Launch Neovim and `:checkhealth`.
@@ -103,7 +106,6 @@ These are my (current) primary macOS keyboard shortcuts:
 * Spotlight search: &#8984;&#8679;Space
 * Switch input source: &#8963;&#8679;Space
 * Fantastical: &#8997;&#8984;Space
-* Things: &#8963;Space
 * iTerm2 hotkey window: &#8997;Space
 * Remap Caps Lock to CTRL (anyone know a way to automate this?)
 
@@ -117,7 +119,7 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 3) Review the 8 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
 
-* Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things to review is the `brew bundle` list of packages, casks, and MAS apps that will be installed. Customize as needed. Laptop also sets up some basics that are required by the bootstrap script later on.
+* Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things to review is the `brew bundle` list of packages and casks that will be installed. Customize as needed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use `oh-my-zsh`?
 * Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "VARIABLE DECLARATIONS") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
 * Step 4 (recommended): Install scripts to `~/bin`?
