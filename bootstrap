@@ -37,7 +37,7 @@ DEFAULT_COMPUTER_NAME="Joshua's Mac"
 DEFAULT_HOST_NAME="joshuas-mac"
 DEFAULT_TIME_ZONE="Europe/Kiev"
 DEFAULT_NODEJS_VERSION="8.12.0"
-DEFAULT_RUBY_VERSION="2.5.1"
+DEFAULT_RUBY_VERSION="2.5.3"
 
 
 ################################################################################
