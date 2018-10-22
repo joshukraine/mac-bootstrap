@@ -137,18 +137,15 @@ brew "git-quick-stats"
 brew "gmp" # Vim dependency
 brew "gpg" # asdf-nodejs dependency
 brew "htop"
-brew "hub"
 brew "imagemagick"
 brew "libtool" # asdf dependency
 brew "libxslt" # asdf dependency
 brew "libyaml" # asdf dependency
-brew "mas"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "overmind"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
-brew "phantomjs"
 brew "postgresql", restart_service: true
 brew "python"
 brew "python3"
@@ -171,29 +168,15 @@ brew "zsh"
 
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
-cask_args appdir: "/Applications"
-cask "1password"
-cask "dash"
 cask "dropbox"
 cask "fantastical"
-cask "firefox"
 cask "google-chrome"
 cask "iterm2"
-cask "postico"
-cask "skype"
-
-# mas-cli
-# https://github.com/mas-cli/mas
-mas "Evernote", id: 406056744
-mas "Slack", id: 803453959
-mas "Spark", id: 1176895641
-mas "Things3", id: 904280696
-mas "Tweetbot", id: 557168941
 EOF
 
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
   append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
 fi
 
@@ -238,22 +221,20 @@ number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
 laptop_echo "Installing latest Node..."
-PATH="$PATH:$ASDF_DIR/installs/nodejs/$ASDF_NODEJS_VERSION/bin"
-cat << EOF > "$HOME"/.default-npm-packages
-gulp-cli
-neovim
-pug
-standard
-stylelint
-svgo
-vue-cli
-EOF
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(which node)"
 node -v
 echo "NPM --> $(which npm)"
 npm -v
+
+npm install -g gulp-cli
+npm install -g neovim
+npm install -g pug
+npm install -g standard
+npm install -g stylelint
+npm install -g svgo
+npm install -g vue-cli
 
 laptop_echo "Installing Python support for Neovim..."
 echo "Python 2 --> $(which python)"
