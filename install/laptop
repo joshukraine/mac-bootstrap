@@ -59,7 +59,7 @@ fi
 
 update_shell() {
   local shell_path;
-  shell_path="$(which zsh)"
+  shell_path="$(command -v zsh)"
 
   laptop_echo "Changing your shell to zsh ..."
   if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
@@ -71,7 +71,7 @@ update_shell() {
 
 case "$SHELL" in
   */zsh)
-    if [ "$(which zsh)" != '/usr/local/bin/zsh' ] ; then
+    if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
       update_shell
     fi
     ;;
@@ -212,9 +212,9 @@ tmuxinator
 EOF
 install_asdf_language "ruby" "$ASDF_RUBY_VERSION"
 laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
-echo "Ruby --> $(which ruby)"
+echo "Ruby --> $(command -v ruby)"
 ruby -v
-echo "Gem --> $(which gem)"
+echo "Gem --> $(command -v gem)"
 gem -v
 gem update --system
 number_of_cores=$(sysctl -n hw.ncpu)
@@ -223,9 +223,9 @@ bundle config --global jobs $((number_of_cores - 1))
 laptop_echo "Installing latest Node..."
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
-echo "Node --> $(which node)"
+echo "Node --> $(command -v node)"
 node -v
-echo "NPM --> $(which npm)"
+echo "NPM --> $(command -v npm)"
 npm -v
 
 npm install -g gulp-cli
@@ -237,9 +237,9 @@ npm install -g svgo
 npm install -g vue-cli
 
 laptop_echo "Installing Python support for Neovim..."
-echo "Python 2 --> $(which python)"
+echo "Python 2 --> $(command -v python)"
 python --version
-echo "Python 3 --> $(which python3)"
+echo "Python 3 --> $(command -v python3)"
 python3 --version
 sudo easy_install pip
 pip install --user --upgrade pynvim
