@@ -205,7 +205,8 @@ bootstrap_echo "Done!"
 if [ "$DEFAULT_SHELL" == "fish" ]; then
   bootstrap_echo "Step 2: Installing Oh My Fish..."
 
-  curl -L https://get.oh-my.fish | fish
+  git clone https://github.com/oh-my-fish/oh-my-fish
+  oh-my-fish/bin/install --offline --noninteractive
 
 elif [ "$DEFAULT_SHELL" == "zsh" ]; then
   bootstrap_echo "Step 2: Installing Oh My Zsh..."
