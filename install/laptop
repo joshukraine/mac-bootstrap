@@ -109,61 +109,87 @@ fi
 laptop_echo "Updating Homebrew formulae ..."
 brew update --force # https://github.com/Homebrew/brew/issues/1151
 brew bundle --file=- <<EOF
-tap "caskroom/cask"
-tap "caskroom/versions"
 tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "thoughtbot/formulae"
+tap "puma/puma"
 tap "universal-ctags/universal-ctags"
 
 # Need to install openssl before libyaml
 brew "openssl"
 brew "openssl@1.1" # wget dependency
 
+brew "advancecomp"
+brew "ansible"
+brew "asciidoctor"
 brew "autoconf" # asdf dependency
 brew "automake" # asdf dependency
 brew "awscli"
 brew "bash"
 brew "bash-completion"
+brew "bat"
 brew "cloc"
 brew "cmake"
 brew "coreutils"
 brew "diff-so-fancy"
 brew "dockutil"
 brew "dos2unix"
+brew "exa"
+brew "fish"
+brew "fontforge"
+brew "fzf"
+brew "gifsicle"
 brew "git"
 brew "git-quick-stats"
 brew "gmp" # Vim dependency
-brew "gpg" # asdf-nodejs dependency
+brew "gnupg" # asdf-nodejs dependency
+brew "highlight"
 brew "htop"
+brew "httpie"
 brew "imagemagick"
+brew "jhead"
+brew "jq"
+brew "less"
+brew "libtermkey"
 brew "libtool" # asdf dependency
 brew "libxslt" # asdf dependency
 brew "libyaml" # asdf dependency
-brew "neovim"
+brew "media-info"
+brew "memcached"
+brew "mono"
+brew "most"
+brew "multitail"
+brew "neovim", args: ["HEAD"]
+brew "onefetch"
 brew "overmind"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
 brew "postgresql", restart_service: true
+brew "puma/puma/puma-dev"
 brew "python"
-brew "python3"
+brew "ranger", link: false
 brew "readline"
-brew "reattach-to-user-namespace"
+brew "ripgrep"
+brew "rlwrap"
 brew "rsync"
 brew "shellcheck"
 brew "sqlite"
 brew "ssh-copy-id"
+brew "starship"
 brew "the_silver_searcher"
-brew "thoughtbot/formulae/gitsh"
+brew "tldr"
 brew "tmux"
+brew "trash"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "unixodbc" # asdf dependency
+brew "w3m"
 brew "wget"
 brew "xz"
-brew "yarn", args: ["without-node"]
+brew "yarn"
 brew "zsh"
 
 # homebrew-cask
