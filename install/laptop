@@ -245,7 +245,7 @@ install_asdf_language() {
   asdf global "$language" "$version"
 }
 
-laptop_echo "Installing latest Ruby..."
+laptop_echo "Installing Ruby..."
 cat << EOF > "$HOME"/.default-gems
 bundler
 haml_lint
@@ -264,7 +264,7 @@ gem update --system
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
-laptop_echo "Installing latest Node..."
+laptop_echo "Installing Node..."
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(command -v node)"
