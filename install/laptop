@@ -81,18 +81,17 @@ update_zsh_shell() {
   sudo chsh -s "$shell_path" "$USER"
 }
 
-case "$SHELL" in
-  */fish)
-    if [ "$(command -v fish)" != '/usr/local/bin/fish' ] ; then
-      update_fish_shell
-    fi
+case "$DEFAULT_SHELL" in
+  fish)
+    laptop_echo "Your shell preference is set to FISH..."
+    update_fish_shell
     ;;
-  */zsh)
-    if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
-      update_zsh_shell
-    fi
+  zsh)
+    laptop_echo "Your shell preference is set to ZSH..."
+    update_zsh_shell
     ;;
   *)
+    laptop_echo "No shell preference detected. Using FISH..."
     update_fish_shell
     ;;
 esac
