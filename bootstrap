@@ -205,6 +205,10 @@ bootstrap_echo "Done!"
 if [ "$DEFAULT_SHELL" == "fish" ]; then
   bootstrap_echo "Step 2: Installing Oh My Fish..."
 
+  if [ -d "$HOME"/oh-my-fish ]; then
+    rm -rf "$HOME"/oh-my-fish
+  fi
+
   git clone https://github.com/oh-my-fish/oh-my-fish
   oh-my-fish/bin/install --offline --noninteractive
 
