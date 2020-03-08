@@ -57,7 +57,19 @@ else
   sudo chown -R "$LOGNAME:admin" "$HOMEBREW_PREFIX"
 fi
 
-update_shell() {
+update_fish_shell() {
+  local shell_path;
+  shell_path="$(command -v fish)"
+
+  laptop_echo "Changing your shell to fish ..."
+  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+    laptop_echo "Adding '$shell_path' to /etc/shells"
+    echo $shell_path | sudo tee -a /etc/shells
+  fi
+  sudo chsh -s "$shell_path" "$USER"
+}
+
+update_zsh_shell() {
   local shell_path;
   shell_path="$(command -v zsh)"
 
@@ -70,13 +82,18 @@ update_shell() {
 }
 
 case "$SHELL" in
+  */fish)
+    if [ "$(command -v fish)" != '/usr/local/bin/fish' ] ; then
+      update_fish_shell
+    fi
+    ;;
   */zsh)
     if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
-      update_shell
+      update_zsh_shell
     fi
     ;;
   *)
-    update_shell
+    update_fish_shell
     ;;
 esac
 
