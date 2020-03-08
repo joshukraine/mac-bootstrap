@@ -271,13 +271,14 @@ node -v
 echo "NPM --> $(command -v npm)"
 npm -v
 
+npm install -g @vue/cli
 npm install -g gulp-cli
 npm install -g neovim
 npm install -g pug
-npm install -g standard
 npm install -g stylelint
 npm install -g svgo
-npm install -g vue-cli
+npm install -g typescript
+npm install -g vue-language-server
 
 laptop_echo "Installing Python support for Neovim..."
 echo "Python 2 --> $(command -v python)"
