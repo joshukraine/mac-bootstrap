@@ -278,22 +278,7 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 7. Install Fira Code font
-################################################################################
-
-bootstrap_echo "Step 7: Installing Fira Code fixed-width font..."
-if [ -d "$HOME"/src/fonts ]; then
-  rm -rf "$HOME"/src/fonts
-fi
-git clone https://github.com/tonsky/FiraCode "$HOME"/src/fira-code
-cp "$HOME"/src/fira-code/distr/ttf/* "$HOME"/Library/Fonts/
-rm -rf "$HOME"/src/fira-code
-
-bootstrap_echo "Done!"
-
-
-################################################################################
-# 8. Set macOS preferences
+# 7. Set macOS preferences
 ################################################################################
 
 bootstrap_echo "Step 8: Setting macOS preferences..."
