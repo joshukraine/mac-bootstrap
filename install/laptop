@@ -38,9 +38,9 @@ if [ ! -d "$HOME/bin/" ]; then
   mkdir "$HOME/bin"
 fi
 
-if [ ! -f "$HOME/.zshrc" ]; then
-  touch "$HOME/.zshrc"
-fi
+# if [ ! -f "$HOME/.zshrc" ]; then
+#   touch "$HOME/.zshrc"
+# fi
 
 # shellcheck disable=SC2016
 # append_to_zshrc 'export PATH="$HOME/bin:$PATH"'
@@ -98,7 +98,7 @@ if ! command -v brew >/dev/null; then
     # shellcheck disable=SC2016
     # append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
 
-    export PATH="/usr/local/bin:$PATH"
+    # export PATH="/usr/local/bin:$PATH"
 fi
 
 if brew list | grep -Fq brew-cask; then
