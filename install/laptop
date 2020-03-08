@@ -81,21 +81,6 @@ update_zsh_shell() {
   sudo chsh -s "$shell_path" "$USER"
 }
 
-case "$DEFAULT_SHELL" in
-  fish)
-    laptop_echo "Your shell preference is set to FISH..."
-    update_fish_shell
-    ;;
-  zsh)
-    laptop_echo "Your shell preference is set to ZSH..."
-    update_zsh_shell
-    ;;
-  *)
-    laptop_echo "No shell preference detected. Using FISH..."
-    update_fish_shell
-    ;;
-esac
-
 gem_install_or_update() {
   if gem list "$1" --installed > /dev/null; then
     gem update "$@"
@@ -218,6 +203,21 @@ cask "google-chrome"
 cask "iterm2-beta"
 cask "postico"
 EOF
+
+case "$DEFAULT_SHELL" in
+  fish)
+    laptop_echo "Your shell preference is set to FISH..."
+    update_fish_shell
+    ;;
+  zsh)
+    laptop_echo "Your shell preference is set to ZSH..."
+    update_zsh_shell
+    ;;
+  *)
+    laptop_echo "No shell preference detected. Using FISH..."
+    update_fish_shell
+    ;;
+esac
 
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
