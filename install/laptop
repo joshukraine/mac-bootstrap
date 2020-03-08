@@ -254,6 +254,7 @@ neovim
 pry
 rubocop
 tmuxinator
+solargraph
 EOF
 install_asdf_language "ruby" "$ASDF_RUBY_VERSION"
 laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
