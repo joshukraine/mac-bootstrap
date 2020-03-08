@@ -215,7 +215,7 @@ cask "dropbox"
 cask "fantastical"
 cask "font-firacode-nerd-font"
 cask "google-chrome"
-cask "iterm2"
+cask "iterm2-beta"
 EOF
 
 laptop_echo "Configuring asdf version manager..."
