@@ -70,6 +70,7 @@ After running `bootstrap` there are still a few things that need to be done.
 * Install remaining software from Mac App Store or other sources.
 * Install remaining Homebrew packages via [Brew Bundle][brew-bundle] with `brew bundle install`.
 * Set up iTerm2 and/or Terminal.app profile (see details below).
+* If using Fish, customize you setup by running the `fish_config` command.
 * Launch Neovim and `:checkhealth`.
 * Add personal data to `~/.fish.local` or `~/.zshrc.local`, `~/.gitconfig.local`, and `~/.vimrc.local`.
 * Set up desired macOS keyboard shortcuts (see list below)
