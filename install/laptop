@@ -216,6 +216,7 @@ cask "fantastical"
 cask "font-firacode-nerd-font"
 cask "google-chrome"
 cask "iterm2-beta"
+cask "postico"
 EOF
 
 laptop_echo "Configuring asdf version manager..."
