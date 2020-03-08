@@ -10,24 +10,24 @@ laptop_echo() {
   printf "\\n[LAPTOP] $fmt\\n" "$@"
 }
 
-append_to_zshrc() {
-  local text="$1" zshrc
-  local skip_new_line="${2:-0}"
-
-  if [ -w "$HOME/.zshrc.local" ]; then
-    zshrc="$HOME/.zshrc.local"
-  else
-    zshrc="$HOME/.zshrc"
-  fi
-
-  if ! grep -Fqs "$text" "$zshrc"; then
-    if [ "$skip_new_line" -eq 1 ]; then
-      printf "%s\\n" "$text" >> "$zshrc"
-    else
-      printf "\\n%s\\n" "$text" >> "$zshrc"
-    fi
-  fi
-}
+# append_to_zshrc() {
+#   local text="$1" zshrc
+#   local skip_new_line="${2:-0}"
+#
+#   if [ -w "$HOME/.zshrc.local" ]; then
+#     zshrc="$HOME/.zshrc.local"
+#   else
+#     zshrc="$HOME/.zshrc"
+#   fi
+#
+#   if ! grep -Fqs "$text" "$zshrc"; then
+#     if [ "$skip_new_line" -eq 1 ]; then
+#       printf "%s\\n" "$text" >> "$zshrc"
+#     else
+#       printf "\\n%s\\n" "$text" >> "$zshrc"
+#     fi
+#   fi
+# }
 
 # shellcheck disable=SC2154
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
@@ -43,7 +43,7 @@ if [ ! -f "$HOME/.zshrc" ]; then
 fi
 
 # shellcheck disable=SC2016
-append_to_zshrc 'export PATH="$HOME/bin:$PATH"'
+# append_to_zshrc 'export PATH="$HOME/bin:$PATH"'
 
 HOMEBREW_PREFIX="/usr/local"
 
@@ -93,10 +93,10 @@ if ! command -v brew >/dev/null; then
     curl -fsS \
       'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
-    append_to_zshrc '# recommended by brew doctor'
+    # append_to_zshrc '# recommended by brew doctor'
 
     # shellcheck disable=SC2016
-    append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
+    # append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
 
     export PATH="/usr/local/bin:$PATH"
 fi
@@ -176,8 +176,7 @@ EOF
 
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
-  append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
+  # append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
 fi
 
 install_asdf_plugin() {
