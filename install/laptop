@@ -248,10 +248,10 @@ npm install -g typescript
 npm install -g vue-language-server
 
 laptop_echo "Installing Python support for Neovim..."
-echo "Python 2 --> $(command -v python)"
-python --version
 echo "Python 3 --> $(command -v python3)"
 python3 --version
+echo "Python 2 --> $(command -v python)"
+python --version
 sudo easy_install pip
-pip install --user --upgrade pynvim
-pip3 install --user --upgrade pynvim
+python3 -m pip install --user --upgrade pynvim
+python2 -m pip install --user --upgrade pynvim
