@@ -29,8 +29,6 @@ Previous versions of Mac Bootstrap have been successfully tested on the followin
 
 1. Reboot, check for additional updates, then reinstall and reboot as needed.
 
-1. Install preliminary Mac apps. These would be any MAS or other apps referenced by the macos-dock script and not handled by `brew cask`. (See `install/macos-dock`)
-
 ## Installation
 
 To install with a one-liner, run this:
@@ -58,7 +56,7 @@ When you invoke `bootstrap`, here's what it does:
 * Step 4: Install various [executable scripts][exe-scripts] (mostly for Tmux and Git) to `$HOME/bin`.
 * Step 5: Set up a default [Tmuxinator][tmuxinator] profile for managing tmux sessions.
 * Step 6: Install [Ukrainian spell-check dictionaries][dictionaries].
-* Step 7: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths]) Step 7 also customizes the [macOS dock][macos-dock].
+* Step 7: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths])
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
@@ -124,7 +122,7 @@ No one else's development setup will ever be a perfect match for you. That said,
 * Step 4 (recommended): Install scripts to `~/bin`?
 * Step 5 (recommended): Set up Tmuxinator profile?
 * Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions][lang-extensions]?
-* Step 7 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed. `install/macos-dock` ensures that the dock contains only the apps you select. Adjust as desired. (NOTE: The `macos-dock` script depends on the `dockutil` package installed by Homebrew.)
+* Step 7 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed.
 
 4) Create `~/.fish.local` or `~/.zshrc.local`, `~/.gitconfig.local`, and `~/.vimrc.local` and add in your personal information. These files are sourced in `~/.config/omf/init.fish` or `~/.zshrc`, `~/.gitconfig`, and `~/.vimrc`  respectively.
 
@@ -179,7 +177,6 @@ Copyright &copy; 2020 Joshua Steele. [MIT License](https://github.com/joshukrain
 [lang-extensions]: http://extensions.services.openoffice.org/en/search?f[0]=field_project_tags%3A157
 [laptop]: https://github.com/thoughtbot/laptop
 [macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
-[macos-dock]: https://github.com/kcrawford/dockutil
 [mths]: https://mths.be/macos
 [my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
 [neovim]: https://neovim.io/

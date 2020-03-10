@@ -298,9 +298,6 @@ bootstrap_echo "Step 8: Setting macOS preferences..."
 # shellcheck source=/dev/null
 source "$BOOTSTRAP_DIR"/install/macos-defaults
 
-# shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/macos-dock
-
 rm -rf "$BOOTSTRAP_DIR"
 
 bootstrap_echo "Done!"
