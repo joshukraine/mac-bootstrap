@@ -161,12 +161,8 @@ brew "zsh"
 
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
-cask "dropbox"
-cask "fantastical"
 cask "font-firacode-nerd-font"
-cask "google-chrome"
 cask "iterm2-beta"
-cask "postico"
 EOF
 
 case "$DEFAULT_SHELL" in
