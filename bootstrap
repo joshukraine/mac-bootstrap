@@ -184,6 +184,11 @@ fi
 ################################################################################
 
 bootstrap_echo "Cloning mac-bootstrap repo..."
+
+if [ -d "$BOOTSTRAP_DIR" ]; then
+  rm -rf "$BOOTSTRAP_DIR"
+fi
+
 git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
 
 
