@@ -214,6 +214,10 @@ if [ "$DEFAULT_SHELL" == "fish" ]; then
     rm -rf "$HOME"/oh-my-fish
   fi
 
+  if [ -d "$HOME"/.local/share/omf ]; then
+    rm -rf "$HOME"/.local/share/omf
+  fi
+
   git clone https://github.com/oh-my-fish/oh-my-fish
   oh-my-fish/bin/install --offline --noninteractive
 
