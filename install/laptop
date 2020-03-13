@@ -128,7 +128,7 @@ brew "memcached"
 brew "mono"
 brew "most"
 brew "multitail"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "onefetch"
 brew "overmind"
 brew "pandoc"
