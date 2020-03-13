@@ -35,7 +35,7 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # Set scrollbar behavior
-defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # Possible values: `WhenScrolling`, `Automatic`, `Always`
 
 # Expand save panel by default
