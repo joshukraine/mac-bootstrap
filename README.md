@@ -184,7 +184,7 @@ Copyright &copy; 2020 Joshua Steele. [MIT License](https://github.com/joshukrain
 [omz]: http://ohmyz.sh/
 [rails]: https://rubyonrails.org/
 [react]: https://reactjs.org/
-[screenshot]: https://s3.amazonaws.com/images.jsua.co/mac-bootstrap-welcome-10-21-2018.png
+[screenshot]: https://res.cloudinary.com/dnkvsijzu/image/upload/v1584124959/screenshots/mac-bootstrap-mar-2020_pmadrx.png
 [stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
 [terminal]: https://en.wikipedia.org/wiki/Terminal_(macOS)
 [tmux]: https://github.com/tmux/tmux/wiki
