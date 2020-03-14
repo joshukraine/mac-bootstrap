@@ -24,7 +24,7 @@ bootstrap_echo() {
 osname=$(uname)
 
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
-export OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
+export OLD_DOTFILES_BAK=$HOME/old_dotfiles_bak
 export DICTIONARY_DIR=$HOME/Library/Spelling
 export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
 export DOTFILES_DIR=$HOME/dotfiles
@@ -243,9 +243,9 @@ bootstrap_echo "Done!"
 bootstrap_echo "Step 3: Installing dotfiles..."
 
 if [[ -d $DOTFILES_DIR ]]; then
-  bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
-  rm -rf "$OLD_DOTFILES_BACKUP"
-  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BACKUP"
+  bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_bak..."
+  rm -rf "$OLD_DOTFILES_BAK"
+  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
   rm -rf "$DOTFILES_DIR"
 fi
 
