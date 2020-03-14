@@ -230,7 +230,7 @@ elif [ "$DEFAULT_SHELL" == "zsh" ]; then
     rm -rf "$HOME"/.oh-my-zsh
   fi
 
-  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME"/.oh-my-zsh
 fi
 
 bootstrap_echo "Done!"
