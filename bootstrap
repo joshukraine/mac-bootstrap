@@ -38,8 +38,8 @@ DEFAULT_DOTFILES_BRANCH="master"
 DEFAULT_COMPUTER_NAME="Joshua's Mac"
 DEFAULT_HOST_NAME="joshuas-mac"
 DEFAULT_TIME_ZONE="Europe/Kiev"
-DEFAULT_NODEJS_VERSION="12.16.1"
-DEFAULT_RUBY_VERSION="2.6.5"
+DEFAULT_NODEJS_VERSION="13.11.0"
+DEFAULT_RUBY_VERSION="2.7.0"
 
 
 ################################################################################
