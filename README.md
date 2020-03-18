@@ -34,12 +34,12 @@ Previous versions of Mac Bootstrap have been successfully tested on the followin
 To install with a one-liner, run this:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/catalina-update/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
+curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/master/bootstrap && sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
 
 Want to read through the script first?
 ```sh
-curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/catalina-update/bootstrap
+curl --remote-name https://raw.githubusercontent.com/joshukraine/mac-bootstrap/master/bootstrap
 less bootstrap
 sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
