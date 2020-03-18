@@ -44,7 +44,7 @@ less bootstrap
 sh bootstrap 2>&1 | tee ~/bootstrap.log
 ```
 
-WARNING: This script will ask for your admin password multiple times. You'll need to babysit it for a while. 😉
+WARNING: This script will ask for your sudo password multiple times. You'll need to babysit it for a while. 😉
 
 ## What does it do?
 
@@ -65,34 +65,8 @@ NOTE: Previously, I used the `bootstrap` script to set up many of the standard d
 After running `bootstrap` there are still a few things that need to be done.
 
 * Restart your machine in order for some changes to take effect.
-* Install remaining software from Mac App Store or other sources.
-* Install remaining Homebrew packages via [Brew Bundle][brew-bundle] with `brew bundle install`.
-* Set up iTerm2 and/or Terminal.app profile (see details below).
-* If using Fish, customize you setup by running the `fish_config` command.
-* Launch Neovim and `:checkhealth`.
-* Add personal data to `~/.fish.local` or `~/.zshrc.local`, `~/.gitconfig.local`, and `~/.vimrc.local`.
+* Complete [post-install tasks][post-install-tasks] from dotfiles README.
 * Set up desired macOS keyboard shortcuts (see list below)
-
-## Setting up iTerm2
-
-Thanks to a [great blog post][stratus3d] by Trevor Brown, I learned that you can quickly set up iTerm2 by exporting your profile. Here are the steps.
-
-1. Open iTerm2.
-2. Select iTerm2 > Preferences.
-3. Under the General tab, check the box labeled "Load preferences from a custom folder or URL:"
-4. Press "Browse" and point it to `~/dotfiles/iterm2/<desired-machine-folder>/com.googlecode.iterm2.plist`.
-5. Restart iTerm2.
-
-## Setting up Terminal.app
-
-Getting set up after a fresh install is simple.
-
-1. Open Terminal.app.
-1. Select Terminal > Preferences. (But really you'll just press &#8984;, right? So much faster.)
-1. Select the Profiles tab.
-1. Click the gear icon and select Import...
-1. Select `~/dotfiles/terminal/<desired-profile>.terminal` and click Open.
-1. Click the Default button to keep using this profile in new Terminal windows.
 
 ## macOS Keyboard Shortcuts
 
@@ -182,6 +156,7 @@ Copyright &copy; 2020 Joshua Steele. [MIT License](https://github.com/joshukrain
 [neovim]: https://neovim.io/
 [omf]: https://github.com/oh-my-fish/oh-my-fish
 [omz]: http://ohmyz.sh/
+[post-install-tasks]: https://github.com/joshukraine/dotfiles#post-install-tasks
 [rails]: https://rubyonrails.org/
 [react]: https://reactjs.org/
 [screenshot]: https://res.cloudinary.com/dnkvsijzu/image/upload/v1584124959/screenshots/mac-bootstrap-mar-2020_pmadrx.png
