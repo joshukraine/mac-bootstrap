@@ -24,20 +24,22 @@ bootstrap_echo() {
 osname=$(uname)
 
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
-export OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
+export OLD_DOTFILES_BAK=$HOME/old_dotfiles_bak
 export DICTIONARY_DIR=$HOME/Library/Spelling
 export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
 export DOTFILES_DIR=$HOME/dotfiles
 export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
 export BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
+PS3="> "
+
 DEFAULT_BOOTSTRAP_BRANCH="master"
 DEFAULT_DOTFILES_BRANCH="master"
 DEFAULT_COMPUTER_NAME="Joshua's Mac"
 DEFAULT_HOST_NAME="joshuas-mac"
 DEFAULT_TIME_ZONE="Europe/Kiev"
-DEFAULT_NODEJS_VERSION="8.12.0"
-DEFAULT_RUBY_VERSION="2.5.3"
+DEFAULT_NODEJS_VERSION="13.11.0"
+DEFAULT_RUBY_VERSION="2.7.0"
 
 
 ################################################################################
@@ -76,6 +78,8 @@ sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until bootstrap has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+set -e
 
 
 ################################################################################
@@ -140,6 +144,24 @@ Available versions: https://raw.githubusercontent.com/postmodern/ruby-versions/m
 read -r -p "> " ASDF_RUBY_VERSION
 export ASDF_RUBY_VERSION=${ASDF_RUBY_VERSION:-$DEFAULT_RUBY_VERSION}
 
+printf "\\nPlease select a default shell.\\n"
+select my_shell in fish zsh
+do
+  case $my_shell in
+    fish)
+      export DEFAULT_SHELL="fish"
+      break
+      ;;
+    zsh)
+      export DEFAULT_SHELL="zsh"
+      break
+      ;;
+    *)
+      echo "Please enter 1 for fish or 2 for zsh."
+      ;;
+  esac
+done
+
 printf "\\nLooks good. Here's what we've got so far.\\n"
 printf "Bootstrap branch: ==> [%s]\\n" "$BOOTSTRAP_BRANCH"
 printf "Dotfiles branch:  ==> [%s]\\n" "$DOTFILES_BRANCH"
@@ -148,6 +170,7 @@ printf "Host name:        ==> [%s]\\n" "$HOST_NAME"
 printf "Time zone:        ==> [%s]\\n" "$TIME_ZONE"
 printf "Node.js version:  ==> [%s]\\n" "$ASDF_NODEJS_VERSION"
 printf "Ruby version:     ==> [%s]\\n" "$ASDF_RUBY_VERSION"
+printf "Default shell:    ==> [%s]\\n" "$DEFAULT_SHELL"
 
 echo
 read -p "Continue? (y/n) " -n 1 -r
@@ -163,6 +186,11 @@ fi
 ################################################################################
 
 bootstrap_echo "Cloning mac-bootstrap repo..."
+
+if [ -d "$BOOTSTRAP_DIR" ]; then
+  rm -rf "$BOOTSTRAP_DIR"
+fi
+
 git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
 
 
@@ -178,16 +206,32 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 2. Install Oh-My-Zsh (http://ohmyz.sh/)
+# 2. Install shell enhancements
 ################################################################################
 
-bootstrap_echo "Step 2: Installing Oh-My-Zsh..."
+if [ "$DEFAULT_SHELL" == "fish" ]; then
+  bootstrap_echo "Step 2: Installing Oh My Fish..."
 
-if [ -d "$HOME"/.oh-my-zsh ]; then
-  rm -rf "$HOME"/.oh-my-zsh
+  if [ -d "$HOME"/.oh-my-fish ]; then
+    rm -rf "$HOME"/.oh-my-fish
+  fi
+
+  if [ -d "$HOME"/.local/share/omf ]; then
+    rm -rf "$HOME"/.local/share/omf
+  fi
+
+  git clone https://github.com/oh-my-fish/oh-my-fish "$HOME"/.oh-my-fish
+   "$HOME"/.oh-my-fish/bin/install --offline --noninteractive
+
+elif [ "$DEFAULT_SHELL" == "zsh" ]; then
+  bootstrap_echo "Step 2: Installing Oh My Zsh..."
+
+  if [ -d "$HOME"/.oh-my-zsh ]; then
+    rm -rf "$HOME"/.oh-my-zsh
+  fi
+
+  git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME"/.oh-my-zsh
 fi
-
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 bootstrap_echo "Done!"
 
@@ -199,9 +243,9 @@ bootstrap_echo "Done!"
 bootstrap_echo "Step 3: Installing dotfiles..."
 
 if [[ -d $DOTFILES_DIR ]]; then
-  bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
-  rm -rf "$OLD_DOTFILES_BACKUP"
-  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BACKUP"
+  bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_bak..."
+  rm -rf "$OLD_DOTFILES_BAK"
+  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
   rm -rf "$DOTFILES_DIR"
 fi
 
@@ -257,31 +301,13 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 7. Install Fira Code font
-################################################################################
-
-bootstrap_echo "Step 7: Installing Fira Code fixed-width font..."
-if [ -d "$HOME"/src/fonts ]; then
-  rm -rf "$HOME"/src/fonts
-fi
-git clone https://github.com/tonsky/FiraCode "$HOME"/src/fira-code
-cp "$HOME"/src/fira-code/distr/ttf/* "$HOME"/Library/Fonts/
-rm -rf "$HOME"/src/fira-code
-
-bootstrap_echo "Done!"
-
-
-################################################################################
-# 8. Set macOS preferences
+# 7. Set macOS preferences
 ################################################################################
 
 bootstrap_echo "Step 8: Setting macOS preferences..."
 
 # shellcheck source=/dev/null
 source "$BOOTSTRAP_DIR"/install/macos-defaults
-
-# shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/macos-dock
 
 rm -rf "$BOOTSTRAP_DIR"
 

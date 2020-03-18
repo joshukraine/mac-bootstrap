@@ -10,25 +10,6 @@ laptop_echo() {
   printf "\\n[LAPTOP] $fmt\\n" "$@"
 }
 
-append_to_zshrc() {
-  local text="$1" zshrc
-  local skip_new_line="${2:-0}"
-
-  if [ -w "$HOME/.zshrc.local" ]; then
-    zshrc="$HOME/.zshrc.local"
-  else
-    zshrc="$HOME/.zshrc"
-  fi
-
-  if ! grep -Fqs "$text" "$zshrc"; then
-    if [ "$skip_new_line" -eq 1 ]; then
-      printf "%s\\n" "$text" >> "$zshrc"
-    else
-      printf "\\n%s\\n" "$text" >> "$zshrc"
-    fi
-  fi
-}
-
 # shellcheck disable=SC2154
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
@@ -37,13 +18,6 @@ set -e
 if [ ! -d "$HOME/bin/" ]; then
   mkdir "$HOME/bin"
 fi
-
-if [ ! -f "$HOME/.zshrc" ]; then
-  touch "$HOME/.zshrc"
-fi
-
-# shellcheck disable=SC2016
-append_to_zshrc 'export PATH="$HOME/bin:$PATH"'
 
 HOMEBREW_PREFIX="/usr/local"
 
@@ -57,7 +31,19 @@ else
   sudo chown -R "$LOGNAME:admin" "$HOMEBREW_PREFIX"
 fi
 
-update_shell() {
+update_fish_shell() {
+  local shell_path;
+  shell_path="$(command -v fish)"
+
+  laptop_echo "Changing your shell to fish ..."
+  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+    laptop_echo "Adding '$shell_path' to /etc/shells"
+    echo $shell_path | sudo tee -a /etc/shells
+  fi
+  sudo chsh -s "$shell_path" "$USER"
+}
+
+update_zsh_shell() {
   local shell_path;
   shell_path="$(command -v zsh)"
 
@@ -69,17 +55,6 @@ update_shell() {
   sudo chsh -s "$shell_path" "$USER"
 }
 
-case "$SHELL" in
-  */zsh)
-    if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
-      update_shell
-    fi
-    ;;
-  *)
-    update_shell
-    ;;
-esac
-
 gem_install_or_update() {
   if gem list "$1" --installed > /dev/null; then
     gem update "$@"
@@ -90,15 +65,7 @@ gem_install_or_update() {
 
 if ! command -v brew >/dev/null; then
   laptop_echo "Installing Homebrew ..."
-    curl -fsS \
-      'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-
-    append_to_zshrc '# recommended by brew doctor'
-
-    # shellcheck disable=SC2016
-    append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
-
-    export PATH="/usr/local/bin:$PATH"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 if brew list | grep -Fq brew-cask; then
@@ -109,75 +76,116 @@ fi
 laptop_echo "Updating Homebrew formulae ..."
 brew update --force # https://github.com/Homebrew/brew/issues/1151
 brew bundle --file=- <<EOF
-tap "caskroom/cask"
-tap "caskroom/versions"
 tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "thoughtbot/formulae"
+tap "puma/puma"
 tap "universal-ctags/universal-ctags"
 
 # Need to install openssl before libyaml
 brew "openssl"
 brew "openssl@1.1" # wget dependency
 
+brew "advancecomp"
+brew "ansible"
+brew "asciidoctor"
 brew "autoconf" # asdf dependency
 brew "automake" # asdf dependency
 brew "awscli"
 brew "bash"
 brew "bash-completion"
+brew "bat"
 brew "cloc"
 brew "cmake"
 brew "coreutils"
 brew "diff-so-fancy"
-brew "dockutil"
 brew "dos2unix"
+brew "exa"
+brew "fish"
+brew "fontforge"
+brew "fzf"
+brew "gifsicle"
 brew "git"
 brew "git-quick-stats"
 brew "gmp" # Vim dependency
-brew "gpg" # asdf-nodejs dependency
+brew "gnupg" # asdf-nodejs dependency
+brew "highlight"
 brew "htop"
+brew "httpie"
 brew "imagemagick"
+brew "jhead"
+brew "jq"
+brew "less"
+brew "libtermkey"
 brew "libtool" # asdf dependency
 brew "libxslt" # asdf dependency
 brew "libyaml" # asdf dependency
-brew "neovim"
+brew "media-info"
+brew "memcached"
+brew "mono"
+brew "most"
+brew "multitail"
+brew "neovim", args: ["HEAD"]
+brew "onefetch"
 brew "overmind"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
 brew "postgresql", restart_service: true
+brew "puma/puma/puma-dev"
 brew "python"
-brew "python3"
+brew "ranger", link: false
 brew "readline"
-brew "reattach-to-user-namespace"
+brew "ripgrep"
+brew "rlwrap"
 brew "rsync"
 brew "shellcheck"
 brew "sqlite"
 brew "ssh-copy-id"
+brew "starship"
 brew "the_silver_searcher"
-brew "thoughtbot/formulae/gitsh"
+brew "tldr"
 brew "tmux"
+brew "trash"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "unixodbc" # asdf dependency
+brew "w3m"
 brew "wget"
 brew "xz"
-brew "yarn", args: ["without-node"]
+brew "yarn"
 brew "zsh"
 
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
-cask "dropbox"
-cask "fantastical"
-cask "google-chrome"
-cask "iterm2"
+cask "font-firacode-nerd-font"
+cask "iterm2-beta"
 EOF
+
+case "$DEFAULT_SHELL" in
+  fish)
+    laptop_echo "Your shell preference is set to FISH..."
+    update_fish_shell
+    ;;
+  zsh)
+    laptop_echo "Your shell preference is set to ZSH..."
+    update_zsh_shell
+    ;;
+  *)
+    laptop_echo "No shell preference detected. Using FISH..."
+    update_fish_shell
+    ;;
+esac
 
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
-  append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.7
+else
+  "$HOME"/.asdf/bin/asdf update
+  "$HOME"/.asdf/bin/asdf plugin-update --all
 fi
 
 install_asdf_plugin() {
@@ -201,7 +209,7 @@ install_asdf_language() {
   asdf global "$language" "$version"
 }
 
-laptop_echo "Installing latest Ruby..."
+laptop_echo "Installing Ruby..."
 cat << EOF > "$HOME"/.default-gems
 bundler
 haml_lint
@@ -209,6 +217,7 @@ neovim
 pry
 rubocop
 tmuxinator
+solargraph
 EOF
 install_asdf_language "ruby" "$ASDF_RUBY_VERSION"
 laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
@@ -220,7 +229,7 @@ gem update --system
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
-laptop_echo "Installing latest Node..."
+laptop_echo "Installing Node..."
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(command -v node)"
@@ -228,19 +237,20 @@ node -v
 echo "NPM --> $(command -v npm)"
 npm -v
 
+npm install -g @vue/cli
 npm install -g gulp-cli
 npm install -g neovim
 npm install -g pug
-npm install -g standard
 npm install -g stylelint
 npm install -g svgo
-npm install -g vue-cli
+npm install -g typescript
+npm install -g vue-language-server
 
 laptop_echo "Installing Python support for Neovim..."
-echo "Python 2 --> $(command -v python)"
-python --version
 echo "Python 3 --> $(command -v python3)"
 python3 --version
+echo "Python 2 --> $(command -v python)"
+python --version
 sudo easy_install pip
-pip install --user --upgrade pynvim
-pip3 install --user --upgrade pynvim
+python3 -m pip install --user --upgrade pynvim
+python2 -m pip install --user --upgrade pynvim

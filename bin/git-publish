@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # https://github.com/christoomey/dotfiles/blob/77fb4084bd3f207aace80aa93a49769a6a298ddb/bin/git-publish
 # Usage: git publish <remote-branch-name>
@@ -6,14 +8,14 @@
 # specified. Lands on the new pull request page when no PR exists yet.
 # The local branch must be tracking the remote branch.
 
-def get_current_branch
+def read_current_branch
   `git rev-parse --abbrev-ref HEAD`.chomp
 end
 
 def main
-  current_branch = get_current_branch
+  current_branch = read_current_branch
   if current_branch == "master"
-    $stderr.puts "Currently on master, aborting."
+    warn "Currently on master, aborting."
     exit 1
   else
     system("git push -u origin #{current_branch}:#{current_branch}")
