@@ -33,10 +33,19 @@ export BOOTSTRAP_DIR=$HOME/mac-bootstrap
 
 PS3="> "
 
+comp=$(scutil --get ComputerName)
+host=$(scutil --get LocalHostName)
+
+if [ -z "$comp" ] || [ -z "$host" ]; then
+  DEFAULT_COMPUTER_NAME="My Mac Computer"
+  DEFAULT_HOST_NAME="my-mac-computer"
+else
+  DEFAULT_COMPUTER_NAME="$comp"
+  DEFAULT_HOST_NAME="$host"
+fi
+
 DEFAULT_BOOTSTRAP_BRANCH="master"
 DEFAULT_DOTFILES_BRANCH="master"
-DEFAULT_COMPUTER_NAME="$(scutil --get ComputerName)"
-DEFAULT_HOST_NAME="$(scutil --get HostName)"
 DEFAULT_TIME_ZONE="Europe/Kiev"
 DEFAULT_NODEJS_VERSION="13.11.0"
 DEFAULT_RUBY_VERSION="2.7.0"
