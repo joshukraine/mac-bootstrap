@@ -44,7 +44,7 @@ else
   DEFAULT_HOST_NAME="$host"
 fi
 
-DEFAULT_BOOTSTRAP_BRANCH="master"
+DEFAULT_BOOTSTRAP_VERSION="v5.0.4"
 DEFAULT_DOTFILES_BRANCH="master"
 DEFAULT_TIME_ZONE="Europe/Kiev"
 DEFAULT_NODEJS_VERSION="13.12.0"
@@ -108,17 +108,17 @@ echo
 printf "Before we get started, let's get some info about your setup.\\n"
 
 printf "\\nBootstrap script will be cloned from:
-==> %s.\\n\\n" "$BOOTSTRAP_REPO_URL"
-printf "Which branch should we use? (Leave blank for default: %s)\\n" "$DEFAULT_BOOTSTRAP_BRANCH"
-read -r -p "> " BOOTSTRAP_BRANCH
-if [ -n "$BOOTSTRAP_BRANCH" ]; then
-  export BOOTSTRAP_BRANCH
+==> %s.\\n" "$BOOTSTRAP_REPO_URL"
+printf "Which version should we use? (Leave blank for default: %s)\\n" "$DEFAULT_BOOTSTRAP_VERSION"
+read -r -p "> " BOOTSTRAP_VERSION
+if [ -n "$BOOTSTRAP_VERSION" ]; then
+  export BOOTSTRAP_VERSION
 else
-  export BOOTSTRAP_BRANCH="$DEFAULT_BOOTSTRAP_BRANCH"
+  export BOOTSTRAP_VERSION="$DEFAULT_BOOTSTRAP_VERSION"
 fi
 
 printf "\\nDotfiles will be cloned from:
-==> %s.\\n\\n" "$DOTFILES_REPO_URL"
+==> %s.\\n" "$DOTFILES_REPO_URL"
 printf "Which branch should we use? (Leave blank for default: %s)\\n" "$DEFAULT_DOTFILES_BRANCH"
 read -r -p "> " DOTFILES_BRANCH
 if [ -n "$DOTFILES_BRANCH" ]; then
@@ -172,14 +172,14 @@ do
 done
 
 printf "\\nLooks good. Here's what we've got so far.\\n"
-printf "Bootstrap branch: ==> [%s]\\n" "$BOOTSTRAP_BRANCH"
-printf "Dotfiles branch:  ==> [%s]\\n" "$DOTFILES_BRANCH"
-printf "Computer name:    ==> [%s]\\n" "$COMPUTER_NAME"
-printf "Host name:        ==> [%s]\\n" "$HOST_NAME"
-printf "Time zone:        ==> [%s]\\n" "$TIME_ZONE"
-printf "Node.js version:  ==> [%s]\\n" "$ASDF_NODEJS_VERSION"
-printf "Ruby version:     ==> [%s]\\n" "$ASDF_RUBY_VERSION"
-printf "Default shell:    ==> [%s]\\n" "$DEFAULT_SHELL"
+printf "Bootstrap version: ==> [%s]\\n" "$BOOTSTRAP_VERSION"
+printf "Dotfiles branch:   ==> [%s]\\n" "$DOTFILES_BRANCH"
+printf "Computer name:     ==> [%s]\\n" "$COMPUTER_NAME"
+printf "Host name:         ==> [%s]\\n" "$HOST_NAME"
+printf "Time zone:         ==> [%s]\\n" "$TIME_ZONE"
+printf "Node.js version:   ==> [%s]\\n" "$ASDF_NODEJS_VERSION"
+printf "Ruby version:      ==> [%s]\\n" "$ASDF_RUBY_VERSION"
+printf "Default shell:     ==> [%s]\\n" "$DEFAULT_SHELL"
 
 echo
 read -p "Continue? (y/n) " -n 1 -r
@@ -200,7 +200,7 @@ if [ -d "$BOOTSTRAP_DIR" ]; then
   rm -rf "$BOOTSTRAP_DIR"
 fi
 
-git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$BOOTSTRAP_DIR"
+git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_VERSION" "$BOOTSTRAP_DIR"
 
 
 ################################################################################
