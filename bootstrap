@@ -209,7 +209,7 @@ git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_VERSION" "$BOOTSTRAP_DIR"
 
 bootstrap_echo "Step 1: Installing Laptop script..."
 
-sh "$BOOTSTRAP_DIR"/install/laptop 2>&1 | tee ~/laptop.log
+sh "${BOOTSTRAP_DIR}/install/laptop" 2>&1 | tee ~/laptop.log
 
 bootstrap_echo "Done!"
 
@@ -240,7 +240,7 @@ fi
 bootstrap_echo "Step 3: Installing dotfiles..."
 
 if [[ -d $DOTFILES_DIR ]]; then
-  bootstrap_echo "Backing up old dotfiles to $HOME/old_dotfiles_bak..."
+  bootstrap_echo "Backing up old dotfiles to ${HOME}/old_dotfiles_bak..."
   rm -rf "$OLD_DOTFILES_BAK"
   cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
   rm -rf "$DOTFILES_DIR"
@@ -251,7 +251,7 @@ bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
 git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 # shellcheck source=/dev/null
-source "$DOTFILES_DIR"/install.sh
+source "${DOTFILES_DIR}/install.sh"
 
 bootstrap_echo "Done!"
 
@@ -262,7 +262,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 4: Installing ~/bin utilities..."
 
-cp -R "$BOOTSTRAP_DIR"/bin/* "$HOME"/bin/
+cp -R "${BOOTSTRAP_DIR}/bin/*" "${HOME}/bin/"
 
 bootstrap_echo "Done!"
 
@@ -273,11 +273,11 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 5: Setting up Tmuxinator..."
 
-if [ ! -d "$HOME"/.tmuxinator/ ]; then
-  mkdir "$HOME"/.tmuxinator
+if [ ! -d "${HOME}/.tmuxinator/" ]; then
+  mkdir "${HOME}/.tmuxinator"
 fi
 
-cp "$BOOTSTRAP_DIR"/lib/default.yml "$HOME"/.tmuxinator/
+cp "${BOOTSTRAP_DIR}/lib/default.yml" "${HOME}/.tmuxinator/"
 
 bootstrap_echo "Done!"
 
@@ -292,7 +292,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 6: Installing Ukrainian language utilities..."
 
-cp "$BOOTSTRAP_DIR"/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} "$DICTIONARY_DIR"
+cp "${BOOTSTRAP_DIR}/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic}" "$DICTIONARY_DIR"
 
 bootstrap_echo "Done!"
 
@@ -304,7 +304,7 @@ bootstrap_echo "Done!"
 bootstrap_echo "Step 8: Setting macOS preferences..."
 
 # shellcheck source=/dev/null
-source "$BOOTSTRAP_DIR"/install/macos-defaults
+source "${BOOTSTRAP_DIR}/install/macos-defaults"
 
 rm -rf "$BOOTSTRAP_DIR"
 
