@@ -51,7 +51,7 @@ WARNING: This script will ask for your sudo password multiple times. You'll need
 When you invoke `bootstrap`, here's what it does:
 
 * Step 1: Run my adaptation of thoughtbot's [Laptop script][laptop]. This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`][my-laptop]. Step 1 also installs a variety of packages via [Homebrew Bundle][brew-bundle].
-* Step 2: Install shell enhancements: [Oh My Fish][omf] for Fish, [Oh My Zsh][omz] for Zsh.
+* Step 2: Install [Oh My Zsh][omz] if Zsh selected as default shell.
 * Step 3: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME`.
 * Step 4: Install various [executable scripts][exe-scripts] (mostly for Tmux and Git) to `$HOME/bin`.
 * Step 5: Set up a default [Tmuxinator][tmuxinator] profile for managing tmux sessions.
@@ -91,14 +91,14 @@ No one else's development setup will ever be a perfect match for you. That said,
 3) Review the 7 steps in [`bootstrap`][bootstrap] and make your own customizations. Here's an overview of what's going on:
 
 * Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things to review is the `brew bundle` list of packages and casks that will be installed. Customize as needed. Laptop also sets up some basics that are required by the bootstrap script later on.
-* Step 2 (recommended): Use Oh My Fish or Oh My Zsh?
+* Step 2 (recommended): Use Oh My Zsh?
 * Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "VARIABLE DECLARATIONS") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
 * Step 4 (recommended): Install scripts to `~/bin`?
 * Step 5 (recommended): Set up Tmuxinator profile?
 * Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions][lang-extensions]?
 * Step 7 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed.
 
-4) Create `~/.fish.local` or `~/.zshrc.local`, `~/.gitconfig.local`, and `~/.vimrc.local` and add in your personal information. These files are sourced in `~/.config/omf/init.fish` or `~/.zshrc`, `~/.gitconfig`, and `~/.vimrc`  respectively.
+4) Create `~/dotfiles/local/config.fish.local` or `~/.zshrc.local`, `~/.gitconfig.local`, and `~/.vimrc.local` and add in your personal information. These files are sourced in `~/.config/fish/config.fish` or `~/.zshrc`, `~/.gitconfig`, and `~/.vimrc`  respectively.
 
 5) Update the README with your own info, instructions/reminders so you don't forget what you did, and especially the correct install URL:
 
