@@ -24,12 +24,12 @@ bootstrap_echo() {
 osname=$(uname)
 
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
-export OLD_DOTFILES_BAK=$HOME/old_dotfiles_bak
-export DICTIONARY_DIR=$HOME/Library/Spelling
+export OLD_DOTFILES_BAK="${HOME}/old_dotfiles_bak"
+export DICTIONARY_DIR="${HOME}/Library/Spelling"
 export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
-export DOTFILES_DIR=$HOME/dotfiles
+export DOTFILES_DIR="${HOME}/dotfiles"
 export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
-export BOOTSTRAP_DIR=$HOME/mac-bootstrap
+export BOOTSTRAP_DIR="${HOME}/mac-bootstrap"
 
 PS3="> "
 
@@ -215,34 +215,22 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 2. Install shell enhancements
+# 2. Install Oh My Zsh
 ################################################################################
 
-if [ "$DEFAULT_SHELL" == "fish" ]; then
-  bootstrap_echo "Step 2: Installing Oh My Fish..."
-
-  if [ -d "$HOME"/.oh-my-fish ]; then
-    rm -rf "$HOME"/.oh-my-fish
-  fi
-
-  if [ -d "$HOME"/.local/share/omf ]; then
-    rm -rf "$HOME"/.local/share/omf
-  fi
-
-  git clone https://github.com/oh-my-fish/oh-my-fish "$HOME"/.oh-my-fish
-   "$HOME"/.oh-my-fish/bin/install --offline --noninteractive
-
-elif [ "$DEFAULT_SHELL" == "zsh" ]; then
+if [ "$DEFAULT_SHELL" == "zsh" ]; then
   bootstrap_echo "Step 2: Installing Oh My Zsh..."
 
-  if [ -d "$HOME"/.oh-my-zsh ]; then
-    rm -rf "$HOME"/.oh-my-zsh
+  if [ -d "${HOME}/.oh-my-zsh" ]; then
+    rm -rf "${HOME}/.oh-my-zsh"
   fi
 
-  git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME"/.oh-my-zsh
-fi
+  git clone https://github.com/robbyrussell/oh-my-zsh.git "${HOME}/.oh-my-zsh"
 
-bootstrap_echo "Done!"
+  bootstrap_echo "Done!"
+else
+  bootstrap_echo "Step 2: Zsh not selected. Skipping Oh My Zsh installation."
+fi
 
 
 ################################################################################
