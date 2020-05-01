@@ -15,20 +15,20 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
 set -e
 
-if [ ! -d "$HOME/bin/" ]; then
-  mkdir "$HOME/bin"
+if [ ! -d "${HOME}/bin/" ]; then
+  mkdir "${HOME}/bin"
 fi
 
 HOMEBREW_PREFIX="/usr/local"
 
 if [ -d "$HOMEBREW_PREFIX" ]; then
   if ! [ -r "$HOMEBREW_PREFIX" ]; then
-    sudo chown -R "$LOGNAME:admin" /usr/local
+    sudo chown -R "${LOGNAME}:admin" /usr/local
   fi
 else
   sudo mkdir "$HOMEBREW_PREFIX"
   sudo chflags norestricted "$HOMEBREW_PREFIX"
-  sudo chown -R "$LOGNAME:admin" "$HOMEBREW_PREFIX"
+  sudo chown -R "${LOGNAME}:admin" "$HOMEBREW_PREFIX"
 fi
 
 update_fish_shell() {
@@ -37,8 +37,8 @@ update_fish_shell() {
 
   laptop_echo "Changing your shell to fish ..."
   if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
-    laptop_echo "Adding '$shell_path' to /etc/shells"
-    echo $shell_path | sudo tee -a /etc/shells
+    laptop_echo "Adding '${shell_path}' to /etc/shells"
+    echo "$shell_path" | sudo tee -a /etc/shells
   fi
   sudo chsh -s "$shell_path" "$USER"
 }
@@ -49,8 +49,8 @@ update_zsh_shell() {
 
   laptop_echo "Changing your shell to zsh ..."
   if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
-    laptop_echo "Adding '$shell_path' to /etc/shells"
-    sudo sh -c "echo $shell_path >> /etc/shells"
+    laptop_echo "Adding '${shell_path}' to /etc/shells"
+    sudo sh -c "echo ${shell_path} >> /etc/shells"
   fi
   sudo chsh -s "$shell_path" "$USER"
 }
@@ -181,11 +181,11 @@ case "$DEFAULT_SHELL" in
 esac
 
 laptop_echo "Configuring asdf version manager..."
-if [ ! -d "$HOME/.asdf" ]; then
+if [ ! -d "${HOME}/.asdf" ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.7
 else
-  "$HOME"/.asdf/bin/asdf update
-  "$HOME"/.asdf/bin/asdf plugin-update --all
+  "${HOME}/.asdf/bin/asdf" update
+  "${HOME}/.asdf/bin/asdf" plugin-update --all
 fi
 
 install_asdf_plugin() {
@@ -198,7 +198,7 @@ install_asdf_plugin() {
 }
 
 # shellcheck disable=SC1090
-source "$HOME/.asdf/asdf.sh"
+source "${HOME}/.asdf/asdf.sh"
 install_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
 install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
@@ -210,7 +210,7 @@ install_asdf_language() {
 }
 
 laptop_echo "Installing Ruby..."
-cat << EOF > "$HOME"/.default-gems
+cat << EOF > "${HOME}"/.default-gems
 bundler
 haml_lint
 neovim
@@ -230,7 +230,7 @@ number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
 laptop_echo "Installing Node..."
-bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+bash "${HOME}/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(command -v node)"
 node -v
