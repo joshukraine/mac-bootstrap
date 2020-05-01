@@ -239,6 +239,7 @@ npm -v
 
 npm install -g @vue/cli
 npm install -g gulp-cli
+npm install -g http-server
 npm install -g neovim
 npm install -g pug
 npm install -g stylelint
