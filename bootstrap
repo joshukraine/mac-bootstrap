@@ -262,7 +262,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 4: Installing ~/bin utilities..."
 
-cp -R "${BOOTSTRAP_DIR}/bin/*" "${HOME}/bin/"
+cp -R "$BOOTSTRAP_DIR"/bin/* "${HOME}/bin/"
 
 bootstrap_echo "Done!"
 
@@ -292,7 +292,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 6: Installing Ukrainian language utilities..."
 
-cp "${BOOTSTRAP_DIR}/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic}" "$DICTIONARY_DIR"
+cp "$BOOTSTRAP_DIR"/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} "$DICTIONARY_DIR"
 
 bootstrap_echo "Done!"
 
