@@ -227,6 +227,16 @@ if [ "$DEFAULT_SHELL" == "zsh" ]; then
 
   git clone https://github.com/robbyrussell/oh-my-zsh.git "${HOME}/.oh-my-zsh"
 
+  if [ -d /usr/local/share/zsh ]; then
+    bootstrap_echo "Setting permissions for /usr/local/share/zsh..."
+    sudo chmod -R 755 /usr/local/share/zsh
+  fi
+
+  if [ -d /usr/local/share/zsh/site-functions ]; then
+    bootstrap_echo "Setting permissions for /usr/local/share/zsh/site-functions..."
+    sudo chmod -R 755 /usr/local/share/zsh/site-functions
+  fi
+
   bootstrap_echo "Done!"
 else
   bootstrap_echo "Step 2: Zsh not selected. Skipping Oh My Zsh installation."
