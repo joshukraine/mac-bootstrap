@@ -257,3 +257,5 @@ python2 -m pip install --user --upgrade pynvim
 
 laptop_echo "Installing Yarn..."
 curl -o- -L https://yarnpkg.com/install.sh | bash
+
+laptop_echo "Laptop installation completed successfully!"
