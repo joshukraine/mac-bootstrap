@@ -161,6 +161,7 @@ brew "zsh"
 # homebrew-cask
 # https://github.com/caskroom/homebrew-cask
 cask "font-firacode-nerd-font"
+cask "alacritty"
 cask "iterm2-beta"
 EOF
 
