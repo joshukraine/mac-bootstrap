@@ -2,7 +2,7 @@
 
 ![mac-bootstrap screenshot][screenshot]
 
-This script will provision a new machine running a fresh install of [macOS Catalina (10.15)][catalina]. It installs and configures the software, dotfiles, and general preferences I use for web development — primarily [Rails][rails], [React][react], and [Vue][vue]. The command line environment is based on [Fish][fish] (or [Zsh][zsh]), [Neovim][neovim], and [Tmux][tmux] running in [iTerm2][iterm2] or [Terminal.app][terminal].
+This script will provision a new machine running a fresh install of [macOS Catalina (10.15)][catalina]. It installs and configures the software, dotfiles, and general preferences I use for web development — primarily [Rails][rails], [React][react], and [Vue][vue]. The command line environment is based on [Fish][fish] (or [Zsh][zsh]), [Neovim][neovim], and [Tmux][tmux] running in [iTerm2][iterm2] or [Alacritty][alacritty].
 
 The [`bootstrap`][bootstrap] script is very specific to the Mac platform. Version 5.x has been successfully tested on the following versions of macOS:
 
@@ -139,6 +139,7 @@ curl --remote-name https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/mac-bo
 
 Copyright &copy; 2020 Joshua Steele. [MIT License](https://github.com/joshukraine/mac-bootstrap/blob/master/LICENSE)
 
+[alacritty]: https://github.com/alacritty/alacritty
 [bootstrap]: https://github.com/joshukraine/mac-bootstrap/blob/master/bootstrap
 [brew-bundle]: https://github.com/Homebrew/homebrew-bundle#usage
 [catalina]: https://www.apple.com/macos/catalina/
@@ -154,14 +155,12 @@ Copyright &copy; 2020 Joshua Steele. [MIT License](https://github.com/joshukrain
 [mths]: https://mths.be/macos
 [my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
 [neovim]: https://neovim.io/
-[omf]: https://github.com/oh-my-fish/oh-my-fish
 [omz]: http://ohmyz.sh/
 [post-install-tasks]: https://github.com/joshukraine/dotfiles#post-install-tasks
 [rails]: https://rubyonrails.org/
 [react]: https://reactjs.org/
 [screenshot]: https://res.cloudinary.com/dnkvsijzu/image/upload/v1584124959/screenshots/mac-bootstrap-mar-2020_pmadrx.png
 [stratus3d]: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
-[terminal]: https://en.wikipedia.org/wiki/Terminal_(macOS)
 [tmux]: https://github.com/tmux/tmux/wiki
 [tmuxinator]: https://github.com/tmuxinator/tmuxinator
 [vue]: https://vuejs.org/
