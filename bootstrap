@@ -287,8 +287,10 @@ if [ ! -d "${HOME}/.tmuxinator/" ]; then
   mkdir "${HOME}/.tmuxinator"
 fi
 
-bootstrap_echo "Installing zsh completions..."
-wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/local/share/zsh/site-functions/_tmuxinator
+if [ "$DEFAULT_SHELL" == "zsh" ]; then
+  bootstrap_echo "Installing zsh completions..."
+  wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/local/share/zsh/site-functions/_tmuxinator
+fi
 
 cp "${BOOTSTRAP_DIR}/lib/default.yml" "${HOME}/.tmuxinator/"
 
