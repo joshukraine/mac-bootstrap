@@ -256,7 +256,9 @@ sudo easy_install pip
 python3 -m pip install --user --upgrade pynvim
 python2 -m pip install --user --upgrade pynvim
 
-laptop_echo "Installing Yarn..."
-curl -o- -L https://yarnpkg.com/install.sh | bash
+if [ ! -d "${HOME}/.yarn" ]; then
+  laptop_echo "Installing Yarn..."
+  curl -o- -L https://yarnpkg.com/install.sh | bash
+fi
 
 laptop_echo "Laptop installation completed successfully!"
