@@ -243,7 +243,6 @@ npm install -g http-server
 npm install -g neovim
 npm install -g pug
 npm install -g stylelint
-npm install -g svgo
 npm install -g typescript
 npm install -g vue-language-server
 
