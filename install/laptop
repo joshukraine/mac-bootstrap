@@ -210,6 +210,7 @@ install_asdf_language() {
 }
 
 laptop_echo "Installing Ruby..."
+laptop_echo "Setting up default gems..."
 cat << EOF > "${HOME}"/.default-gems
 bundler
 haml_lint
@@ -230,21 +231,23 @@ number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
 laptop_echo "Installing Node..."
+laptop_echo "Setting up default npm packages..."
+cat << EOF > "${HOME}"/.default-npm-packages
+@vue/cli
+gulp-cli
+http-server
+neovim
+pug
+stylelint
+typescript
+vue-language-server
+EOF
 bash "${HOME}/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(command -v node)"
 node -v
 echo "NPM --> $(command -v npm)"
 npm -v
-
-npm install -g @vue/cli
-npm install -g gulp-cli
-npm install -g http-server
-npm install -g neovim
-npm install -g pug
-npm install -g stylelint
-npm install -g typescript
-npm install -g vue-language-server
 
 laptop_echo "Installing Python support for Neovim..."
 echo "Python 3 --> $(command -v python3)"
