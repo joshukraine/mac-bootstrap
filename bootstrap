@@ -244,27 +244,15 @@ fi
 
 
 ################################################################################
-# 3. Setup dotfiles (http://jsua.co/dotfiles)
+# 3. Set macOS preferences
 ################################################################################
 
-bootstrap_echo "Step 3: Installing dotfiles..."
-
-if [[ -d $DOTFILES_DIR ]]; then
-  bootstrap_echo "Backing up old dotfiles to ${HOME}/old_dotfiles_bak..."
-  rm -rf "$OLD_DOTFILES_BAK"
-  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
-  rm -rf "$DOTFILES_DIR"
-fi
-
-bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
-
-git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
+bootstrap_echo "Step 3: Setting macOS preferences..."
 
 # shellcheck source=/dev/null
-source "${DOTFILES_DIR}/install.sh"
+source "${BOOTSTRAP_DIR}/install/macos-defaults"
 
 bootstrap_echo "Done!"
-
 
 ################################################################################
 # 4. Install ~/bin utilities
@@ -313,17 +301,28 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 7. Set macOS preferences
+# 7. Setup dotfiles (http://jsua.co/dotfiles)
 ################################################################################
 
-bootstrap_echo "Step 8: Setting macOS preferences..."
+bootstrap_echo "Step 7: Installing dotfiles..."
+
+if [[ -d $DOTFILES_DIR ]]; then
+  bootstrap_echo "Backing up old dotfiles to ${HOME}/old_dotfiles_bak..."
+  rm -rf "$OLD_DOTFILES_BAK"
+  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
+  rm -rf "$DOTFILES_DIR"
+fi
+
+bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
+
+git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 # shellcheck source=/dev/null
-source "${BOOTSTRAP_DIR}/install/macos-defaults"
-
-rm -rf "$BOOTSTRAP_DIR"
+source "${DOTFILES_DIR}/install.sh"
 
 bootstrap_echo "Done!"
+
+rm -rf "$BOOTSTRAP_DIR"
 
 echo
 echo "**********************************************************************"
