@@ -56,7 +56,7 @@ When you invoke `bootstrap`, here's what it does:
 * Step 4: Install various [executable scripts][exe-scripts] (mostly for Tmux and Git) to `$HOME/bin`.
 * Step 5: Set up a default [Tmuxinator][tmuxinator] profile for managing tmux sessions.
 * Step 6: Install [Ukrainian spell-check dictionaries][dictionaries].
-* Step 7: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME` or `XDG_CONFIG_HOME` as needed.
+* Step 7: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME` or `$XDG_CONFIG_HOME` as needed.
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
