@@ -52,11 +52,11 @@ When you invoke `bootstrap`, here's what it does:
 
 * Step 1: Run my adaptation of thoughtbot's [Laptop script][laptop]. This is a provisioning script which installs lots of goodies like Homebrew, asdf, postgres, etc. My version is now stored locally in this repo under [`install/laptop`][my-laptop]. Step 1 also installs a variety of packages via [Homebrew Bundle][brew-bundle].
 * Step 2: Install [Oh My Zsh][omz] if Zsh selected as default shell.
-* Step 3: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME`.
+* Step 3: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths])
 * Step 4: Install various [executable scripts][exe-scripts] (mostly for Tmux and Git) to `$HOME/bin`.
 * Step 5: Set up a default [Tmuxinator][tmuxinator] profile for managing tmux sessions.
 * Step 6: Install [Ukrainian spell-check dictionaries][dictionaries].
-* Step 7: Set a variety of [macOS defaults][macos-defaults]. (adapted from [https://mths.be/macos][mths])
+* Step 7: Clone [My Dotfiles for macOS][dotfiles] and symlink them to `$HOME` or `XDG_CONFIG_HOME` as needed.
 
 NOTE: Previously, I used the `bootstrap` script to set up many of the standard directories I use in my work. But since I now have [Dropbox Plus][db-plus], all those directories are downloaded automatically after Dropbox is installed. Once they've synced, I symlink them into place in `$HOME`.
 
@@ -92,11 +92,11 @@ No one else's development setup will ever be a perfect match for you. That said,
 
 * Step 1 (required): Take a look at [Laptop][laptop] and see what you might want to tweak. One of the biggest things to review is the `brew bundle` list of packages and casks that will be installed. Customize as needed. Laptop also sets up some basics that are required by the bootstrap script later on.
 * Step 2 (recommended): Use Oh My Zsh?
-* Step 3 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "VARIABLE DECLARATIONS") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
+* Step 3 (required): Review general macOS settings in `install/macos-defaults` and adjust as needed. This script also sets things like `HostName` which are needed later for the dotfiles installation.
 * Step 4 (recommended): Install scripts to `~/bin`?
 * Step 5 (recommended): Set up Tmuxinator profile?
 * Step 6 (optional): Install Ukrainian language utilities? Maybe you're interested in some [other language extensions][lang-extensions]?
-* Step 7 (optional): Review general macOS settings in `install/macos-defaults` and adjust as needed.
+* Step 7 (required): The dotfiles. Update the `$DOTFILES_*` variables (see [`bootstrap`][bootstrap] under "VARIABLE DECLARATIONS") to reference your dotfiles. As a starting point, you can [fork mine][dotfiles] and then point to your fork.
 
 4) Create `~/dotfiles/local/config.fish.local` or `~/.zshrc.local`, `~/.gitconfig.local`, and `~/.vimrc.local` and add in your personal information. These files are sourced in `~/.config/fish/config.fish` or `~/.zshrc`, `~/.gitconfig`, and `~/.vimrc`  respectively.
 
