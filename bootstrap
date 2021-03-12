@@ -22,6 +22,7 @@ bootstrap_echo() {
 ################################################################################
 
 osname=$(uname)
+arch_type=$(uname -m)
 
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export OLD_DOTFILES_BAK="${HOME}/old_dotfiles_bak"
@@ -30,6 +31,15 @@ export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
 export DOTFILES_DIR="${HOME}/dotfiles"
 export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
 export BOOTSTRAP_DIR="${HOME}/mac-bootstrap"
+
+if [ "$arch_type" == "x86_64" ]; then
+  export HOMEBREW_PREFIX="/usr/local"
+elif [ "$arch_type" == "arm64" ]; then
+  export HOMEBREW_PREFIX="/opt/homebrew"
+else
+  bootstrap_echo "Unsupported architecture. Exiting..."
+  exit 1
+fi
 
 PS3="> "
 
