@@ -19,8 +19,6 @@ if [ ! -d "${HOME}/bin/" ]; then
   mkdir "${HOME}/bin"
 fi
 
-HOMEBREW_PREFIX="/usr/local"
-
 if [ -d "$HOMEBREW_PREFIX" ]; then
   if ! [ -r "$HOMEBREW_PREFIX" ]; then
     sudo chown -R "${LOGNAME}:admin" /usr/local
