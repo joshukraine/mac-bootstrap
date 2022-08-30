@@ -15,8 +15,6 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
 set -e
 
-arch_type=$(uname -m)
-
 if [ ! -d "${HOME}/bin/" ]; then
   mkdir "${HOME}/bin"
 fi
@@ -63,14 +61,9 @@ gem_install_or_update() {
   fi
 }
 
-
 if ! command -v brew >/dev/null; then
   laptop_echo "Installing Homebrew ..."
-  if [ "$arch_type" == "arm64" ]; then
-    arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  else
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  fi
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if brew list | grep -Fq brew-cask; then
@@ -87,18 +80,15 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "puma/puma"
-tap "universal-ctags/universal-ctags"
 
 # Need to install openssl before libyaml
 brew "openssl"
 brew "openssl@1.1" # wget dependency
 
 brew "advancecomp"
+brew "alacritty"
 brew "ansible"
 brew "asciidoctor"
-brew "autoconf" # asdf dependency
-brew "automake" # asdf dependency
 brew "awscli"
 brew "bash"
 brew "bash-completion"
@@ -110,39 +100,36 @@ brew "diff-so-fancy"
 brew "dos2unix"
 brew "exa"
 brew "fish"
+brew "font-fira-code-nerd-font"
 brew "fontforge"
 brew "fzf"
 brew "gifsicle"
 brew "git"
 brew "git-quick-stats"
 brew "gmp" # Vim dependency
-brew "gnupg" # asdf-nodejs dependency
 brew "highlight"
 brew "htop"
 brew "httpie"
 brew "imagemagick"
+brew "iterm2-beta"
 brew "jhead"
 brew "jq"
 brew "less"
 brew "libtermkey"
-brew "libtool" # asdf dependency
-brew "libxslt" # asdf dependency
-brew "libyaml" # asdf dependency
 brew "media-info"
 brew "memcached"
 brew "most"
-brew "multitail"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "onefetch"
 brew "overmind"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
-brew "postgresql", restart_service: true
-brew "puma/puma/puma-dev"
+brew "postgres", restart_service: :changed
 brew "python"
 brew "ranger", link: false
 brew "readline"
+brew "redis", restart_service: :changed
 brew "ripgrep"
 brew "rlwrap"
 brew "rsync"
@@ -156,17 +143,11 @@ brew "tmux"
 brew "trash"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
-brew "unixodbc" # asdf dependency
 brew "w3m"
 brew "wget"
 brew "xz"
+brew "yarn"
 brew "zsh"
-
-# homebrew-cask
-# https://github.com/caskroom/homebrew-cask
-cask "font-fira-code-nerd-font"
-cask "alacritty"
-cask "iterm2-beta"
 EOF
 
 case "$DEFAULT_SHELL" in
@@ -186,31 +167,38 @@ esac
 
 laptop_echo "Configuring asdf version manager..."
 if [ ! -d "${HOME}/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.7
+  brew install asdf
 else
   "${HOME}/.asdf/bin/asdf" update
   "${HOME}/.asdf/bin/asdf" plugin-update --all
 fi
 
-install_asdf_plugin() {
+alias install_asdf_plugin=add_or_update_asdf_plugin
+add_or_update_asdf_plugin() {
   local name="$1"
   local url="$2"
 
   if ! asdf plugin-list | grep -Fq "$name"; then
     asdf plugin-add "$name" "$url"
+  else
+    asdf plugin-update "$name"
   fi
 }
 
 # shellcheck disable=SC1090
-source "${HOME}/.asdf/asdf.sh"
-install_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
-install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
+. "$(brew --prefix asdf)/asdf.sh"
+add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
+add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
 install_asdf_language() {
   local language="$1"
-  local version="$2"
-  asdf install "$language" "$version"
-  asdf global "$language" "$version"
+  local version
+  version="$(asdf list-all "$language" | grep -v "[a-z]" | tail -1)"
+
+  if ! asdf list "$language" | grep -Fq "$version"; then
+    asdf install "$language" "$version"
+    asdf global "$language" "$version"
+  fi
 }
 
 laptop_echo "Installing Ruby..."
@@ -259,10 +247,5 @@ python --version
 sudo easy_install pip
 python3 -m pip install --user --upgrade pynvim
 python2 -m pip install --user --upgrade pynvim
-
-if [ ! -d "${HOME}/.yarn" ]; then
-  laptop_echo "Installing Yarn..."
-  curl -o- -L https://yarnpkg.com/install.sh | bash
-fi
 
 laptop_echo "Laptop installation completed successfully!"
