@@ -80,13 +80,13 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "universal-ctags/universal-ctags"
 
 # Need to install openssl before libyaml
 brew "openssl"
 brew "openssl@1.1" # wget dependency
 
 brew "advancecomp"
-brew "alacritty"
 brew "ansible"
 brew "asciidoctor"
 brew "awscli"
@@ -100,7 +100,6 @@ brew "diff-so-fancy"
 brew "dos2unix"
 brew "exa"
 brew "fish"
-brew "font-fira-code-nerd-font"
 brew "fontforge"
 brew "fzf"
 brew "gifsicle"
@@ -111,7 +110,6 @@ brew "highlight"
 brew "htop"
 brew "httpie"
 brew "imagemagick"
-brew "iterm2-beta"
 brew "jhead"
 brew "jq"
 brew "less"
@@ -125,7 +123,7 @@ brew "overmind"
 brew "pandoc"
 brew "perl"
 brew "pgcli"
-brew "postgres", restart_service: :changed
+brew "postgresql@14", restart_service: :changed
 brew "python"
 brew "ranger", link: false
 brew "readline"
@@ -148,6 +146,10 @@ brew "wget"
 brew "xz"
 brew "yarn"
 brew "zsh"
+
+cask "alacritty"
+cask "font-fira-code-nerd-font"
+cask "iterm2-beta"
 EOF
 
 case "$DEFAULT_SHELL" in
