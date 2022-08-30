@@ -57,8 +57,8 @@ fi
 DEFAULT_BOOTSTRAP_VERSION="v5.1.5"
 DEFAULT_DOTFILES_BRANCH="master"
 DEFAULT_TIME_ZONE="Europe/Kiev"
-DEFAULT_NODEJS_VERSION="14.5.3"
-DEFAULT_RUBY_VERSION="2.7.2"
+DEFAULT_NODEJS_VERSION="16.17.0"
+DEFAULT_RUBY_VERSION="3.1.2"
 
 
 ################################################################################
