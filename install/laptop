@@ -147,7 +147,7 @@ brew "xz"
 brew "yarn"
 brew "zsh"
 
-cask "alacritty"
+# cask "alacritty"
 cask "font-fira-code-nerd-font"
 cask "iterm2-beta"
 EOF
