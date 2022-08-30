@@ -22,7 +22,7 @@ bootstrap_echo() {
 ################################################################################
 
 osname=$(uname)
-arch_type=$(uname -m)
+arch="$(uname -m)"
 
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export OLD_DOTFILES_BAK="${HOME}/old_dotfiles_bak"
@@ -32,10 +32,11 @@ export DOTFILES_DIR="${HOME}/dotfiles"
 export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
 export BOOTSTRAP_DIR="${HOME}/mac-bootstrap"
 
-if [ "$arch_type" == "x86_64" ]; then
-  export HOMEBREW_PREFIX="/usr/local"
-elif [ "$arch_type" == "arm64" ]; then
+# Determine Homebrew prefix
+if [ "$arch" == "arm64" ]; then
   export HOMEBREW_PREFIX="/opt/homebrew"
+elif [ "$arch" == "x86_64" ]; then
+  export HOMEBREW_PREFIX="/usr/local"
 else
   bootstrap_echo "Unsupported architecture. Exiting..."
   exit 1
@@ -139,29 +140,29 @@ fi
 
 printf "\\nEnter a name for your Mac. (Leave blank for default: %s)\\n" "$DEFAULT_COMPUTER_NAME"
 read -r -p "> " COMPUTER_NAME
-export COMPUTER_NAME=${COMPUTER_NAME:-$DEFAULT_COMPUTER_NAME}
+export COMPUTER_NAME="${COMPUTER_NAME:-$DEFAULT_COMPUTER_NAME}"
 
 printf "\\nEnter a host name for your Mac. (Leave blank for default: %s)\\n" "$DEFAULT_HOST_NAME"
 read -r -p "> " HOST_NAME
-export HOST_NAME=${HOST_NAME:-$DEFAULT_HOST_NAME}
+export HOST_NAME="${HOST_NAME:-$DEFAULT_HOST_NAME}"
 
 printf "\\nEnter your desired time zone.
 To view available options run \`sudo systemsetup -listtimezones\`
 (Leave blank for default: %s)\\n" "$DEFAULT_TIME_ZONE"
 read -r -p "> " TIME_ZONE
-export TIME_ZONE=${TIME_ZONE:-$DEFAULT_TIME_ZONE}
+export TIME_ZONE="${TIME_ZONE:-$DEFAULT_TIME_ZONE}"
 
 printf "\\nWhich version of Node.js would you like to install?
 Available versions: https://semver.io/node/versions
 (Leave blank for default: %s)\\n" "$DEFAULT_NODEJS_VERSION"
 read -r -p "> " ASDF_NODEJS_VERSION
-export ASDF_NODEJS_VERSION=${ASDF_NODEJS_VERSION:-$DEFAULT_NODEJS_VERSION}
+export ASDF_NODEJS_VERSION="${ASDF_NODEJS_VERSION:-$DEFAULT_NODEJS_VERSION}"
 
 printf "\\nWhich version of Ruby would you like to install?
 Available versions: https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/versions.txt
 (Leave blank for default: %s)\\n" "$DEFAULT_RUBY_VERSION"
 read -r -p "> " ASDF_RUBY_VERSION
-export ASDF_RUBY_VERSION=${ASDF_RUBY_VERSION:-$DEFAULT_RUBY_VERSION}
+export ASDF_RUBY_VERSION="${ASDF_RUBY_VERSION:-$DEFAULT_RUBY_VERSION}"
 
 printf "\\nPlease select a default shell.\\n"
 select my_shell in fish zsh
