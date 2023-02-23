@@ -57,7 +57,6 @@ fi
 
 DEFAULT_BOOTSTRAP_VERSION="v6.0.0"
 DEFAULT_DOTFILES_BRANCH="master"
-DEFAULT_TIME_ZONE="Europe/Kyiv"
 DEFAULT_NODEJS_VERSION="19.7.0"
 DEFAULT_RUBY_VERSION="3.2.1"
 
@@ -146,12 +145,6 @@ printf "\\nEnter a host name for your Mac. (Leave blank for default: %s)\\n" "$D
 read -r -p "> " HOST_NAME
 export HOST_NAME="${HOST_NAME:-$DEFAULT_HOST_NAME}"
 
-printf "\\nEnter your desired time zone.
-To view available options run \`sudo systemsetup -listtimezones\`
-(Leave blank for default: %s)\\n" "$DEFAULT_TIME_ZONE"
-read -r -p "> " TIME_ZONE
-export TIME_ZONE="${TIME_ZONE:-$DEFAULT_TIME_ZONE}"
-
 printf "\\nWhich version of Node.js would you like to install?
 Available versions: https://semver.io/node/versions
 (Leave blank for default: %s)\\n" "$DEFAULT_NODEJS_VERSION"
@@ -187,7 +180,6 @@ printf "Bootstrap version: ==> [%s]\\n" "$BOOTSTRAP_VERSION"
 printf "Dotfiles branch:   ==> [%s]\\n" "$DOTFILES_BRANCH"
 printf "Computer name:     ==> [%s]\\n" "$COMPUTER_NAME"
 printf "Host name:         ==> [%s]\\n" "$HOST_NAME"
-printf "Time zone:         ==> [%s]\\n" "$TIME_ZONE"
 printf "Node.js version:   ==> [%s]\\n" "$ASDF_NODEJS_VERSION"
 printf "Ruby version:      ==> [%s]\\n" "$ASDF_RUBY_VERSION"
 printf "Default shell:     ==> [%s]\\n" "$DEFAULT_SHELL"
