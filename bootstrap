@@ -202,7 +202,7 @@ fi
 
 
 ################################################################################
-# Clone mac-bootstrap repo
+# Clone mac-bootstrap and dotfiles repos
 ################################################################################
 
 bootstrap_echo "Cloning mac-bootstrap repo..."
@@ -213,6 +213,16 @@ fi
 
 git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_VERSION" "$BOOTSTRAP_DIR"
 
+if [[ -d $DOTFILES_DIR ]]; then
+  bootstrap_echo "Backing up old dotfiles to ${HOME}/old_dotfiles_bak..."
+  rm -rf "$OLD_DOTFILES_BAK"
+  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
+  rm -rf "$DOTFILES_DIR"
+fi
+
+bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
+
+git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 ################################################################################
 # 1. Provision with my adaptation of Laptop (install/laptop)
@@ -316,17 +326,6 @@ bootstrap_echo "Done!"
 ################################################################################
 
 bootstrap_echo "Step 7: Installing dotfiles..."
-
-if [[ -d $DOTFILES_DIR ]]; then
-  bootstrap_echo "Backing up old dotfiles to ${HOME}/old_dotfiles_bak..."
-  rm -rf "$OLD_DOTFILES_BAK"
-  cp -R "$DOTFILES_DIR" "$OLD_DOTFILES_BAK"
-  rm -rf "$DOTFILES_DIR"
-fi
-
-bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
-
-git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 # shellcheck source=/dev/null
 source "${DOTFILES_DIR}/install.sh"
