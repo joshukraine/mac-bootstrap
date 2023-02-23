@@ -268,21 +268,10 @@ fi
 
 
 ################################################################################
-# 3. Set macOS preferences
+# 3. Install ~/bin utilities
 ################################################################################
 
-bootstrap_echo "Step 3: Setting macOS preferences..."
-
-# shellcheck source=/dev/null
-source "${BOOTSTRAP_DIR}/install/macos-defaults"
-
-bootstrap_echo "Done!"
-
-################################################################################
-# 4. Install ~/bin utilities
-################################################################################
-
-bootstrap_echo "Step 4: Installing ~/bin utilities..."
+bootstrap_echo "Step 3: Installing ~/bin utilities..."
 
 cp -R "$BOOTSTRAP_DIR"/bin/* "${HOME}/bin/"
 
@@ -290,10 +279,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 5. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
+# 4. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
 ################################################################################
 
-bootstrap_echo "Step 5: Setting up Tmuxinator..."
+bootstrap_echo "Step 4: Setting up Tmuxinator..."
 
 if [ ! -d "${HOME}/.tmuxinator/" ]; then
   mkdir "${HOME}/.tmuxinator"
@@ -310,14 +299,14 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 6. Install Ukrainian language utilities
+# 5. Install Ukrainian language utilities
 #
 # Reference:
 # * http://apple.stackexchange.com/a/11842/75491
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-bootstrap_echo "Step 6: Installing Ukrainian language utilities..."
+bootstrap_echo "Step 5: Installing Ukrainian language utilities..."
 
 cp "$BOOTSTRAP_DIR"/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} "$DICTIONARY_DIR"
 
@@ -325,10 +314,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 7. Setup dotfiles (http://jsua.co/dotfiles)
+# 6. Setup dotfiles (http://jsua.co/dotfiles)
 ################################################################################
 
-bootstrap_echo "Step 7: Installing dotfiles..."
+bootstrap_echo "Step 6: Installing dotfiles..."
 
 # shellcheck source=/dev/null
 source "${DOTFILES_DIR}/install.sh"
