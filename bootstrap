@@ -225,6 +225,17 @@ bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR} ..."
 git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 ################################################################################
+# Setting computer name
+################################################################################
+
+osascript -e 'tell application "System Preferences" to quit'
+
+sudo scutil --set ComputerName "$COMPUTER_NAME"
+sudo scutil --set HostName "$HOST_NAME"
+sudo scutil --set LocalHostName "$HOST_NAME"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist NetBIOSName -string "$HOST_NAME"
+
+################################################################################
 # 1. Provision with my adaptation of Laptop (install/laptop)
 ################################################################################
 
