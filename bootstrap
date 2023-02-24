@@ -31,6 +31,7 @@ export DOTFILES_REPO_URL="https://github.com/joshukraine/dotfiles.git"
 export DOTFILES_DIR="${HOME}/dotfiles"
 export BOOTSTRAP_REPO_URL="https://github.com/joshukraine/mac-bootstrap.git"
 export BOOTSTRAP_DIR="${HOME}/mac-bootstrap"
+export LV_BRANCH="release-1.2/neovim-0.8"
 
 # Determine Homebrew prefix
 if [ "$arch" == "arm64" ]; then
@@ -239,11 +240,22 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 2. Install Oh My Zsh
+# 2. Install LunarVim
+################################################################################
+
+bootstrap_echo "Step 2: Installing LunarVim (${LV_BRANCH})..."
+
+curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh
+
+bootstrap_echo "Done!"
+
+
+################################################################################
+# 3. Install Oh My Zsh
 ################################################################################
 
 if [ "$DEFAULT_SHELL" == "zsh" ]; then
-  bootstrap_echo "Step 2: Installing Oh My Zsh..."
+  bootstrap_echo "Step 3: Installing Oh My Zsh..."
 
   if [ -d "${HOME}/.oh-my-zsh" ]; then
     rm -rf "${HOME}/.oh-my-zsh"
@@ -263,15 +275,15 @@ if [ "$DEFAULT_SHELL" == "zsh" ]; then
 
   bootstrap_echo "Done!"
 else
-  bootstrap_echo "Step 2: Zsh not selected. Skipping Oh My Zsh installation."
+  bootstrap_echo "Step 3: Zsh not selected. Skipping Oh My Zsh installation."
 fi
 
 
 ################################################################################
-# 3. Install ~/bin utilities
+# 4. Install ~/bin utilities
 ################################################################################
 
-bootstrap_echo "Step 3: Installing ~/bin utilities..."
+bootstrap_echo "Step 4: Installing ~/bin utilities..."
 
 cp -R "$BOOTSTRAP_DIR"/bin/* "${HOME}/bin/"
 
@@ -279,10 +291,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 4. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
+# 5. Set up Tmuxinator (https://github.com/tmuxinator/tmuxinator)
 ################################################################################
 
-bootstrap_echo "Step 4: Setting up Tmuxinator..."
+bootstrap_echo "Step 5: Setting up Tmuxinator..."
 
 if [ ! -d "${HOME}/.tmuxinator/" ]; then
   mkdir "${HOME}/.tmuxinator"
@@ -299,14 +311,14 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 5. Install Ukrainian language utilities
+# 6. Install Ukrainian language utilities
 #
 # Reference:
 # * http://apple.stackexchange.com/a/11842/75491
 # * http://extensions.services.openoffice.org/en/project/ukrainian-dictionary
 ################################################################################
 
-bootstrap_echo "Step 5: Installing Ukrainian language utilities..."
+bootstrap_echo "Step 6: Installing Ukrainian language utilities..."
 
 cp "$BOOTSTRAP_DIR"/lib/{hyph_uk.dic,uk_UA.aff,uk_UA.dic} "$DICTIONARY_DIR"
 
@@ -314,10 +326,10 @@ bootstrap_echo "Done!"
 
 
 ################################################################################
-# 6. Setup dotfiles (http://jsua.co/dotfiles)
+# 7. Setup dotfiles (http://jsua.co/dotfiles)
 ################################################################################
 
-bootstrap_echo "Step 6: Installing dotfiles..."
+bootstrap_echo "Step 7: Installing dotfiles..."
 
 # shellcheck source=/dev/null
 source "${DOTFILES_DIR}/install.sh"
