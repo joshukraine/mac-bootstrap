@@ -63,6 +63,7 @@ gem_install_or_update() {
 
 if ! command -v brew >/dev/null; then
   laptop_echo "Installing Homebrew ..."
+  export NONINTERACTIVE=1
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
