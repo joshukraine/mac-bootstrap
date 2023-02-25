@@ -67,6 +67,9 @@ if ! command -v brew >/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+HOMEBREW_SHELLENV_CMD="$HOMEBREW_PREFIX/bin/brew shellenv"
+eval "$($HOMEBREW_SHELLENV_CMD)"
+
 if brew list | grep -Fq brew-cask; then
   laptop_echo "Uninstalling old Homebrew-Cask ..."
   brew uninstall --force brew-cask
