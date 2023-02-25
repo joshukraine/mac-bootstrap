@@ -36,8 +36,10 @@ export LV_BRANCH="release-1.2/neovim-0.8"
 # Determine Homebrew prefix
 if [ "$arch" == "arm64" ]; then
   export HOMEBREW_PREFIX="/opt/homebrew"
+  bootstrap_echo "Apple Silicon architecture detected..."
 elif [ "$arch" == "x86_64" ]; then
   export HOMEBREW_PREFIX="/usr/local"
+  bootstrap_echo "Intel x86 architecture detected..."
 else
   bootstrap_echo "Unsupported architecture. Exiting..."
   exit 1
