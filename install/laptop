@@ -135,6 +135,7 @@ brew "redis", restart_service: :changed
 brew "ripgrep"
 brew "rlwrap"
 brew "rsync"
+brew "rust"
 brew "shellcheck"
 brew "sqlite"
 brew "ssh-copy-id"
