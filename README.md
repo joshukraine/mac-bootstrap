@@ -1,5 +1,13 @@
 # Mac Bootstrap
 
+## ⚠️ This project is no longer maintained.
+
+Mac Bootstrap was a fun project that ran for several years. In the end, the maintenance became too much, and I began looking for simpler solutions. I've recently completed a [major overhaul of my dotfiles](https://github.com/joshukraine/dotfiles/pull/64), also with simplicity and easier maintenance in mind. The README there presents my new approach for bootstrapping a Mac computer based on [my fork of Laptop][joshuas-laptop] + my dotfiles.
+
+&#9657; [Check it out](https://github.com/joshukraine/dotfiles/blob/master/README.md)
+
+---
+
 ![mac-bootstrap screenshot][screenshot]
 
 This script will provision a new machine running a fresh install of [macOS Catalina (10.15)][catalina]. It installs and configures the software, dotfiles, and general preferences I use for web development — primarily [Rails][rails], [React][react], and [Vue][vue]. The command line environment is based on [Fish][fish] (or [Zsh][zsh]), [Neovim][neovim], and [Tmux][tmux] running in [iTerm2][iterm2] or [Alacritty][alacritty].
@@ -154,6 +162,7 @@ Copyright &copy; 2020 Joshua Steele. [MIT License](https://github.com/joshukrain
 [macos-defaults]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/macos-defaults
 [mths]: https://mths.be/macos
 [my-laptop]: https://github.com/joshukraine/mac-bootstrap/blob/master/install/laptop
+[joshuas-laptop]: https://github.com/joshukraine/laptop
 [neovim]: https://neovim.io/
 [omz]: http://ohmyz.sh/
 [post-install-tasks]: https://github.com/joshukraine/dotfiles#post-install-tasks
